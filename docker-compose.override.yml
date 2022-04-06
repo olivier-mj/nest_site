@@ -1,14 +1,112 @@
-version: '3'
-
+version: '3.8'
 services:
-###> doctrine/doctrine-bundle ###
-  database:
-    ports:
-      - "5432"
-###< doctrine/doctrine-bundle ###
-
-###> symfony/mailer ###
   mailer:
+    container_name: mailer
     image: schickling/mailcatcher
     ports: [1025, 1080]
-###< symfony/mailer ###
+    labels:
+      - "traefik.enable=false"
+      - "com.centurylinklabs.watchtower.enable=true"
+    networks:
+      - web
+      - private
+
+  database:
+    ports:
+      - '3306:3306'
+    networks:
+        - private
+
+  adminer:
+    restart: unless-stopped
+    image: adminer
+    container_name: adminer
+    environment:
+        ADMINER_DESIGN: arcs-material
+        ADMINER_DEFAULT_SERVER: database
+    depends_on:
+        - database
+    links:
+        - database
+    ports:
+        - 8080:8080
+    labels:
+        - "traefik.enable=false"
+        - "com.centurylinklabs.watchtower.enable=true"
+    networks:
+        - web
+        - private
+
+  php-fpm:
+    container_name: php-fpm
+    environment:
+      MAILER_DSN: smtp://mailer:1025
+    depends_on:
+      - mailer
+    links:
+      - mailer
+  typesense:
+    labels:
+      - "traefik.enable=false"
+      - "com.centurylinklabs.watchtower.enable=true"
+    networks:
+      - private
+      - web
+    ports:
+      - "8108:8108"
+
+  php:
+    container_name: php
+    # image: php:8.0.13-cli
+    user: "${USER_ID}:${GROUP_ID}"
+    image: oliviermj/php8.0-fpm-dev-symfony-xdebug:latest
+    restart: unless-stopped
+    volumes:
+      - .:/var/www:delegated
+    depends_on:
+      - database
+      - redis
+      - mailer
+      - typesense
+    links:
+      - database
+      - typesense
+      - mailer
+    environment:
+      TZ: Europe/Paris
+      PHP_IDE_CONFIG: serverName=nest
+      APP_ENV: dev
+      REDIS_URL: redis://redis
+      TYPESENSE_KEY: typesense
+      TYPESENSE_HOST: typesense
+      TYPESENSE_PORT: 8108
+      DATABASE_URL: mysql://nest:nest@database:3306/nest?serverVersion=mariadb-10.5.9
+    networks:
+        - private
+
+  redis-gui:
+    restart: on-failure
+    container_name: redis-gui
+    image: rediscommander/redis-commander
+    environment:
+        - REDIS_HOSTS=local:redis:6379
+    depends_on:
+        - redis
+    ports:
+        - "8181:8081"
+    labels:
+        - "traefik.enable=false"
+        - "com.centurylinklabs.watchtower.enable=true"
+    networks:
+        - web
+        - private
+
+
+networks:
+    web:
+        external: true
+        name: web
+    private:
+        internal: true
+        name: private
+        driver: bridge
