@@ -1,5 +1,8 @@
 version: '3.8'
 services:
+  nginx:
+    ports:
+      -  8001:8000
   mailer:
     container_name: mailer
     image: schickling/mailcatcher
