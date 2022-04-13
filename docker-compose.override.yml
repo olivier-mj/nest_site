@@ -2,7 +2,7 @@ version: '3.8'
 services:
   nginx:
     ports:
-      -  8001:8000
+      -  8000:8000
   mailer:
     container_name: mailer
     image: schickling/mailcatcher
@@ -16,9 +16,10 @@ services:
 
   database:
     ports:
-      - '3306:3306'
+      - 3306:3306
     networks:
         - private
+        - web
 
   adminer:
     restart: unless-stopped

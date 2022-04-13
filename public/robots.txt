@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+Sitemap: http://nest-gaming.fr/sitemap.xml
+Sitemap: https://nest-gaming.fr/sitemap.xml
+Sitemap: https://www.nest-gaming.fr/sitemap.xml
+Sitemap: https://www.nest-gaming.fr/sitemap.xml

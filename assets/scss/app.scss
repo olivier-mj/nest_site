@@ -1,0 +1,71 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@import "root";
+
+.bg-gradiant {
+  animation: gradient 15s ease infinite ;
+  background: linear-gradient(
+    316deg,
+    var(--green),
+    var(--dark-green),
+    var(--violet-nest),
+    var(--jaune-nest)
+    
+  );
+  background-size: 250% 100%;
+
+}
+
+.bg-nav{
+  background: rgb(91 53 53) !important;
+}
+
+.gradient {
+  background: linear-gradient(90deg, #d53369 0%, #daae51 100%);
+}
+
+.opacity-gradiant {
+  background: linear-gradient(0deg, #000, transparent);
+  // bottom: 0;
+  // left: 0;
+  // position: relative;
+  // right: 0;
+  // top: 0;
+}
+
+.text-shadow-md{
+  text-shadow: black 0.1em 0.1em 0.2em;
+}
+
+.text-shadow{
+  text-shadow: #00000054 0.1em 0.1em 0.1em;
+}
+
+.bg-slate-900{
+  background-color: rgb(15 23 42) ;
+}
+
+.bg-tournoi{
+  background-image: url('../images/miramar.jpg') !important;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  
+}
+
+.bg-tournoi-gradiant{
+  background: linear-gradient(
+    181deg,
+    #217da2,
+    #8fb7ce,
+    #946f50
+    
+  );
+}
+
+.title-tournoi{
+  color: var(--logo-color-4) !important;
+}
+

@@ -1,0 +1,52 @@
+<nav id="header" class="sticky top-0 z-50 transition duration-300 ease-in-out shadow-md bg-nav bg-slate-900 md:px-6 sm:px-3 ">
+	<div class="flex flex-row items-center justify-between py-2 mx-auto"> 
+		<a  href="{{ path('page.home') }}" >
+			<div class="flex items-center flex-shrink-0">
+
+				<img class="w-auto h-8 " src="{{ asset('build/images/logo-white-transparent.svg') }}" alt="Nest-gaming">
+			</div>
+		</a>
+		<di-v class="flex flex-col items-center group">
+			<!-- humburger button -->
+			<button id="btn-menu" class="p-2 rounded-lg md:hidden">
+				<svg xmlns="http://www.w3.org/2000/svg" fill="white" class="h-10 text-white" viewBox="0 0 16 16">
+					<path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+				</svg>
+			</button>
+			<!-- humburger button -->
+
+			<div class="absolute inset-x-0 hidden py-3 text-gray-600 shadow-md group-hover:block md:block md:static top-16 md:shadow-none">
+				<div class="flex flex-row items-center justify-center space-x-4 font-semibold text-center text-gray-500">
+					<a href="{{ path('page.home') }}" class="px-3 py-2 text-sm font-medium text-white rounded-md bg-inherit " aria-current="page">Acceuil</a>
+
+					<a href="{{ path('page.blog_index') }}" class="px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white">Blog</a>
+					
+					<a href="{{ path('page.tournoi') }}" class="px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white">Tournoi</a>
+
+					{# <a href="{{ path('page.live') }}" class="px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white">Live</a> #}
+
+					<a href="{{ path('page.about') }}" class="px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white">A propos</a>
+
+					<a href="{{ path('page.contact') }}" class="px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white">Contact</a>
+				
+				</div>
+			</div>
+		</di-v>
+	</div>
+	<div id="mobile-menu"  class="hidden transition duration-300 ease-in-out transform " >
+		<div class="px-2 pt-2 pb-3 space-y-1">
+			<!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+			<a href="{{ path('page.home') }}" class="block px-3 py-2 text-base font-medium text-white bg-gray-900 rounded-md" aria-current="page">Acceuil</a>
+
+			<a href="{{ path('page.blog_index') }}" class="block px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white">Blog</a>
+
+			<a href="{{ path('page.tournoi') }}" class="block px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white">Tournoi</a>
+
+			{# <a href="{{ path('page.live') }}" class="block px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white">Live</a> #}
+
+			<a href="{{ path('page.about') }}" class="block px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white">A propos</a>
+
+			<a href="{{ path('page.contact') }}" class="block px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white">Contact</a>
+		</div>
+	</div>
+</nav>

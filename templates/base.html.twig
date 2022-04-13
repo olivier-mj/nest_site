@@ -1,19 +1,38 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+<html lang="fr_FR">
+	<head>
+		<meta charset="UTF-8">
+		<title>{{ block('title') }}	- Nest-Gaming</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="{% block description %}THE NEST la communauté des loups {% endblock %}">
+		<meta name="keywords" content="{% block keywords %}Gaming, FPS, Stream,Twitch, Pubg, GTA RP, etc ... {% endblock %}">
+		<meta name="author" content="{% block author %}TheNestgaming{% endblock %}">
+		<meta property="og:title" content="{% block twitterdescription %}THE NEST la communauté des loups {% endblock %}"/>
+		<meta property="og:site_name" content="the-nest-gaming.com"/>
+		<meta property="og:language" content="fr"/>
+		<meta name="twitter:author" content="@{% block twitterauthor %}TheNestgaming{% endblock %}"/>
+		<meta name="mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="theme-color" content="#000001"/>
+		<meta name="msapplication-starturl" content="/">
+		<link rel="manifest" href="{{ asset('/manifest.json')}}">
+		<link rel="icon" href="{{ asset('/favicon.ico')}}">
+		<link rel="canonical" href="https://www.nest-gaming.local"/>
+		<link rel="alternate" hreflang="fr" href="https://www.nest-gaming.local"/>
+		<link rel="apple-touch-icon" href="/icon-192x192.png">
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('css/app') }}
+		{% endblock %}
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+
+	</head>
+	<body class="{% block classCss %}{% endblock %}">
+  
+		{% include "includes/header.html.twig" %}
+		{% block body %}{% endblock %}
+		{% include "includes/footer.html.twig" %}
+		{% block javascripts %}
+			{{ encore_entry_script_tags('js/app') }}
+		{% endblock %}
+	</body>
 </html>

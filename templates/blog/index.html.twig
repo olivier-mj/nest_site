@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello BlogController!{% endblock %}
+
+{% block body %}
+{% for post in posts %}
+    {{ dump(post.category.name)}}
+{% endfor %}
+{% endblock %}

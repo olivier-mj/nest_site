@@ -211,10 +211,14 @@ diff: #migration diff
 
 
 watch:
-	yarn run watch
+	yarn run watch --hot
 
 build:
 	yarn run build
 
 reload: 
 	yarn encore dev-server  --port 9000 --live-reload
+
+
+view: 
+	yarn run tailwind
