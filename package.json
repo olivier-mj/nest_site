@@ -8,6 +8,8 @@
         "core-js": "^3.0.0",
         "cssnano": "^5.1.7",
         "file-loader": "^6.0.0",
+        "postcss": "^8.4.12",
+        "postcss-import": "^14.1.0",
         "postcss-loader": "^6.2.1",
         "regenerator-runtime": "^0.13.2",
         "sass": "^1.49.11",

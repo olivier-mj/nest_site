@@ -1,0 +1,11 @@
+parameters:
+	checkMissingIterableValueType: false
+	checkGenericClassInNonGenericObjectType: false
+	treatPhpDocTypesAsCertain: false
+	reportUnmatchedIgnoredErrors: false
+	level: 8
+	paths:
+		- src
+	bootstrapFiles:
+		- vendor/autoload.php
+

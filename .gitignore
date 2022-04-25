@@ -19,3 +19,7 @@ yarn-error.log
 tools/strapi/*
 public/uploads/.gitkeep
 public/uploads/*
+tools/backend
+###> liip/imagine-bundle ###
+/public/media/cache/
+###< liip/imagine-bundle ###
