@@ -28,11 +28,11 @@
 
 .opacity-gradiant {
   background: linear-gradient(0deg, #000, transparent);
-  // bottom: 0;
-  // left: 0;
-  // position: relative;
-  // right: 0;
-  // top: 0;
+  bottom: 0;
+  left: 0;
+  position: relative;
+  right: 0;
+  top: 0;
 }
 
 .text-shadow-md{
@@ -44,7 +44,8 @@
 }
 
 .bg-slate-900{
-  background-color: rgb(15 23 42) ;
+  // background-color: rgb(15 23 42) ;
+  background-color: rgb(11 10 16) !important;
 }
 
 .bg-tournoi{
@@ -55,13 +56,21 @@
   
 }
 
+.bg-page-tournoi{
+  background-image: url('../images/miramar.jpg') !important;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  
+}
+
+
 .bg-tournoi-gradiant{
   background: linear-gradient(
     181deg,
     #217da2,
     #8fb7ce,
     #946f50
-    
   );
 }
 
@@ -69,3 +78,12 @@
   color: var(--logo-color-4) !important;
 }
 
+.btn-inscription{
+  background-color: #946f50;
+}
+
+.header-post{
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
