@@ -4,11 +4,16 @@
 <div class="inline-block mx-auto">
     <div class="flex flex-row items-baseline w-auto space-x-3">
     {% if first is defined and current != first %}
+<<<<<<< HEAD
         <span class="px-3 py-1 text-lg font-bold text-indigo-500 bg-gray-100 rounded-md shadow-md">
+=======
+        <span class="px-3 py-1 text-lg font-bold text-black bg-gray-100 rounded-md shadow-md">
+>>>>>>> 0c6e48c5d21ac1f24f1f683ff2cd20b189e0f9a4
             <a href="{{ path(route, query|merge({(pageParameterName): first})) }}">&lt;&lt;</a>
         </span>
     {% endif %}
 
+<<<<<<< HEAD
     {% if previous is defined %}
         <span class="px-3 py-1 text-lg text-indigo-500 bg-gray-100 rounded-md shadow-md">
             <a rel="prev" href="{{ path(route, query|merge({(pageParameterName): previous})) }}">&lt;</a>
@@ -36,6 +41,35 @@
             <a href="{{ path(route, query|merge({(pageParameterName): last})) }}">&gt;&gt;</a>
         </span>
     {% endif %} #}
+=======
+    {# {% if previous is defined %}
+        <span class="px-3 py-1 text-lg text-black bg-gray-100 rounded-md shadow-md">
+            <a rel="prev" href="{{ path(route, query|merge({(pageParameterName): previous})) }}">&lt;</a>
+        </span>
+    {% endif %} #}
+
+    {% for page in pagesInRange %}
+        {% if page != current %}
+            <span class="px-3 py-1 text-lg text-black bg-gray-100 rounded-md shadow-md">
+                <a href="{{ path(route, query|merge({(pageParameterName): page})) }}">{{ page }}</a>
+            </span>
+        {% else %}
+            <span class="px-3 py-1 text-lg font-bold text-white bg-black rounded-md shadow-md">{{ page }}</span>
+        {% endif %}
+    {% endfor %}
+
+    {# {% if next is defined %}
+        <span class="px-3 py-1 text-lg text-black bg-gray-100 rounded-md shadow-md">
+            <a rel="next" href="{{ path(route, query|merge({(pageParameterName): next})) }}">&gt;</a>
+        </span>
+    {% endif %} #}
+
+    {% if last is defined and current != last %}
+        <span class="px-3 py-1 text-lg font-bold text-black bg-gray-100 rounded-md shadow-md">
+            <a href="{{ path(route, query|merge({(pageParameterName): last})) }}">&gt;&gt;</a>
+        </span>
+    {% endif %}
+>>>>>>> 0c6e48c5d21ac1f24f1f683ff2cd20b189e0f9a4
     </div>
 </div>
 {% endif %}

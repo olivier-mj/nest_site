@@ -2,7 +2,7 @@
 <html lang="fr_FR">
 	<head>
 		<meta charset="UTF-8">
-		<title>{{ block('title') }}	- Nest-Gaming</title>
+		<title>{{ block('title') }}	| Nest-Gaming</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="description" content="{% block description %}THE NEST la communauté des loups {% endblock %}">
 		<meta name="keywords" content="{% block keywords %}Gaming, FPS, Stream,Twitch, Pubg, GTA RP, etc ... {% endblock %}">
@@ -17,8 +17,8 @@
 		<meta name="msapplication-starturl" content="/">
 		<link rel="manifest" href="{{ asset('/manifest.json')}}">
 		<link rel="icon" href="{{ asset('/favicon.ico')}}">
-		<link rel="canonical" href="https://www.nest-gaming.local"/>
-		<link rel="alternate" hreflang="fr" href="https://www.nest-gaming.local"/>
+		<link rel="canonical" href="https://www.nest-gaming.fr"/>
+		<link rel="alternate" hreflang="fr" href="https://www.nest-gaming.fr"/>
 		<link rel="apple-touch-icon" href="/icon-192x192.png">
 		{% block stylesheets %}
 			{{ encore_entry_link_tags('css/app') }}
@@ -29,7 +29,9 @@
 	<body class="{% block classCss %}{% endblock %}">
   
 		{% include "includes/header.html.twig" %}
-		{% block body %}{% endblock %}
+		<main class="main-content">
+			{% block body %}{% endblock %}
+		</main>
 		{% include "includes/footer.html.twig" %}
 		{% block javascripts %}
 			{{ encore_entry_script_tags('js/app') }}

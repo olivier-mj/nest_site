@@ -1,5 +1,5 @@
 <nav id="header" class="sticky top-0 z-50 transition duration-300 ease-in-out shadow-md bg-nav bg-slate-900 md:px-6 sm:px-3 ">
-	<div class="flex flex-row items-center justify-between py-2 mx-auto"> 
+	<div class="container flex flex-row items-center justify-between py-2 mx-auto"> 
 		<a  href="{{ path('page.home') }}" >
 			<div class="flex items-center flex-shrink-0">
 
@@ -19,7 +19,7 @@
 				<div class="flex flex-row items-center justify-center space-x-4 font-semibold text-center text-gray-500">
 					<a href="{{ path('page.home') }}" class="px-3 py-2 text-sm font-medium text-white rounded-md bg-inherit " aria-current="page">Acceuil</a>
 
-					<a href="{{ path('page.blog_index') }}" class="px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white">Blog</a>
+					<a href="{{ path('blog.index') }}" class="px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white">Blog</a>
 					
 					<a href="{{ path('page.tournoi') }}" class="px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white">Tournoi</a>
 
@@ -38,7 +38,7 @@
 			<!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
 			<a href="{{ path('page.home') }}" class="block px-3 py-2 text-base font-medium text-white bg-gray-900 rounded-md" aria-current="page">Acceuil</a>
 
-			<a href="{{ path('page.blog_index') }}" class="block px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white">Blog</a>
+			<a href="{{ path('blog.index') }}" class="block px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white">Blog</a>
 
 			<a href="{{ path('page.tournoi') }}" class="block px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white">Tournoi</a>
 
