@@ -41,15 +41,16 @@ services:
         - web
         - private
 
-  php-fpm:
-    container_name: php-fpm
-    environment:
-      TRUSTED_PROXIES: "127.0.0.1,REMOTE_ADDR, 192.168.1.0/24, www.nest-gaming.local"
-      MAILER_DSN: smtp://mailer:1025
-    depends_on:
-      - mailer
-    links:
-      - mailer
+  # php-fpm:
+  #   container_name: php-fpm
+  #   environment:
+  #     APP_ENV: dev
+  #     TRUSTED_PROXIES: "127.0.0.1,REMOTE_ADDR, 192.168.1.0/24, www.nest-gaming.local, dev.nest-gaming.fr"
+  #     MAILER_DSN: smtp://mailer:1025
+  #   depends_on:
+  #     - mailer
+  #   links:
+  #     - mailer
   typesense:
     labels:
       - "traefik.enable=false"
@@ -106,6 +107,17 @@ services:
         - web
         - private
 
+  redis:
+    restart: unless-stopped
+    container_name: redis
+    image: redis:6-alpine
+    ports:
+      - 6379:6379
+    labels:
+      - "traefik.enable=false"
+      - "com.centurylinklabs.watchtower.enable=true"
+    networks:
+      - private
 
 networks:
     web:

@@ -1,0 +1,119 @@
+<div class="widget categories">
+	<header class="widget__header">
+		<h3 class="widget-title">Catégories</h3>
+	</header>
+
+	{# {% cache 'sidebar_category' ttl(300) %} #}
+	{% for category in categories %}
+	<div class="category__item">
+		<a class="category__link"
+			href="{{ path('categories.show', { id: category.id, slug: category.slug }) }}">{{ category.name }}</a>
+		<span>{{ category.category|length }}</span>
+	</div>
+	{% endfor %}
+	{# {% endcache %} #}
+
+</div>
+
+<div class="widget latest-articles">
+	<header class="widget__header">
+		<h3 class="widget-title">Articles récents</h3>
+	</header>
+	<div class="latest-article">
+		{# {% cache 'sidebar_post-latest' ttl(300) %} #}
+		{% for post in posts%}
+		<a class="article" href="{{ path('blog.show', {id: post.id, slug: post.slug }) }}">
+			<div class="article__content">
+				{# <div class="article__thumbnail">
+						<img width="65" height="65" src="{{ vich_uploader_asset( post, 'imageFile') | imagine_filter('post_sidebar') }}" alt="{{ post.title }}" class="rounded-1">
+					</div> #}
+				<div class="article__title">
+					<span>
+						{{post.title }}
+					</span>
+
+					<div class="article__meta">
+						<time class="article__date timeago" datetime="{{ post.createdAt| date('c') }}">
+							{{ post.createdAt|format_datetime('medium', 'none', locale='fr') }}
+						</time>
+						<span class=" article__comment align-self-end">
+							{{ post.comments|length }}
+							commentaires
+						</span>
+					</div>
+
+				</div>
+			</div>
+		</a>
+
+		{% endfor %}
+		{# {% endcache %} #}
+	</div>
+</div>
+
+<div class="widget comments ">
+	<header class="widget__header">
+		<h3 class="widget-title">Commentaires récents</h3>
+	</header>
+	<div class="comment-list">
+		{# {% cache 'sidebar_comment' ttl(300) %} #}
+		{% for comment in comments %}
+		<div class="comment">
+			<div class="comment__avatar">
+				{% set user = comment.user %}
+
+				{% if (user.filename is not defined) or (user.filename == false )%}
+				{{ icon('user', '30','', comment.name)}}
+				{% else %}
+				<img width="30" height="30"
+					src="{{ vich_uploader_asset( user, 'imageFile') | imagine_filter('avatar_comment') }}"
+					alt="Avatar  {{ comment.user.username }}">
+				{% endif %}
+			</div>
+			<div class="comment__content">
+				<div class="comment__text">
+					{% if (user.filename is not defined) or (user.filename == false ) %}
+					<b class="comment__user ">
+						{{comment.name}}:
+					</b><br />
+					{% else %}
+					<a class="comment__user " rel="noreferrer"
+						href="{{ path('author', {username: comment.user.nickname}) }}" target="_blank">
+						{{comment.user.nickname}}:
+					</a>
+					<br />
+					{% endif %}
+					<span>
+						{{ comment.excerpt }}
+					</span>
+				</div>
+				<a class="comment__link "
+					href="{{ path('blog.show', {id: comment.post.id, slug: comment.post.slug }) }}#comment-{{ comment.id}}"
+					title="{{ comment.post.title }}">
+					{{ comment.post.title }}
+				</a>
+			</div>
+		</div>
+		{% endfor %}
+		{# {% endcache %} #}
+
+	</div>
+</div>
+
+<div class="widget tag-cloud ">
+	<header class="widget__header">
+		<h3 class="widget-title">Nuage de Tags</h3>
+	</header>
+	<ul aria-label="Nuage d'étiquettes inline-block" class="tags">
+		{# {% cache 'sidebar_tag' ttl(300) %} #}
+		{% for tag in tags %}
+		<li>
+			<a class="tag" data-weight="{{ tag.posts|length }}"
+				href="{{ path('tag.show', {id: tag.id, slug: tag.slug }) }}">
+				{{ tag.name }}
+			</a>
+		</li>
+		{% endfor %}
+		{# {% endcache %} #}
+	</ul>
+</div>

@@ -17,18 +17,22 @@ use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Cache\TagAwareCacheInterface;
 
 class BlogController extends AbstractController
 {
     private PostRepository $repository;
     private EntityManagerInterface $entityManager;
+    private TagAwareCacheInterface $cache;
 
     public function __construct(
         PostRepository $repository,
-        EntityManagerInterface $entityManager
+        EntityManagerInterface $entityManager,
+        TagAwareCacheInterface $cache
     ) {
         $this->repository = $repository;
         $this->entityManager = $entityManager;
+        $this->cache = $cache;
     }
 
     #[Route('/blog', name: 'blog.index')]
@@ -37,7 +41,7 @@ class BlogController extends AbstractController
         $pagination = $paginator->paginate(
             $this->repository->findForBlog(),
             $request->query->getInt('page', 1),
-            8
+            9
         );
 
         return $this->render('blog/index.html.twig', [
@@ -85,10 +89,10 @@ class BlogController extends AbstractController
             $this->entityManager->persist($comment);
             $this->entityManager->flush();
 
-            // $cache->invalidateTags(['comments','sidebar_comment', 'tagssidebar_comments_categories']);
-            // $cache->delete('comments');
-            // $cache->delete('sidebar_comment');
-            // $cache->delete('tagssidebar_comments_categories');
+            $this->cache->invalidateTags(['comments','sidebar_comment', 'tagssidebar_comments_categories']);
+            $this->cache->delete('comments');
+            $this->cache->delete('sidebar_comment');
+            $this->cache->delete('tagssidebar_comments_categories');
 
             return $this->redirectToRoute('blog.show', ['id' => $post->getId(), 'slug' =>  $post->getSlug()]);
         }
@@ -97,6 +101,58 @@ class BlogController extends AbstractController
             'slug' => $slug,
             'post' => $post,
             'form' => $form->createView(),
+        ]);
+    }
+
+
+    
+    #[Route('/categories', name: 'categories.list')]
+    public function categories(CategoryRepository $categories): Response
+    {
+        return $this->render('blog/categories.html.twig', [
+            'categories' => $categories->findAll()
+        ]);
+    }
+
+    #[Route('/category/{slug}-{id<\d+>}', name: 'categories.show', requirements: ['slug' => '[a-z0-9\-]*', 'id' => '[0-9\-]*'])]
+    public function category(string $slug, int $id, Category $category, ): Response
+    {
+        if ($category->getSlug() !== $slug) {
+            return  $this->redirectToRoute(
+                'categories.show',
+                [
+                    'slug' => $category->getSlug(),
+                    'id' => $category->getId(),
+                ]
+            );
+        }
+        $posts = $this->repository->findPostByCategory($id);
+        return $this->render('blog/category.html.twig', [
+            'category' => $category,
+            'posts' => $posts,
+            'slug' => $slug
+        ]);
+    }
+
+    #[Route('/tags/{slug}-{id}', name: 'tag.show', requirements: ['slug' => '[a-z0-9\-]*', 'id' => '[0-9\-]*'])]
+    public function tag(Tag $tag, string $slug): Response
+    {
+        if ($tag->getSlug() !== $slug) {
+            return  $this->redirectToRoute(
+                'tag.show',
+                [
+                    'id' => $tag->getId(),
+                    'slug' => $tag->getSlug()
+                ]
+            );
+        }
+        $id = $tag->getId();
+        $posts = $this->repository->findPostByTag($id);
+
+
+        return $this->render('blog/tag.html.twig', [
+            'tag' => $tag,
+            'posts' => $posts
         ]);
     }
 

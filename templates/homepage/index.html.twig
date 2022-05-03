@@ -1,163 +1,188 @@
 {% extends 'base.html.twig' %}
-{% block title %}Acceuil
-{% endblock %}
+
+{% block title %}Acceuil{% endblock %}
+
 {% block classCss %}{% endblock %}
 
 {% block body %}
-
-	<section id="presentation" class="flex flex-row flex-wrap justify-between mx-auto bg-gradiant">
-		<div class="relative top-0 left-0 right-0 w-full pt-6 opacity-gradiant">
-			<div class="container flex flex-col flex-wrap items-center px-6 mx-auto mb-9 max-w-7xl md:flex-row">
-				<div
-					class="w-full py-6 md:w-1/2">
-					{# <img class="object-center m-auto md:w-3/4 " src="{{ asset('build/images/logo-large-white.svg') }}"/> #}
-					<img class="object-center w-2/3 m-auto sm:w-3/4" src="{{ asset('build/images/logo-large-white.svg') }}"/>
-				</div>
-				<div class="flex flex-col text-white md:w-1/2 lg:text-left ">
-					<h1 class="mt-4 mb-2 text-xl font-bold leading-tight text-center uppercase mb:hidden sm:text-5xl sm:text-left text-shadow">
-						THE NEST
-					</h1>
-					<h2 class="mb-4 font-bold text-center uppercase mb:hidden sm:text-left text-shadow">La communauté des loups.</h2>
-					<p class="mb-8 text-base leading-loose text-center font-base sm:text-left">
-						Le Nest est un collectif de streamer né il y
-						{{ age }}
-						ans. Qui
-						          rassemble une communauté multi-gaming autour de valeurs fortes, de
-						          partage, de respect mutuel et de tolérance.
-					</p>
-					<div class="flex justify-center mb-4 sm:justify-start">
-						<a href="{{ path('page.about') }}" class="flex items-center w-auto px-4 py-2 font-bold text-center text-black bg-white rounded-md justify-self-center hover:bg-gray-600 hover:text-white">
-							Lire plus
-							{{ icon('right-arrow','20', 'ml-4 fill-current')}}
-						</a>
-					</div>
+<section id="presentation" class="flex flex-row flex-wrap justify-between mx-auto bg-gradiant">
+	<div class="relative top-0 left-0 right-0 w-full pt-6 opacity-gradiant">
+		<div class="container flex flex-col flex-wrap items-center px-6 mx-auto mb-9 max-w-7xl md:flex-row">
+			<div class="w-full py-6 md:w-1/2">
+				{# <img class="object-center m-auto md:w-3/4 " src="{{ asset('build/images/logo-large-white.svg') }}"/> #}
+				<img class="object-center w-2/3 m-auto sm:w-3/4"
+					src="{{ asset('build/images/logo-large-white.svg') }}" class="lazyload" alt="logo nest" height="300px" width="300px" class="lazyload"/>
+			</div>
+			<div class="flex flex-col text-white md:w-1/2 lg:text-left ">
+				<h1
+					class="mt-4 mb-2 text-xl font-bold leading-tight text-center uppercase mb:hidden sm:text-5xl sm:text-left text-shadow">
+					THE NEST
+				</h1>
+				<h2 class="mb-4 font-bold text-center uppercase mb:hidden sm:text-left text-shadow">La communauté des
+					loups.</h2>
+				<p class="mb-8 text-base leading-loose text-center font-base sm:text-left">
+					Le Nest est un collectif de streamer né il y
+					{{ age }}
+					ans. Qui
+					rassemble une communauté multi-gaming autour de valeurs fortes, de
+					partage, de respect mutuel et de tolérance.
+				</p>
+				<div class="flex justify-center mb-4 sm:justify-start">
+					<a href="{{ path('page.about') }}"
+					class="flex text-black bg-white shadow-white/10 shadow-md font-semibold  hover:bg-tournoi-contraste  rounded-lg text-sm px-5 py-2.5 text-center items-center  justify-self-center hover:bg-white/80  hover:text-black hover:shadow-white/50">
+					Lire plus {{ icon('right-arrow','15', 'ml-2 fill-current')}}
+				</a>
 				</div>
 			</div>
-			<div class="relative -mt-12 lg:-mt-24">
-				<svg viewbox="0 0 1428 174" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-					<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-						<g transform="translate(-2.000000, 44.000000)" fill="#404852" fill-rule="nonzero">
-							<path d="M0,0 C90.7283404,0.927527913 147.912752,27.187927 291.910178,59.9119003 C387.908462,81.7278826 543.605069,89.334785 759,82.7326078 C469.336065,156.254352 216.336065,153.6679 0,74.9732496" opacity="0.100000001"></path>
-							<path d="M100,104.708498 C277.413333,72.2345949 426.147877,52.5246657 546.203633,45.5787101 C666.259389,38.6327546 810.524845,41.7979068 979,55.0741668 C931.069965,56.122511 810.303266,74.8455141 616.699903,111.243176 C423.096539,147.640838 250.863238,145.462612 100,104.708498 Z" opacity="0.100000001"></path>
-							<path d="M1046,51.6521276 C1130.83045,29.328812 1279.08318,17.607883 1439,40.1656806 L1439,120 C1271.17211,77.9435312 1140.17211,55.1609071 1046,51.6521276 Z" id="Path-4" opacity="0.200000003"></path>
-						</g>
-						<g transform="translate(-4.000000, 76.000000)" fill="#FFFFFF" fill-rule="nonzero">
-							<path d="M0.457,34.035 C57.086,53.198 98.208,65.809 123.822,71.865 C181.454,85.495 234.295,90.29 272.033,93.459 C311.355,96.759 396.635,95.801 461.025,91.663 C486.76,90.01 518.727,86.372 556.926,80.752 C595.747,74.596 622.372,70.008 636.799,66.991 C663.913,61.324 712.501,49.503 727.605,46.128 C780.47,34.317 818.839,22.532 856.324,15.904 C922.689,4.169 955.676,2.522 1011.185,0.432 C1060.705,1.477 1097.39,3.129 1121.236,5.387 C1161.703,9.219 1208.621,17.821 1235.4,22.304 C1285.855,30.748 1354.351,47.432 1440.886,72.354 L1441.191,104.352 L1.121,104.031 L0.457,34.035 Z"></path>
-						</g>
-					</g>
-				</svg>
-			</div>
-		</section>
-
-		<section id="lastpost" class="text-gray-600 body-font">
-			<div class="container px-5 py-20 mx-auto">
-				<div class="flex flex-wrap w-full mb-10">
-					<div class="w-full mb-6 lg:w-1/2 lg:mb-0">
-						<h1 class="mb-2 text-2xl font-medium text-gray-900 sm:text-3xl title-font">Blog</h1>
-						<div class="w-20 h-1 bg-indigo-500 rounded"></div>
-					</div>
-				</div>
-				<div class="flex flex-wrap -m-4">
-					{% for post in posts %}
-						<article class="p-4 lg:w-1/4 md:w-1/2">
-							<div class="h-full overflow-hidden border-2 border-gray-200 rounded-lg border-opacity-60">
-								<img class="object-cover object-center w-full lg:h-48 md:h-36" 
-                  {% if post.filename is not null %}
-                  src="{{ vich_uploader_asset( post, 'imageFile') }}" 
-                  {% else %} 
-                  src="https://dummyimage.com/600x400/000/fff" {% endif %} alt="{{ post.title }}">
-								<div class="p-6">
-									{% if post.category is defined %}
-										<h2 class="mb-1 text-xs font-medium tracking-widest text-gray-400 uppercase title-font">{{ post.category.name }}</h2>
-									{% endif %}
-
-									<h1 class="mb-3 text-lg font-medium text-gray-900 title-font">{{ post.title }}</h1>
-									<p class="mb-3 leading-relaxed">{{ post.content | slice(0,100) }}
-										...</p>
-									<div class="flex flex-wrap items-center ">
-										<a href="{{ path('blog.show', {'slug': post.slug, 'id': post.id}) }}" class="inline-flex items-center text-indigo-500 md:mb-2 lg:mb-0">Lire plus
-											<svg class="w-4 h-4 ml-2" viewbox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
-												<path d="M5 12h14"></path>
-												<path d="M12 5l7 7-7 7"></path>
-											</svg>
-										</a>
-										<span class="inline-flex items-center py-1 pr-3 ml-auto mr-3 text-sm leading-none text-gray-400 border-r-2 border-gray-200 lg:ml-auto md:ml-0">
-											<svg class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" viewbox="0 0 24 24">
-												<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-												<circle cx="12" cy="12" r="3"></circle>
-											</svg>1.2K
-										</span>
-										<span class="inline-flex items-center text-sm leading-none text-gray-400">
-											<svg class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" viewbox="0 0 24 24">
-												<path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path>
-											</svg>6
-										</span>
-									</div>
-								</div>
-							</div>
-						</article>
-					{% endfor %}
-				</div>
-        <div class="flex text-center">
-          <a href="{{ path('blog.index') }}" class="flex px-8 py-2 mx-auto mt-16 text-lg text-white bg-indigo-500 border-0 rounded focus:outline-none hover:bg-indigo-600">Voir plus</a>
-        </div>
-
-			</div>
-		</section>
-
-		<section class="relative body-font bg-tournoi ">
-			<svg class="wave-top" viewbox="0 0 1439 147" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+		</div>
+		<div class="relative -mt-12 lg:-mt-24">
+			<svg viewbox="0 0 1428 174" version="1.1" xmlns="http://www.w3.org/2000/svg"
+				xmlns:xlink="http://www.w3.org/1999/xlink">
 				<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-					<g transform="translate(-1.000000, -14.000000)" fill-rule="nonzero">
-						<g class="wave" fill="#FFFFFF">
-							<path d="M1440,84 C1383.555,64.3 1342.555,51.3 1317,45 C1259.5,30.824 1206.707,25.526 1169,22 C1129.711,18.326 1044.426,18.475 980,22 C954.25,23.409 922.25,26.742 884,32 C845.122,37.787 818.455,42.121 804,45 C776.833,50.41 728.136,61.77 713,65 C660.023,76.309 621.544,87.729 584,94 C517.525,105.104 484.525,106.438 429,108 C379.49,106.484 342.823,104.484 319,102 C278.571,97.783 231.737,88.736 205,84 C154.629,75.076 86.296,57.743 0,32 L0,0 L1440,0 L1440,84 Z"></path>
-						</g>
-						<g transform="translate(1.000000, 15.000000)" fill="#FFFFFF">
-							<g transform="translate(719.500000, 68.500000) rotate(-180.000000) translate(-719.500000, -68.500000) ">
-								<path d="M0,0 C90.7283404,0.927527913 147.912752,27.187927 291.910178,59.9119003 C387.908462,81.7278826 543.605069,89.334785 759,82.7326078 C469.336065,156.254352 216.336065,153.6679 0,74.9732496" opacity="0.100000001"></path>
-								<path d="M100,104.708498 C277.413333,72.2345949 426.147877,52.5246657 546.203633,45.5787101 C666.259389,38.6327546 810.524845,41.7979068 979,55.0741668 C931.069965,56.122511 810.303266,74.8455141 616.699903,111.243176 C423.096539,147.640838 250.863238,145.462612 100,104.708498 Z" opacity="0.100000001"></path>
-								<path d="M1046,51.6521276 C1130.83045,29.328812 1279.08318,17.607883 1439,40.1656806 L1439,120 C1271.17211,77.9435312 1140.17211,55.1609071 1046,51.6521276 Z" opacity="0.200000003"></path>
-							</g>
-						</g>
-					</g>
-				</g>
-			</svg>
-			<div class="container flex flex-col items-center justify-center px-5 mx-auto text-white py-18">
-				<img class="object-cover object-center w-5/6 mb-10 rounded lg:w-2/5 md:w-3/6" alt="tounoi - la Jamyanovitch212" src="{{ asset('build/images/logo-tournoi.svg')}}">
-				<div class="w-full text-center lg:w-2/3">
-					<h1 class="items-center mb-2 text-3xl font-bold title-font sm:text-4xl text-shadow">La Jamyanovitch212</h1>
-					<h2 class="mb-4 text-2xl font-bold text-shadow">Saison 2</h2>
-					<p class="flex items-center justify-center mb-4 text-shadow ">
-						{{ icon('quotes-left','20', 'fill-current')}}
-						<span class="px-4 font-black">Du 21 et 21 mai 2022 à partir d 19H30</span>
-						{{ icon('quotes-right','20', 'fill-current')}}
-					</p>
-					<p class="mb-8 leading-relaxed text-shadow">La Jamyanovitch212 est un tournoi pour débutant inter-communautaire initier par les  streamers :
-						<br class=""><span class="font-bold">Jamyan_, Stonic212
-						</span>et
-						<span class="font-bold">Romanovitch1984</span>
-						.</p>
-					<div class="flex justify-center item-center">
-						<a href="{{ path('page.tournoi') }}" class="flex text-black bg-white shadow-md  hover:bg-tournoi-contraste  font-medium rounded-lg text-sm px-5 py-2.5 text-center items-center  justify-self-center hover:bg-gray-400 hover:text-white">
-							Plus de détail
-							{{ icon('right-arrow','15', 'ml-4 fill-current')}}
-						</a>
-
-
-					</div>
-				</div>
-			</div>
-			<svg viewbox="0 0 1428 174" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-				<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-					<g transform="translate(-2.000000, 44.000000)" fill="#FFFFFF" fill-rule="nonzero">
-						<path d="M0,0 C90.7283404,0.927527913 147.912752,27.187927 291.910178,59.9119003 C387.908462,81.7278826 543.605069,89.334785 759,82.7326078 C469.336065,156.254352 216.336065,153.6679 0,74.9732496" opacity="0.100000001"></path>
-						<path d="M100,104.708498 C277.413333,72.2345949 426.147877,52.5246657 546.203633,45.5787101 C666.259389,38.6327546 810.524845,41.7979068 979,55.0741668 C931.069965,56.122511 810.303266,74.8455141 616.699903,111.243176 C423.096539,147.640838 250.863238,145.462612 100,104.708498 Z" opacity="0.100000001"></path>
-						<path d="M1046,51.6521276 C1130.83045,29.328812 1279.08318,17.607883 1439,40.1656806 L1439,120 C1271.17211,77.9435312 1140.17211,55.1609071 1046,51.6521276 Z" id="Path-4" opacity="0.200000003"></path>
+					<g transform="translate(-2.000000, 44.000000)" fill="#404852" fill-rule="nonzero">
+						<path
+							d="M0,0 C90.7283404,0.927527913 147.912752,27.187927 291.910178,59.9119003 C387.908462,81.7278826 543.605069,89.334785 759,82.7326078 C469.336065,156.254352 216.336065,153.6679 0,74.9732496"
+							opacity="0.100000001"></path>
+						<path
+							d="M100,104.708498 C277.413333,72.2345949 426.147877,52.5246657 546.203633,45.5787101 C666.259389,38.6327546 810.524845,41.7979068 979,55.0741668 C931.069965,56.122511 810.303266,74.8455141 616.699903,111.243176 C423.096539,147.640838 250.863238,145.462612 100,104.708498 Z"
+							opacity="0.100000001"></path>
+						<path
+							d="M1046,51.6521276 C1130.83045,29.328812 1279.08318,17.607883 1439,40.1656806 L1439,120 C1271.17211,77.9435312 1140.17211,55.1609071 1046,51.6521276 Z"
+							id="Path-4" opacity="0.200000003"></path>
 					</g>
 					<g transform="translate(-4.000000, 76.000000)" fill="#FFFFFF" fill-rule="nonzero">
-						<path d="M0.457,34.035 C57.086,53.198 98.208,65.809 123.822,71.865 C181.454,85.495 234.295,90.29 272.033,93.459 C311.355,96.759 396.635,95.801 461.025,91.663 C486.76,90.01 518.727,86.372 556.926,80.752 C595.747,74.596 622.372,70.008 636.799,66.991 C663.913,61.324 712.501,49.503 727.605,46.128 C780.47,34.317 818.839,22.532 856.324,15.904 C922.689,4.169 955.676,2.522 1011.185,0.432 C1060.705,1.477 1097.39,3.129 1121.236,5.387 C1161.703,9.219 1208.621,17.821 1235.4,22.304 C1285.855,30.748 1354.351,47.432 1440.886,72.354 L1441.191,104.352 L1.121,104.031 L0.457,34.035 Z"></path>
+						<path
+							d="M0.457,34.035 C57.086,53.198 98.208,65.809 123.822,71.865 C181.454,85.495 234.295,90.29 272.033,93.459 C311.355,96.759 396.635,95.801 461.025,91.663 C486.76,90.01 518.727,86.372 556.926,80.752 C595.747,74.596 622.372,70.008 636.799,66.991 C663.913,61.324 712.501,49.503 727.605,46.128 C780.47,34.317 818.839,22.532 856.324,15.904 C922.689,4.169 955.676,2.522 1011.185,0.432 C1060.705,1.477 1097.39,3.129 1121.236,5.387 C1161.703,9.219 1208.621,17.821 1235.4,22.304 C1285.855,30.748 1354.351,47.432 1440.886,72.354 L1441.191,104.352 L1.121,104.031 L0.457,34.035 Z">
+						</path>
 					</g>
 				</g>
 			</svg>
-		</section>
-	{% endblock %}
+		</div>
+</section>
+
+<section id="lastpost" class="text-gray-600 body-font">
+	<div class="container px-5 py-20 mx-auto">
+		<div class="flex flex-wrap w-full mb-10">
+			<div class="w-full mb-6 lg:w-1/2 lg:mb-0">
+				<h1 class="mb-2 text-2xl font-medium text-gray-900 sm:text-3xl title-font">Articles récents</h1>
+				<div class="w-20 h-1 bg-indigo-500 rounded"></div>
+			</div>
+		</div>
+		<div class="flex flex-wrap -m-4">
+		{% cache "homepage"  ttl(300) %}
+			{% for post in posts %}
+			<article class="p-4 lg:w-1/4 md:w-1/2 bg-blend-lighten hover:bg-blend-darken">
+				<div class="h-full overflow-hidden rounded-lg shadow-md ">
+					<img class="object-cover object-center w-full lg:h-48 md:h-36"  height="192px" width="286px"
+					src="{{ vich_uploader_asset( post, 'imageFile') |  imagine_filter('homepage_thumbnail') }}"  alt="{{ post.title }}" class="lazyload">
+					<div class="p-6">
+						<p class="text-xs font-medium tracking-widest text-gray-400 capitalize title-font">
+							{{ post.category.name }}
+						</p>
+
+						<h1 class="font-medium text-gray-600 tt-4ext-lg mmb-1 hover:text-gray-900 hover:font-semibold title-font">
+							<a class="" href="{{ path('blog.show', {'slug': post.slug, 'id': post.id}) }}">{{ post.title}} </a>
+						</h1>
+						<time  class="mb-4 text-xs border-gray-500 " datetime="{{ post.createdAt| date('c') }}">
+							{{ post.createdAt | format_datetime('medium', 'short', locale='fr') }}
+						</time>
+						<p class="pt-2 pb-2 leading-relaxed text-md">
+							{{ post.content | raw | striptags| slice(0,70) }} ...
+						</p>
+						<div class="flex flex-wrap items-center ">
+							<a href="{{ path('blog.show', {'slug': post.slug, 'id': post.id}) }}" class="inline-flex items-center text-indigo-500 text-md md:mb-2 lg:mb-0">Lire plus
+								
+							</a>
+						</div>
+					</div>
+				</div>
+
+			</article>
+			{% endfor %}
+		{% endcache %}
+
+		</div>
+		<div class="flex items-center justify-center text-center">
+				<a role="button" href="{{ path('blog.index') }}" class="flex items-center px-4 py-2 mt-8 text-sm font-semibold text-white bg-black rounded-md shadow-lg focus:outline-none hover:bg-black/70 shadow-black/50">Voir 	plus {{ icon('right-arrow','15', 'ml-2 fill-current')}}</a>
+		</div>
+	</div>
+</section>
+
+<section class="relative body-font bg-tournoi lazyload">
+	<svg class="wave-top" viewbox="0 0 1439 147" version="1.1" xmlns="http://www.w3.org/2000/svg"
+		xmlns:xlink="http://www.w3.org/1999/xlink">
+		<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+			<g transform="translate(-1.000000, -14.000000)" fill-rule="nonzero">
+				<g class="wave" fill="#FFFFFF">
+					<path
+						d="M1440,84 C1383.555,64.3 1342.555,51.3 1317,45 C1259.5,30.824 1206.707,25.526 1169,22 C1129.711,18.326 1044.426,18.475 980,22 C954.25,23.409 922.25,26.742 884,32 C845.122,37.787 818.455,42.121 804,45 C776.833,50.41 728.136,61.77 713,65 C660.023,76.309 621.544,87.729 584,94 C517.525,105.104 484.525,106.438 429,108 C379.49,106.484 342.823,104.484 319,102 C278.571,97.783 231.737,88.736 205,84 C154.629,75.076 86.296,57.743 0,32 L0,0 L1440,0 L1440,84 Z">
+					</path>
+				</g>
+				<g transform="translate(1.000000, 15.000000)" fill="#FFFFFF">
+					<g
+						transform="translate(719.500000, 68.500000) rotate(-180.000000) translate(-719.500000, -68.500000) ">
+						<path
+							d="M0,0 C90.7283404,0.927527913 147.912752,27.187927 291.910178,59.9119003 C387.908462,81.7278826 543.605069,89.334785 759,82.7326078 C469.336065,156.254352 216.336065,153.6679 0,74.9732496"
+							opacity="0.100000001"></path>
+						<path
+							d="M100,104.708498 C277.413333,72.2345949 426.147877,52.5246657 546.203633,45.5787101 C666.259389,38.6327546 810.524845,41.7979068 979,55.0741668 C931.069965,56.122511 810.303266,74.8455141 616.699903,111.243176 C423.096539,147.640838 250.863238,145.462612 100,104.708498 Z"
+							opacity="0.100000001"></path>
+						<path
+							d="M1046,51.6521276 C1130.83045,29.328812 1279.08318,17.607883 1439,40.1656806 L1439,120 C1271.17211,77.9435312 1140.17211,55.1609071 1046,51.6521276 Z"
+							opacity="0.200000003"></path>
+					</g>
+				</g>
+			</g>
+		</g>
+	</svg>
+	<div class="container flex flex-col items-center justify-center px-5 mx-auto text-white py-18">
+		<img class="object-cover object-center w-5/6 mb-10 rounded lg:w-2/5 md:w-3/6" alt="tounoi - la Jamyanovitch212"
+			src="{{ asset('build/images/logo-tournoi.svg') }}" height="300px" width="300px" class="lazyload">
+		<div class="w-full text-center lg:w-2/3">
+			<h1 class="items-center mb-2 text-3xl font-bold title-font sm:text-4xl text-shadow">La Jamyanovitch212</h1>
+			<h2 class="mb-4 text-2xl font-bold text-shadow">Saison 2</h2>
+			<p class="flex items-center justify-center mb-4 text-shadow ">
+				{{ icon('quotes-left','20', 'fill-current')}}
+				<span class="px-4 font-black">Du 21 et 21 mai 2022 à partir d 19H30</span>
+				{{ icon('quotes-right','20', 'fill-current')}}
+			</p>
+			<p class="mb-8 leading-relaxed text-shadow">La Jamyanovitch212 est un tournoi pour débutant
+				inter-communautaire initier par les streamers :
+				<br class=""><span class="font-bold">Jamyan_, Stonic212
+				</span>et
+				<span class="font-bold">Romanovitch1984</span>
+				.</p>
+			<div class="flex justify-center item-center">
+				<a href="{{ path('page.tournoi') }}"
+					class="flex text-black bg-white shadow-white/10 shadow-md font-semibold  hover:bg-tournoi-contraste  rounded-lg text-sm px-5 py-2.5 text-center items-center  justify-self-center hover:bg-white/80  hover:text-black hover:shadow-white/50">
+					Plus de détail
+					{{ icon('right-arrow','15', 'ml-2 fill-current')}}
+				</a>
+
+
+			</div>
+		</div>
+	</div>
+	<svg viewbox="0 0 1428 174" version="1.1" xmlns="http://www.w3.org/2000/svg"
+		xmlns:xlink="http://www.w3.org/1999/xlink">
+		<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+			<g transform="translate(-2.000000, 44.000000)" fill="#FFFFFF" fill-rule="nonzero">
+				<path
+					d="M0,0 C90.7283404,0.927527913 147.912752,27.187927 291.910178,59.9119003 C387.908462,81.7278826 543.605069,89.334785 759,82.7326078 C469.336065,156.254352 216.336065,153.6679 0,74.9732496"
+					opacity="0.100000001"></path>
+				<path
+					d="M100,104.708498 C277.413333,72.2345949 426.147877,52.5246657 546.203633,45.5787101 C666.259389,38.6327546 810.524845,41.7979068 979,55.0741668 C931.069965,56.122511 810.303266,74.8455141 616.699903,111.243176 C423.096539,147.640838 250.863238,145.462612 100,104.708498 Z"
+					opacity="0.100000001"></path>
+				<path
+					d="M1046,51.6521276 C1130.83045,29.328812 1279.08318,17.607883 1439,40.1656806 L1439,120 C1271.17211,77.9435312 1140.17211,55.1609071 1046,51.6521276 Z"
+					id="Path-4" opacity="0.200000003"></path>
+			</g>
+			<g transform="translate(-4.000000, 76.000000)" fill="#FFFFFF" fill-rule="nonzero">
+				<path
+					d="M0.457,34.035 C57.086,53.198 98.208,65.809 123.822,71.865 C181.454,85.495 234.295,90.29 272.033,93.459 C311.355,96.759 396.635,95.801 461.025,91.663 C486.76,90.01 518.727,86.372 556.926,80.752 C595.747,74.596 622.372,70.008 636.799,66.991 C663.913,61.324 712.501,49.503 727.605,46.128 C780.47,34.317 818.839,22.532 856.324,15.904 C922.689,4.169 955.676,2.522 1011.185,0.432 C1060.705,1.477 1097.39,3.129 1121.236,5.387 C1161.703,9.219 1208.621,17.821 1235.4,22.304 C1285.855,30.748 1354.351,47.432 1440.886,72.354 L1441.191,104.352 L1.121,104.031 L0.457,34.035 Z">
+				</path>
+			</g>
+		</g>
+	</svg>
+</section>
+{% endblock %}

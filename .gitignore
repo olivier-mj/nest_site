@@ -23,3 +23,4 @@ tools/backend
 ###> liip/imagine-bundle ###
 /public/media/cache/
 ###< liip/imagine-bundle ###
+tools/cert

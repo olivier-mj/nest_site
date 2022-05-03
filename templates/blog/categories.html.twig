@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Catégories {% endblock %}
+
+{% block hero %}
+    <div class="hero-section blog-single page-header  text-white bg-secondary">
+        <div class="container">
+            <h1>Catégories</h1>
+        </div>
+    </div>
+{% endblock %}
+{% block body %}
+    <div class="categories-list pt-5">
+        <div class="container">
+            <div class="row">
+
+                {% for category in categories %}
+                    <div class="col-12 col-md-6 col-lg-3 text-center pb-5">
+                        <svg class="bd-placeholder-img" width="100%"  height="320"
+                             xmlns="http://www.w3.org/2000/svg" role="img"
+                             aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice"
+                             focusable="false"><title>{{ category.name }}</title>
+                            <rect width="100%" height="100%" fill="{{ category.color }}"></rect>
+                            <text x="40%" y="50%" fill="#eceeef" dy=".3em">{{ category.name }}</text>
+                        </svg>
+
+                    </div>
+
+
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

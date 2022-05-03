@@ -1,0 +1,71 @@
+team:
+  streamer:
+    - name: Jamyan_
+      avatar: 'jamyan_.png'
+      description: Lorem ipsum dolor s Quod eos id officiis it amet, consectetur adipisicing elit.hic tenetur.
+      status:  Fondateur du nest
+      status2: streamer
+      twitter: jamyan0
+      twitch: jamyan_
+      instagram: jamyan35
+      tiktok: jamyan_
+
+    - name: Cycyii
+      avatar: 'cycyii.jpg'
+      description: Loremeos id officiis ipsum amet, consectetur adipisicing elit. Quod  hic tdolor sit enetur.
+      status: Co-fondateur du nest
+      status2: moderateur
+      twitter: Cycyii
+      twitch:  CycyiiTWITCH
+      instagram: cycyiinest
+
+    - name: Astraïa
+      avatar:  'astraia.jpg'
+      description: Lorem consecteturipsum dolor  officiis hic tenetursit amet,  adipisicing elit. Quod eos id.
+      status: Streameuse
+      status2: moderateur
+      twitter: AstraiaGaming
+      twitch: AstraiaGaming
+      instagram: astraiagaming 
+      youtube: astraiagaming
+
+    - name : Donp971
+      avatar: 'donpadre.jpg'
+      description: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos id officiis hic tenetur.
+      status:  moderateur
+      status2:
+      twitter: don_padre
+      twitch: donp971
+      instagram: don_padre
+
+    - name: Stonic
+      avatar:  'stonic.png'
+      description: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos id officiis hic tenetur.
+      status:  Streameur
+      status2:
+      twitter: stonic212
+      twitch: stonic212
+      instagram: stonic212
+
+    - name: Commandant Ralouf
+      avatar: 'ralouf.jpg'
+      description: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos id officiis hic tenetur.
+      status: Streameur
+      status2: moderateur
+      twitter: ComandantRalouf
+      twitch: comandant_ralouf
+      instagram: comandant_ralouf
+
+    - name : Liarshadow
+      avatar: 'liarshadow.jpg'
+      description: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos id officiis hic tenetur.
+      status: Streameur
+      status2: moderateur
+      twitter: LiarShadow_TV
+      twitch: liarshadow
+      instagram: liarshadow_
+
+  modorator:
+
+
+  

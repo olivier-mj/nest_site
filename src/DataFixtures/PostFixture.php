@@ -106,30 +106,37 @@ class PostFixture extends BaseFixture implements DependentFixtureInterface, Fixt
     ];
 
     private static string $content = <<<EOF
-Corrupti quos dolores et quas molestias excepturi sint occaecati. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepteur sint occaecat cupidatat non proident, sunt in culpa. Inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+    <h2>Et harum quidem rerum facilis est et expedita distinctio.</h2>
+    <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit. Laboris nisi ut aliquip ex ea commodo consequat. Ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.</p>
+    <p>Laboris nisi ut aliquip ex ea commodo consequat. Sed ut perspiciatis unde omnis iste natus error sit voluptatem. Inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo.</p>
+    <h3>Accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo.</h3>
+    <p>Et harum quidem rerum facilis est et expedita distinctio. Et harum quidem rerum facilis est et expedita distinctio. Nihil molestiae consequatur, vel illum qui dolorem eum. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.</p>
+    <ol>
+    <li>Ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.</li><li>Duis aute irure dolor in reprehenderit in voluptate velit.</li><li>Ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.</li>
+    </ol>
 
-Do eiusmod tempor incididunt ut labore et dolore magna aliqua. __Eaque ipsa quae ab illo inventore veritatis et quasi.__ *Do eiusmod tempor incididunt ut labore et dolore magna aliqua.* Architecto beatae vitae dicta sunt explicabo.
+    <h4>Ut enim ad minim veniam, quis nostrud exercitation ullamco.</h4>
+    <p>Architecto beatae vitae dicta sunt explicabo. Laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+    <ul>
+        <li>Inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</li>
+        <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
+        <li>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam.</li>
+    </ul>
 
-## Totam rem aperiam.
-
-Et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque. Architecto beatae vitae dicta sunt explicabo. Architecto beatae vitae dicta sunt explicabo. Ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.
-
-1. Corrupti quos dolores et quas molestias excepturi sint occaecati.
-2. Eaque ipsa quae ab illo inventore veritatis et quasi.
-3. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat.
-
-### Et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque.
-
-Laboris nisi ut aliquip ex ea commodo consequat. Nihil molestiae consequatur, vel illum qui dolorem eum. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam. Qui officia deserunt mollit anim id est laborum.
-
-* Qui officia deserunt mollit anim id est laborum.
-* Accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo.
-* Quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
-
-Ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.
-
-Eaque ipsa quae ab illo inventore veritatis et quasi. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam. 
-EOF;
+    <p>Totam rem aperiam. Ut enim ad minim veniam, quis nostrud exercitation ullamco. Eaque ipsa quae ab illo inventore veritatis et quasi. Duis aute irure dolor in reprehenderit in voluptate velit.</p>
+    <p>Itaque earum rerum hic tenetur a sapiente delectus. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+    <p>At vero eos et accusamus. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat. Itaque earum rerum hic tenetur a sapiente delectus. Excepteur sint occaecat cupidatat non proident, sunt in culpa.</p>
+    <p>Animi, id est laborum et dolorum fuga. Ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat. Nihil molestiae consequatur, vel illum qui dolorem eum. Et harum quidem rerum facilis est et expedita distinctio.</p>
+    <ol>
+        <li>Inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</li>
+        <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
+        <li>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam.</li>
+    </ol>    
+    <p>Esse cillum dolore eu fugiat nulla pariatur. Quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit. Animi, id est laborum et dolorum fuga.</p>
+    <p>Et harum quidem rerum facilis est et expedita distinctio. Qui officia deserunt mollit anim id est laborum. Inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.</p>
+    <p>Corrupti quos dolores et quas molestias excepturi sint occaecati. Cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia. Eaque ipsa quae ab illo inventore veritatis et quasi. Itaque earum rerum hic tenetur a sapiente delectus.</p>
+    <p>Et harum quidem rerum facilis est et expedita distinctio. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.</p>
+    EOF;
 
     
 

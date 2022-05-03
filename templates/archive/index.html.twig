@@ -1,0 +1,110 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Archives{% endblock %}
+
+{% block hero%}
+<section class="hero-section archive-hero">
+	<div class="container">
+		<div class="overlay"></div>
+		<div class="heading">
+			<div class="heading_title ">
+				<h1 class="fw-bold">Archives</h1>
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %}
+
+{% block body %}
+	<div id="archives" class="page-content archives">
+		<div class="container ">
+
+		<div class="row">
+			<div class="archive__container col-12 col-md-7 col-lg-9 ">
+				<div class="archive__latest-posts">
+					<h2>Articles récents</h2>
+					<ol>
+						{% for post in posts %}
+							<li>
+								{{ post.title }}
+							</li>
+						{% endfor %}
+					</ol>
+				</div>
+				<div class="archive__content">
+					<h2>Archives:</h2>
+					{% for year, archive in archives %}
+						<h3>
+
+								{{year}}
+						</h3>
+
+						<ul>
+							{% for month, posts in archive %}
+								<li>
+									{% set mon = month| date('m')%}
+									<a href="{{ path('archive.showmonth', {annee: year, mois: mon}) }}">
+										{{ month }}
+									</a>
+								</li>
+
+							 	<ul>
+									{% for post in posts %}
+
+										<li>
+											<a href="{{ path('blog.show', {id: post.id, slug: post.slug }) }}"> 
+												{{ post.createdAt|format_datetime('medium', 'none', locale='fr') }} - {{ post.title }}
+											</a>
+										</li>
+
+									{% endfor%}
+								</ul>
+
+							{% endfor%}
+						</ul>
+					{% endfor%}
+				</div>
+			</div>
+			<aside class="sidebar col-12 col-md-5 col-lg-3">
+				<div class="archive__categories">
+					<h2>Catégories</h2>
+					<div class="categories">
+						{% set numberCategories = (categories|length / 2) %}
+						{% for row in categories |batch(numberCategories)%}
+							<ul>
+								{% for category in row %}
+									<li>
+										<a href="{{ path('categories.show', { id: category.id, slug: category.slug }) }}">
+											{{ category.name }}"
+											<span>({{ category.category|length }})</span>
+										</a>
+									</li>
+								{% endfor %}
+							</ul>
+						{% endfor %}
+					</div>
+				</div>
+				<div class="archive__tags">
+					<h2>Tags</h2>
+					<div class="tags">
+						{% set numberTags = (tags|length/2) %}
+						{% for row in tags | batch( numberTags) %}
+							<ul>
+								{% for tag in row %}
+{#									{% if tag.posts|length >= 0 %}#}
+										<li>
+											<a href="{{ path('tag.show', {slug: tag.slug, id: tag.id }) }}">
+												{{ tag.name }}
+												<span>({{ tag.posts|length }})</span>
+											</a>
+										</li>
+{#									{% endif %}#}
+								{% endfor %}
+							</ul>
+						{% endfor %}
+					</div>
+				</div>
+			</aside>
+		</div>
+	</div>
+{% endblock %}

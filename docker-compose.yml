@@ -15,20 +15,20 @@ services:
     depends_on:
         - "php-fpm"
     labels:
-        # - "traefik.enable=true"
-        # - "traefik.docker.network=web"
-        # - "traefik.http.middlewares.redirect-https.redirectScheme.scheme=https"
-        # - "traefik.http.middlewares.redirect-https.redirectScheme.permanent=true"
-        # - "traefik.http.routers.nest-gaming-https.rule=Host(`${DOMAIN_NAME:-www.nest-gaming.local}`)"
-        # - "traefik.http.routers.nest-gaming-https.entrypoints=web-secure"
-        # - "traefik.http.routers.nest-gaming-https.tls=true"
-        # - "traefik.http.routers.nest-gaming-https.tls.certresolver=${CERT:-default}"
-        # - "traefik.http.routers.nest-gaming-https.service=nest-gaming"
-        # - "traefik.http.routers.nest-gaming-http.rule=Host(`${DOMAIN_NAME:-www.nest-gaming.local}`)"
-        # - "traefik.http.routers.nest-gaming-http.entrypoints=web"
-        # - "traefik.http.routers.nest-gaming-http.middlewares=redirect-https"
-        # - "traefik.http.routers.nest-gaming-http.service=nest-gaming"
-        # - "traefik.http.services.nest-gaming.loadbalancer.server.port=8000"
+        - "traefik.enable=true"
+        - "traefik.docker.network=web"
+        - "traefik.http.middlewares.redirect-https.redirectScheme.scheme=https"
+        - "traefik.http.middlewares.redirect-https.redirectScheme.permanent=true"
+        - "traefik.http.routers.nest-gaming-https.rule=Host(`${DOMAIN_NAME:-www.nest-gaming.local}`)"
+        - "traefik.http.routers.nest-gaming-https.entrypoints=web-secure"
+        - "traefik.http.routers.nest-gaming-https.tls=true"
+        - "traefik.http.routers.nest-gaming-https.tls.certresolver=${CERT:-default}"
+        - "traefik.http.routers.nest-gaming-https.service=nest-gaming"
+        - "traefik.http.routers.nest-gaming-http.rule=Host(`${DOMAIN_NAME:-www.nest-gaming.local}`)"
+        - "traefik.http.routers.nest-gaming-http.entrypoints=web"
+        - "traefik.http.routers.nest-gaming-http.middlewares=redirect-https"
+        - "traefik.http.routers.nest-gaming-http.service=nest-gaming"
+        - "traefik.http.services.nest-gaming.loadbalancer.server.port=8000"
         - "com.centurylinklabs.watchtower.enable=true"
     networks:
         - web
@@ -44,13 +44,12 @@ services:
     depends_on:
       - database
       - redis
-      - mailer
       - typesense
     links:
       - database
       - typesense
-      - mailer
     environment:
+      APP_ENV: prod
       TZ: Europe/Paris
       REDIS_URL: redis://cache
       TYPESENSE_KEY: typesense
@@ -61,7 +60,7 @@ services:
       MERCURE_PUBLIC_URL: 'https://127.0.0.1:8000/.well-known/mercure'
       MERCURE_JWT_SECRET: '!ChangeMe!'
       GLIDE_KEY: "0c2a58ee69754b068a7f4265180f781225575465e6408c1383498bd529a37550"
-      TRUSTED_PROXIES: "127.0.0.1,REMOTE_ADDR"
+      TRUSTED_PROXIES: "127.0.0.1,REMOTE_ADDR, 192.168.1.0/24, www.nest-gaming.fr, nest-gaming.fr, beta.nest-gaming.fr"
     networks:
       - private
     labels:
@@ -79,12 +78,10 @@ services:
     depends_on:
       - database
       - redis
-      - mailer
       - typesense
     links:
       - database
       - typesense
-      - mailer
     environment:
       TZ: Europe/Paris
       PHP_IDE_CONFIG: serverName=nest

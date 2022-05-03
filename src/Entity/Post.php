@@ -18,6 +18,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 /**
  * @ORM\Entity(repositoryClass=PostRepository::class)
  * @Vich\Uploadable
+ * @ORM\Cache
  */
 class Post
 {
@@ -88,7 +89,7 @@ class Post
      * @Assert\Image(
      *     mimeTypes={"image/jpg","image/jpeg","image/png", "image/webp"}
      * )
-     * @Vich\UploadableField(mapping="post_image", fileNameProperty="filename")
+     * @Vich\UploadableField(mapping="article_image", fileNameProperty="filename")
      */
     private ?File $imageFile = null;
 
@@ -136,11 +137,10 @@ class Post
         if (!empty($nbr)) {
             $maxLength = $nbr;
         } else {
-            $maxLength = 190;
+            $maxLength = 90;
         }
 
         $content = $this->content;
-        $content = Markdown::defaultTransform($content);
         $content = strip_tags($content, '<p><a>');
         if (strlen($content) > $maxLength) {
             $excerpt   = substr($content, 0, $maxLength - 3);
@@ -333,5 +333,4 @@ class Post
         }
         return $this;
     }
-
 }

@@ -1,40 +1,45 @@
 <!DOCTYPE html>
-<html lang="fr_FR">
+<html lang="fr">
+
 	<head>
 		<meta charset="UTF-8">
-		<title>{{ block('title') }}	| Nest-Gaming</title>
+		<title>{{ block('title') }} | Nest-Gaming</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="description" content="{% block description %}THE NEST la communauté des loups {% endblock %}">
-		<meta name="keywords" content="{% block keywords %}Gaming, FPS, Stream,Twitch, Pubg, GTA RP, etc ... {% endblock %}">
+		<meta name="keywords"
+			content="{% block keywords %}Gaming, FPS, Stream,Twitch, Pubg, GTA RP, etc ... {% endblock %}">
 		<meta name="author" content="{% block author %}TheNestgaming{% endblock %}">
-		<meta property="og:title" content="{% block twitterdescription %}THE NEST la communauté des loups {% endblock %}"/>
-		<meta property="og:site_name" content="the-nest-gaming.com"/>
-		<meta property="og:language" content="fr"/>
-		<meta name="twitter:author" content="@{% block twitterauthor %}TheNestgaming{% endblock %}"/>
+		<meta property="og:title" content="{% block twitterdescription %}THE NEST la communauté des loups {% endblock %}" />
+		<meta property="og:site_name" content="the-nest-gaming.com" />
+		<meta property="og:language" content="fr" />
+		<meta name="twitter:author" content="@{% block twitterauthor %}TheNestgaming{% endblock %}" />
 		<meta name="mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-capable" content="yes">
-		<meta name="theme-color" content="#000001"/>
+		<meta name="theme-color" content="#000001" />
 		<meta name="msapplication-starturl" content="/">
 		<link rel="manifest" href="{{ asset('/manifest.json')}}">
 		<link rel="icon" href="{{ asset('/favicon.ico')}}">
-		<link rel="canonical" href="https://www.nest-gaming.fr"/>
-		<link rel="alternate" hreflang="fr" href="https://www.nest-gaming.fr"/>
+		<link rel="canonical" href="https://www.nest-gaming.fr" />
+		<link rel="alternate" hreflang="fr" href="https://www.nest-gaming.fr" />
 		<link rel="apple-touch-icon" href="/icon-192x192.png">
 		{% block stylesheets %}
-			{{ encore_entry_link_tags('css/app') }}
+		{{ encore_entry_link_tags('css/app') }}
 		{% endblock %}
-
-
 	</head>
+
 	<body class="{% block classCss %}{% endblock %}">
-  
 		{% include "includes/header.html.twig" %}
 		<main class="main-content">
 			{% block body %}{% endblock %}
 		</main>
 		{% include "includes/footer.html.twig" %}
+		<div class="scrollToTop">{{ icon('arrow-up', '20')}}</div>
+		{# <button type="button" data-mdb-ripple="true" data-mdb-ripple-color="light" class="inline-block p-3 text-xs font-medium leading-tight text-white uppercase transition duration-150 ease-in-out bg-red-600 rounded-full shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg bottom-5 right-5" id="btn-back-to-top">
+			<svg aria-hidden="true" focusable="false" data-prefix="fas" class="w-4 h-4" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"></path></svg>
+		  </button> #}
 		{% block javascripts %}
-			{{ encore_entry_script_tags('js/app') }}
+		{{ encore_entry_script_tags('js/app') }}
 		{% endblock %}
 	</body>
+
 </html>

@@ -1,4 +1,150 @@
-# Documentation on how to configure the bundle can be found at: https://symfony.com/doc/current/bundles/LiipImagineBundle/basic-usage.html
+# See dos how to configure the bundle: https://symfony.com/doc/current/bundles/LiipImagineBundle/basic-usage.html
 liip_imagine:
     # valid drivers options include "gd" or "gmagick" or "imagick"
-    driver: "gd"
+    driver: "imagick"
+    webp:
+        generate: true
+
+    controller:
+        redirect_response_code: 302
+
+    filter_sets:
+        cache: ~
+        homepage_large:
+            quality: 100
+            # format: webp
+            filters:
+                thumbnail:
+                    size: [1000, 563]
+                    mode: outbound
+
+        homepage_medium:
+            quality: 100
+            # format: webp
+            filters:
+                thumbnail:
+                    size: [750, 422]
+                    mode: outbound
+
+        homepage_small:
+            quality: 100
+            # format: webp
+            filters:
+                thumbnail:
+                    size: [500, 281]
+                    mode: outbound
+
+        homepage_thumbnail:
+            quality: 100
+            # format: webp
+            filters:
+                thumbnail:
+                    size: [245, 138]
+                    mode: outbound
+
+        blog_large:
+            quality: 75
+            filters:
+                thumbnail:
+                    size: [1000, 563]
+                    mode: outbound
+
+        blog_medium:
+            quality: 75
+            filters:
+                thumbnail:
+                    size: [750, 422]
+                    mode: outbound
+
+        blog_small:
+            quality: 75
+            filters:
+                thumbnail:
+                    size: [500, 281]
+                    mode: outbound
+
+        blog_thumbnail:
+            quality: 75
+            filters:
+                thumbnail:
+                    size: [245, 138]
+                    mode: outbound
+
+        blog_show:
+            format: webp
+            quality: 100
+            filters:
+                thumbnail: { size: [1903, 332] }
+                # background:
+                #     {size: [1903, 332], position: center }
+
+        post_thumbnail:
+            quality: 75
+            filters:
+                thumbnail:
+                    size: [360, 230]
+                    mode: outbound
+
+        post_sidebar:
+            quality: 75
+            filters:
+                thumbnail:
+                    size: [60, 60]
+                    mode: outbound
+
+
+        admin_post_thumbnail:
+            quality: 75
+            filters:
+                thumbnail:
+                    size: [360, 230]
+                    mode: outbound
+
+        user_thumbnail:
+            quality: 75
+            filters:
+                thumbnail:
+                    size: [182, 182]
+                    mode: outbound
+
+        avatar:
+            format: webp
+            quality: 100
+            filters:
+                thumbnail:
+                    size: [150, 150]
+                    mode: outbound
+
+        avatar_comment:
+            format: webp
+            quality: 100
+            filters:
+                thumbnail:
+                    size: [33, 33]
+                    mode: outbound
+        profil:
+            quality: 75
+            filters:
+                thumbnail:
+                    size: [226, 226]
+                    mode: outbound
+
+        streamer:
+            quality: 75
+            filters:
+                thumbnail:
+                    size: [48, 48]
+
+        gallery_thumb:
+            quality: 75
+            filters:
+                thumbnail:
+                    size: [316, 183]
+                    mode: outbound
+
+        filebrowser:
+            quality: 75
+            filters:
+                thumbnail:
+                    size: [509, 332]
+                    mode: outbound

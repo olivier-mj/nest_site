@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tag: {{ tag.name }} {% endblock %}
+
+{% block body %}
+    <div class="text-white hero-section blog-single page-header bg-secondary">
+        <div class="container">
+            <h1>{{ tag.name }}</h1>
+        </div>
+    </div>
+
+    <div class="py-5 categories-list">
+        <div class="container mx-auto">
+            <div class="flex flex-wrap -m-4">
+                {% for post in posts %}
+                {{ include('blog/articles-card.twig') }}
+    
+                {% endfor %}
+    
+            </div>
+        </div>
+    </div>
+{% endblock %}
