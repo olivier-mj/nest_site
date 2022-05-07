@@ -125,6 +125,8 @@ class PostFixture extends BaseFixture implements DependentFixtureInterface, Fixt
 
     <p>Totam rem aperiam. Ut enim ad minim veniam, quis nostrud exercitation ullamco. Eaque ipsa quae ab illo inventore veritatis et quasi. Duis aute irure dolor in reprehenderit in voluptate velit.</p>
     <p>Itaque earum rerum hic tenetur a sapiente delectus. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+    <img src="https://picsum.photos/800/492.webp">
+
     <p>At vero eos et accusamus. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat. Itaque earum rerum hic tenetur a sapiente delectus. Excepteur sint occaecat cupidatat non proident, sunt in culpa.</p>
     <p>Animi, id est laborum et dolorum fuga. Ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat. Nihil molestiae consequatur, vel illum qui dolorem eum. Et harum quidem rerum facilis est et expedita distinctio.</p>
     <ol>
