@@ -1,0 +1,23 @@
+// .scrollToTop{
+//     @apply  flex block border border bg-[#5a5a5aa1] fill-white rounded p-2
+// }
+
+.scrollToTop {
+    bottom: 36px;
+    right: 38px;
+
+    cursor: pointer;
+    transform: translateY(100px);
+    opacity: 0;
+    transition: transform 0.5s, opacity 0.3s;
+
+
+    @apply fill-white bg-black/80 rounded block fixed p-2  border border-black/70 hover:bg-white/50 hover:fill-black/70 hover:border-black/70 shadow-2xl ;
+
+
+}
+
+.showScroll {
+    transform: translateY(0);
+    opacity: 1;
+}

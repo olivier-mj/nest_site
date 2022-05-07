@@ -6,8 +6,10 @@
  */
 
 // start the Stimulus application
-// import './bootstrap';
+import './bootstrap';
+import 'lazysizes';
 import './navSticky.js'
+import './scrollTotop'
 
 document.addEventListener('DOMContentLoaded', function () {
     let toggleBtn = document.getElementById('btn-menu')
