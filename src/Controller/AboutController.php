@@ -16,7 +16,7 @@ class AboutController extends AbstractController
         $this->teamFile = $teamFile;
     }
 
-    #[Route('/about', name: 'page.about')]
+    #[Route('/a-propos', name: 'page.about')]
     public function index(): Response
     {
         $create = new DateTime('2018-06-28');
