@@ -52,9 +52,10 @@ class BlogController extends AbstractController
     /**
      * @throws \Psr\Cache\InvalidArgumentException
      */
-    #[Route('/blog/article/{slug}-{id}', name: 'blog.show', requirements: ['slug' => '[a-z0-9\-]*', 'id' => '[0-9\-]*'], methods: ['GET', 'POST'])]
+    #[Route('/blog/{slug}-{id}', name: 'blog.show', requirements: ['slug' => '[a-z0-9\-]*', 'id' => '[0-9\-]*'], methods: ['GET', 'POST'])]
     public function show(string $slug, Post $post, Request $request): Response
     {
+        dump($slug);
         if ($post->getSlug() !== $slug) {
             return  $this->redirectToRoute(
                 'blog.show',
@@ -106,7 +107,7 @@ class BlogController extends AbstractController
 
 
     
-    #[Route('/categories', name: 'categories.list')]
+    #[Route('blog/categories', name: 'categories.list')]
     public function categories(CategoryRepository $categories): Response
     {
         return $this->render('blog/categories.html.twig', [
@@ -114,7 +115,7 @@ class BlogController extends AbstractController
         ]);
     }
 
-    #[Route('/category/{slug}-{id<\d+>}', name: 'categories.show', requirements: ['slug' => '[a-z0-9\-]*', 'id' => '[0-9\-]*'])]
+    #[Route('blog/category/{slug}-{id<\d+>}', name: 'categories.show', requirements: ['slug' => '[a-z0-9\-]*', 'id' => '[0-9\-]*'])]
     public function category(string $slug, int $id, Category $category, ): Response
     {
         if ($category->getSlug() !== $slug) {
@@ -134,7 +135,8 @@ class BlogController extends AbstractController
         ]);
     }
 
-    #[Route('/tags/{slug}-{id}', name: 'tag.show', requirements: ['slug' => '[a-z0-9\-]*', 'id' => '[0-9\-]*'])]
+    #[Route('blog/tags/{slug}-{id}', name: 'tag.show', requirements: ['slug' => '[a-z0-9\-]*', 'id' => '[0-9\-]*'])]
+    #[Route('blog/tags/{slug}-{id}', name: 'tag.show', requirements: ['slug' => '[a-z0-9\-]*', 'id' => '[0-9\-]*'])]
     public function tag(Tag $tag, string $slug): Response
     {
         if ($tag->getSlug() !== $slug) {
