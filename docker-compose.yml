@@ -49,7 +49,7 @@ services:
       - database
       - typesense
     environment:
-      APP_ENV: prod
+      APP_ENV: dev
       TZ: Europe/Paris
       REDIS_URL: redis://cache
       TYPESENSE_KEY: typesense

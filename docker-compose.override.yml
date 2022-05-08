@@ -61,34 +61,34 @@ services:
     ports:
       - "8108:8108"
 
-  # php:
-  #   container_name: php
-  #   # image: php:8.0.13-cli
-  #   user: "${USER_ID}:${GROUP_ID}"
-  #   image: oliviermj/php8.0-fpm-dev-symfony-xdebug:latest
-  #   restart: unless-stopped
-  #   volumes:
-  #     - .:/var/www:delegated
-  #   depends_on:
-  #     - database
-  #     - redis
-  #     - mailer
-  #     - typesense
-  #   links:
-  #     - database
-  #     - typesense
-  #     - mailer
-  #   environment:
-  #     TZ: Europe/Paris
-  #     PHP_IDE_CONFIG: serverName=nest
-  #     APP_ENV: dev
-  #     REDIS_URL: redis://redis
-  #     TYPESENSE_KEY: typesense
-  #     TYPESENSE_HOST: typesense
-  #     TYPESENSE_PORT: 8108
-  #     DATABASE_URL: mysql://nest:nest@database:3306/nest?serverVersion=mariadb-10.5.9
-  #   networks:
-  #       - private
+  php:
+    container_name: php
+    # image: php:8.0.13-cli
+    user: "${USER_ID}:${GROUP_ID}"
+    image: oliviermj/php8.0-fpm-dev-symfony-xdebug:latest
+    restart: unless-stopped
+    volumes:
+      - .:/var/www:delegated
+    depends_on:
+      - database
+      - redis
+      - mailer
+      - typesense
+    links:
+      - database
+      - typesense
+      - mailer
+    environment:
+      TZ: Europe/Paris
+      PHP_IDE_CONFIG: serverName=nest
+      APP_ENV: dev
+      REDIS_URL: redis://redis
+      TYPESENSE_KEY: typesense
+      TYPESENSE_HOST: typesense
+      TYPESENSE_PORT: 8108
+      DATABASE_URL: mysql://nest:nest@database:3306/nest?serverVersion=mariadb-10.5.9
+    networks:
+        - private
 
   redis-gui:
     restart: on-failure
