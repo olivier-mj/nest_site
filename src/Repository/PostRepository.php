@@ -200,6 +200,7 @@ class PostRepository extends ServiceEntityRepository
             ->join('p.tags', 'tg')
             ->addSelect('t')
             ->where('tg.id = :id')
+            ->orderBy('post.createdAt', 'DESC')
             ->setParameter('id', $id)
             ->getQuery()
             ->getResult();
@@ -210,6 +211,7 @@ class PostRepository extends ServiceEntityRepository
         return $this->findPublishQuery()
             ->join('p.category', 'c')
             ->addSelect('c')
+            ->orderBy('post.createdAt', 'DESC')
             ->where('c.id = :id')
             ->setParameter('id', $id)
             ->orderBy('c.name', 'DESC')

@@ -2,8 +2,10 @@
 
 namespace App\Twig;
 
+use Exception;
 use Twig\Environment;
 use Twig\TwigFunction;
+use App\Services\Cache;
 use App\Repository\TagRepository;
 use App\Repository\PostRepository;
 use App\Repository\CommentRepository;
@@ -25,7 +27,7 @@ class SidebarExtension extends AbstractExtension
 
     private Environment $twig;
 
-    private TagAwareCacheInterface $cache;
+    private Cache $cache;
 
     public function __construct(
         PostRepository $postRepository,
@@ -33,7 +35,7 @@ class SidebarExtension extends AbstractExtension
         CategoryRepository $categoryRepository,
         TagRepository $tagRepository,
         Environment $twig,
-        TagAwareCacheInterface $cache,
+        Cache $cache,
     ) {
         $this->postRepository = $postRepository;
         $this->commentRepository = $commentRepository;
@@ -75,7 +77,7 @@ class SidebarExtension extends AbstractExtension
     {
         $blogs = $this->postRepository->findForArchive();
         if (!$blogs) {
-            throw $this->createNotFoundException('Unable to find blog posts');
+            throw  new Exception('Unable to find blog posts');
         }
 
         foreach ($blogs as $post) {
@@ -106,4 +108,6 @@ class SidebarExtension extends AbstractExtension
     {
         return new NotFoundHttpException($message, $previous);
     }
+
+
 }
