@@ -24,6 +24,9 @@
   @apply bg-black/100;
 }
 
+.sticky{
+  @apply bg-black/95;
+}
 .gradient {
   background: linear-gradient(90deg, #d53369 0%, #daae51 100%);
 }
@@ -75,24 +78,9 @@
   @apply text-white;
 }
 
-
-// .bg-tournoi-gradiant{
-//   background: linear-gradient(
-//     181deg,
-//     #217da2,
-//     #8fb7ce,
-//     #946f50
-//   );
-// }
-
-.title-tournoi{
-  color: var(--logo-color-4) !important;
+.main-content{
+  @apply mt-14;
 }
-
-.btn-inscription{
-  background-color: #946f50;
-}
-
 
 @import './about.scss';
 @import './blog.scss';

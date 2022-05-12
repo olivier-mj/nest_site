@@ -6,8 +6,8 @@
  */
 
 // start the Stimulus application
-import './bootstrap';
 import 'lazysizes';
+import './bootstrap';
 import './navSticky.js'
 import './scrollTotop'
 
@@ -19,3 +19,4 @@ document.addEventListener('DOMContentLoaded', function () {
         menu.classList.toggle("hidden")
     })
 })
+

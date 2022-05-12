@@ -61,6 +61,8 @@ services:
       MERCURE_JWT_SECRET: '!ChangeMe!'
       GLIDE_KEY: "0c2a58ee69754b068a7f4265180f781225575465e6408c1383498bd529a37550"
       TRUSTED_PROXIES: "127.0.0.1,REMOTE_ADDR, 192.168.1.0/24, www.nest-gaming.fr, nest-gaming.fr, beta.nest-gaming.fr"
+      DISQUS_PRIVATE_KEY: "VnrnRsTnQlCPDjCROnMkD9YxwNZXLSNxt9BNloTY1XlPqY4ElloVDPbSKGDCAfxb"
+      DISQUS_PUBLIC_KEY: "gA3E6u1xLq3CDb8YxfL3dZN22Z4ReKmZlL8X9vH7mEh0y6AJaRyQy4wuZoerWQND"
     networks:
       - private
     labels:

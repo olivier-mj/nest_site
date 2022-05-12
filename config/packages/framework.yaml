@@ -1,8 +1,9 @@
 # see https://symfony.com/doc/current/reference/configuration/framework.html
 framework:
     secret: '%env(APP_SECRET)%'
-    #csrf_protection: true
+    # csrf_protection: false
     http_method_override: false
+    disallow_search_engine_index: false
 
     # Enables session support. Note that the session will ONLY be started if you read or write from it.
     # Remove or comment this section to explicitly disable session support.
@@ -12,8 +13,22 @@ framework:
         cookie_samesite: lax
         storage_factory_id: session.storage.factory.native
 
+    cache:
+        pools:
+            doctrine.second_level_cache_pool:
+                adapter: cache.app
     #esi: true
     #fragments: true
+    trusted_proxies: '127.0.0.1, REMOTE_ADDR,192.168.1.0/24, www.nest-gaming.fr, nest-gaming.fr, beta.nest-gaming.fr'
+    # trust *all* "X-Forwarded-*" headers
+    trusted_headers: ['x-forwarded-for', 'x-forwarded-host', 'x-forwarded-proto', 'x-forwarded-port', 'x-forwarded-prefix']
+    # or, if your proxy instead uses the "Forwarded" header
+    # trusted_headers: ['forwarded']
+
+    http_client:
+        default_options:
+            max_redirects: 7
+            
     php_errors:
         log: true
 

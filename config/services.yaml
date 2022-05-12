@@ -5,7 +5,12 @@
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
     apihost: "%env(resolve:API_HOST)%"
-
+    disqusPrivateKey: "%env(resolve:DISQUS_PRIVATE_KEY)%"
+    disqusPublicKey: "%env(resolve:DISQUS_PUBLIC_KEY)%"
+    team: "%kernel.project_dir%/team.yaml"
+    router.request_context.scheme: "https"
+    router.request_context.host: "nest-gaming.fr,beta.nest-gaming.fr"
+    asset.request_context.secure: true
 services:
     # default configuration for services in *this* file
     _defaults:
@@ -24,7 +29,20 @@ services:
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
+    App\Services\Cache:
+        arguments:
+            $itemsPool: "@cache.app"
+            $tagsPool: "@cache.app"
+            $knownTagVersionsTtl: "0.15"
 
-    Symfony\Component\Cache\Adapter\TagAwareAdapterInterface:
-        class: Symfony\Component\Cache\Adapter\TagAwareAdapter
-        arguments: ["@cache.app"]
+
+    App\Services\Comment\Disqus\DisqusClient:
+        arguments:
+            $publicKey: "%disqusPublicKey%"
+            $privateKey: "%disqusPrivateKey%"
+
+    App\Controller\AboutController:
+        arguments: ["%team%"]
+
+
+
