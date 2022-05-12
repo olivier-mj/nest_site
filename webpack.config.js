@@ -21,8 +21,6 @@ Encore
         to: 'images/[path][name].[ext]'
     })
 
-
-   
     /*
      * ENTRY CONFIG
      *
@@ -30,6 +28,8 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry('js/app', './assets/js/app.js')
+    .addEntry('js/homepage', './assets/js/homepage.js')
+    .addEntry('js/share', './assets/js/share.js')
     .addStyleEntry('css/app', './assets/scss/app.scss')
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
@@ -79,7 +79,7 @@ Encore
 
     // uncomment to get integrity="..." attributes on your script & link tags
     // requires WebpackEncoreBundle 1.4 or higher
-    //.enableIntegrityHashes(Encore.isProduction())
+    .enableIntegrityHashes(Encore.isProduction())
 
     // uncomment if you're having problems with a jQuery plugin
     //.autoProvidejQuery()
@@ -91,7 +91,6 @@ Encore
             './templates/**/*',
             './src/**/*'
         ]
-    })
-    ;
+    });
 
 module.exports = Encore.getWebpackConfig();
