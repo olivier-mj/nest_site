@@ -1,0 +1,46 @@
+{% include "includes/commentForm.twig" %}
+<div id="comment-list" class="comments_list ">
+	<div class="container mx-auto">
+	
+
+
+		{% for comment in post.comments %}
+		<div id="comment-{{ comment.id }}" class="comment-item">
+			<div class="comment-item__meta">
+				<div class="comment-item__author ">
+					<div class="comment-item__author__avatar ">
+						{% if   (comment.user.filename is not defined ) or  (comment.user.filename  == false)%}
+						{{ icon('user', '35') }}
+						{% else %}
+						{% set user = comment.user %}
+						<img width="35px" height="35px"
+							src="{{  vich_uploader_asset( user, 'imageFile')| imagine_filter('avatar_comment') }}"
+							alt="avatar" />
+						{% endif %}
+
+					</div>
+					<div class="comment-item__author__info">
+						<div class="comment-item__author__info-user">
+							{% if comment.user.username is defined %}
+							{{ comment.user.username }}
+							{% else %}
+							<span class="text-capitalize me-2 fw-bold">{{ comment.name }}</span>
+							{% endif %}
+						</div>
+						<div class="comment-item__date">
+							<time class="timeago" datetime="{{ comment.createdAt| date('c') }}">
+								{{ comment.createdAt|format_datetime('medium', 'short', locale='fr') }}
+							</time>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+			<div class="comment-item__content">
+				<p>{{ comment.content | raw }}</p>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+</div>

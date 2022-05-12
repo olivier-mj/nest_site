@@ -5,49 +5,73 @@
 {% block body %}
 <article>
     <header class="blog-header text-shadow-md"
-        style="background-image: url({{ vich_uploader_asset(post) |  imagine_filter('blog_show')  }})">
+        style='background-image: url({{ vich_uploader_asset(post) |  imagine_filter('blog_show')  }})'>
         <div class="overlay"> </div>
         <div class="container relative mx-auto">
             <div class="flex-grow">
-                <h1 class="pb-3 text-5xl font-black">{{ post.title }}</h1>
-
-                <div class="flex items-center meta">
-                    <time class="pr-1 timeago"
-                        datetime="{{ post.createdAt | date('c') }}">{{ post.createdAt | format_datetime('full', 'short', locale='fr') | capitalize}}
-                    </time> &middot; <a class="flex items-center pl-1 pr-1 hover:text-white/60"
-                        href="{{ path('categories.show',{slug: post.category.slug, id: post.category.id }) }}">
-                        {{ icon('category', '18','fill-white mr-2') }} {{ post.category.name }}</a> &middot; <a
-                        class="flex items-center pl-1 pr-1 hover:text-white/60 text-capitalize"
-                        href="#author">{{ icon('profile-user', '18','fill-white mr-2') }}
-                        {{ post.user.nickname| capitalize }}
-                    </a> &middot; <span
-                        class="flex items-center pl-1 pr-1">{{ icon('message2', '18','fill-white lr-2') }} </span>
-                    {{ post.comments | length }}
-                </div>
-
+                <h1 class="pb-3 text-3xl font-black sm:text-5xl">{{ post.title }}</h1>
+                <ul class="items-center pt-5 xl:flex sm:inline-flex ">
+                    <li class="flex items-center">
+                        <time class="flex items-center pr-1 timeago"
+                            datetime="{{ post.createdAt | date('c') }}">{{ icon('calendar-with-spring-binder-and-date-blocks', '18','fill-white mr-2') }}
+                            {{ post.createdAt | format_datetime('full', 'short', locale='fr') | capitalize}}
+                        </time>
+                        <span class="pl-1 pr-1 sm:hidden lg:inline-block"> &middot; </span>
+                    </li>
+                    <li class="flex items-center">
+                        <a class="flex items-center pr-1 lg:pl-1 hover:text-white/60"
+                            href="{{ path('categories.show',{slug: post.category.slug, id: post.category.id }) }}">
+                            {{ icon('category', '18','fill-white mr-2') }} {{ post.category.name }}
+                        </a>
+                        <span class="pl-1 pr-1 md:hidden lg:inline-block"> &middot; </span>
+                    </li>
+                    <li class="flex items-center">
+                        <a class="flex items-center pr-1 lg:pl-1 hover:text-white/60 text-capitalize"
+                            href="#author">{{ icon('profile-user', '18','fill-white mr-2') }}
+                            {{ post.user.nickname | capitalize }}
+                        </a>
+                        <span class="pl-1 pr-1 sm:hidden lg:inline-block"> &middot; </span>
+                    </li>
+                    <li class="flex items-center">
+                        {{ icon('message2', '18','fill-white ') }}
+                        <a href="#disqus_thread" class="pl-2">
+                            0 commentaire
+                        </a>
+                    </li>
+                </ul>
             </div>
-
         </div>
 
     </header>
     <div class="blog-content">
-        <div class="container px-5 py-10 mx-auto">
+        <div class="container mx-auto">
             {{ post.content | raw }}
         </div>
     </div>
-    <section class="pb-3 blog-tags">
-        <div class="container px-5 mx-auto">
-            <span class="inline-block font-black">Tags :</span>
-            {% for tag in post.tags %}
-            <span class="inline-block px-3 py-1 mb-2 mr-2 text-sm font-semibold text-gray-700 bg-gray-200 rounded-full">
-                <a class="btn btn-dark btn-sm" href="{{ path('tag.show', {id: tag.id, slug: tag.slug }) }}">
-                    # {{ tag.name }}
-                </a>
-            </span>
+    <section class="py-5 blog-tags">
+        <div class="container mx-auto ">
+            <div class="mx-5">
+                <span class="inline-block font-black">Tags :</span>
+                {% for tag in post.tags %}
+                <span
+                    class="inline-block px-3 py-1 mb-2 mr-2 text-xs font-semibold text-gray-700 uppercase bg-gray-200 rounded-lg">
+                    <a class="btn btn-dark btn-sm" href="{{ path('tag.show', {id: tag.id, slug: tag.slug }) }}">
+                        {{ tag.name }}
+                    </a>
+                </span>
+            </div>
             {% endfor %}
         </div>
     </section>
+    {{ include('includes/share.html.twig') }}
     {{ include('includes/author.html.twig') }}
+    {{ include('includes/disqus.html.twig') }}
 </article>
 
 {% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+{{ encore_entry_script_tags('js/share') }}
+<script id="dsq-count-scr" src="//nest-gaming.disqus.com/count.js" async></script>
+{% endblock javascripts %}

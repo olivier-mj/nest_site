@@ -1,0 +1,30 @@
+<div  id="comment-form"class="py-5 ">
+		<div class="container mx-auto">
+            <h3 class="pb-4">Laisser un commentaire</h3>
+            {{ form_start(form, {'attr': {'novalidate': ''}}) }}
+            {{ form_start(form) }}
+            {% if is_granted('IS_AUTHENTICATED_ANONYMOUSLY') %}
+            <div class="flex">
+                <div class="pb-3 ">
+                    {{ form_widget(form.name) }}
+                    {{ form_errors(form.name) }}
+
+                </div>
+                <div class="pb-3 ">
+                    {{ form_widget(form.email) }}
+                    {{ form_errors(form.email) }}
+                </div>
+            </div>
+            {% endif %}
+            <div class="px-0">
+                {{ form_widget(form.content) }}
+                {{ form_errors(form.content) }}
+            </div>
+
+            <div class="col-12 ">
+                {{ form_widget(form.submit) }}
+            </div>
+
+            {{ form_end(form) }}
+        </div>
+</div>

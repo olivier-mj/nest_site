@@ -126,7 +126,6 @@ class PostRepository extends ServiceEntityRepository
         if (!empty($userId)) {
             $query->where("post.user = $userId");
         }
-        
         return $query->getQuery()
             ->getResult(Query::HYDRATE_ARRAY);
     }

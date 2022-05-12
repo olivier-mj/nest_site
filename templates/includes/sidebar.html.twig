@@ -1,45 +1,42 @@
-<div class="widget categories">
+<section class="widget categories">
 	<header class="widget__header">
-		<h3 class="widget-title">Catégories</h3>
+		<h4 class="widget-title">Catégories</h4>
 	</header>
 
 	{# {% cache 'sidebar_category' ttl(300) %} #}
 	{% for category in categories %}
-	<div class="category__item">
-		<a class="category__link"
-			href="{{ path('categories.show', { id: category.id, slug: category.slug }) }}">{{ category.name }}</a>
+	<div class="flex items-center justify-between">
+		<a 	class="pb-2 font-normal text-slate-700 hover:font-medium hover:text-black" href="{{ path('categories.show', { id: category.id, slug: category.slug }) }}">
+			{{ category.name }}
+		</a>
 		<span>{{ category.category|length }}</span>
 	</div>
 	{% endfor %}
 	{# {% endcache %} #}
 
-</div>
+</section>
 
-<div class="widget latest-articles">
+<section class="widget latest-articles">
 	<header class="widget__header">
-		<h3 class="widget-title">Articles récents</h3>
+		<h4 class="widget-title">Articles récents</h4>
 	</header>
 	<div class="latest-article">
 		{# {% cache 'sidebar_post-latest' ttl(300) %} #}
 		{% for post in posts%}
-		<a class="article" href="{{ path('blog.show', {id: post.id, slug: post.slug }) }}">
-			<div class="article__content">
-				{# <div class="article__thumbnail">
-						<img width="65" height="65" src="{{ vich_uploader_asset( post, 'imageFile') | imagine_filter('post_sidebar') }}" alt="{{ post.title }}" class="rounded-1">
-					</div> #}
-				<div class="article__title">
+		<a class="text-sm text-slate-700 hover:font-medium hover:brightness-50" href="{{ path('blog.show', {id: post.id, slug: post.slug }) }}">
+			<div class="flex items-center pb-3 justify-self-auto ">
+				<div class="mr-2 w-14">
+						<img class="rounded lazyloading " width="65px" height="65px" src="{{ vich_uploader_asset( post, 'imageFile') | imagine_filter('post_sidebar') }}" alt="{{ post.title }}" >
+				</div>
+				<div class="w-full">
 					<span>
-						{{post.title }}
+						{{post.title |slice(0, 50) }} ...
 					</span>
 
 					<div class="article__meta">
 						<time class="article__date timeago" datetime="{{ post.createdAt| date('c') }}">
 							{{ post.createdAt|format_datetime('medium', 'none', locale='fr') }}
 						</time>
-						<span class=" article__comment align-self-end">
-							{{ post.comments|length }}
-							commentaires
-						</span>
 					</div>
 
 				</div>
@@ -49,40 +46,26 @@
 		{% endfor %}
 		{# {% endcache %} #}
 	</div>
-</div>
+</section>
 
-<div class="widget comments ">
+<section class="pb-5 widget comments">
 	<header class="widget__header">
-		<h3 class="widget-title">Commentaires récents</h3>
+		<h4 class="widget-title">Commentaires récents</h4>
 	</header>
-	<div class="comment-list">
-		{# {% cache 'sidebar_comment' ttl(300) %} #}
-		{% for comment in comments %}
-		<div class="comment">
-			<div class="comment__avatar">
-				{% set user = comment.user %}
-
-				{% if (user.filename is not defined) or (user.filename == false )%}
-				{{ icon('user', '30','', comment.name)}}
-				{% else %}
-				<img width="30" height="30"
-					src="{{ vich_uploader_asset( user, 'imageFile') | imagine_filter('avatar_comment') }}"
-					alt="Avatar  {{ comment.user.username }}">
-				{% endif %}
-			</div>
+	{# <div class="comment-list">
+		{% cache 'sidebar_comment' ttl(300) %}
+		{% for comment in comments | slice(0,1)%}
+		<div class="flex comment">
+		
 			<div class="comment__content">
-				<div class="comment__text">
-					{% if (user.filename is not defined) or (user.filename == false ) %}
-					<b class="comment__user ">
-						{{comment.name}}:
-					</b><br />
-					{% else %}
+				<div class="text-sm comment__text">
+					
 					<a class="comment__user " rel="noreferrer"
-						href="{{ path('author', {username: comment.user.nickname}) }}" target="_blank">
+						href="{{ path('author', {username: comment.user.nickname}) }}" >
 						{{comment.user.nickname}}:
 					</a>
 					<br />
-					{% endif %}
+
 					<span>
 						{{ comment.excerpt }}
 					</span>
@@ -94,26 +77,32 @@
 				</a>
 			</div>
 		</div>
-		{% endfor %}
-		{# {% endcache %} #}
+		{% endfor %} 
+		{% endcache %}
 
-	</div>
-</div>
+	</div>  #}
+	<div id="CombComments" class="dsq-widget"></div>
+	<script type="text/javascript" src="https://nest-gaming.disqus.com/combination_widget.js?num_items=5&hide_mods=0&color=blue&default_tab=recent&hide_avatars=1&excerpt_length=100"></script>
+</section>
 
-<div class="widget tag-cloud ">
+<section class="widget tag-cloud ">
 	<header class="widget__header">
-		<h3 class="widget-title">Nuage de Tags</h3>
+		<h4 class="widget-title">Nuage de Tags</h4>
 	</header>
-	<ul aria-label="Nuage d'étiquettes inline-block" class="tags">
+	<div class="flex flex-wrap items-center -m-2">
+		
 		{# {% cache 'sidebar_tag' ttl(300) %} #}
 		{% for tag in tags %}
-		<li>
-			<a class="tag" data-weight="{{ tag.posts|length }}"
-				href="{{ path('tag.show', {id: tag.id, slug: tag.slug }) }}">
-				{{ tag.name }}
-			</a>
-		</li>
+			{% if tag.posts|length > 0 %}
+			
+				<a class="px-3 py-1 m-1 text-sm text-white rounded bg-zinc-800 " data-weight="{{ tag.posts|length }}"
+					href="{{ path('tag.show', {id: tag.id, slug: tag.slug }) }}">
+					{{ tag.name }} 
+				</a>
+			
+			{% endif %}
 		{% endfor %}
 		{# {% endcache %} #}
-	</ul>
-</div>
+	</div>
+	
+</section>
