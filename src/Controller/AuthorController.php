@@ -2,13 +2,11 @@
 
 namespace App\Controller;
 
-use App\Repository\PostRepository;
 use App\Repository\UserRepository;
 use App\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class AuthorController extends AbstractController
 {
@@ -23,9 +21,11 @@ class AuthorController extends AbstractController
                 'Le profil demander n\'exite pas', null, 404);
         }
 
+
         return $this->render('author/index.html.twig', [
             'author' => $author,
-            'posts'   => $author->getPosts(),
+            // 'posts'   => $pagination,
+            'posts'   => $author->getPosts()
 
         ]);
     }

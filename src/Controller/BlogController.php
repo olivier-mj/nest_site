@@ -23,12 +23,12 @@ class BlogController extends AbstractController
 {
     private PostRepository $repository;
     private EntityManagerInterface $entityManager;
-    private TagAwareCacheInterface $cache;
+    private Cache $cache;
 
     public function __construct(
         PostRepository $repository,
         EntityManagerInterface $entityManager,
-        TagAwareCacheInterface $cache
+        Cache $cache
     ) {
         $this->repository = $repository;
         $this->entityManager = $entityManager;
@@ -55,7 +55,6 @@ class BlogController extends AbstractController
     #[Route('/blog/{slug}-{id}', name: 'blog.show', requirements: ['slug' => '[a-z0-9\-]*', 'id' => '[0-9\-]*'], methods: ['GET', 'POST'])]
     public function show(string $slug, Post $post, Request $request): Response
     {
-        dump($slug);
         if ($post->getSlug() !== $slug) {
             return  $this->redirectToRoute(
                 'blog.show',
@@ -90,7 +89,7 @@ class BlogController extends AbstractController
             $this->entityManager->persist($comment);
             $this->entityManager->flush();
 
-            $this->cache->invalidateTags(['comments','sidebar_comment', 'tagssidebar_comments_categories']);
+            $this->cache->invalidateTags(['comments', 'sidebar_comment', 'tagssidebar_comments_categories']);
             $this->cache->delete('comments');
             $this->cache->delete('sidebar_comment');
             $this->cache->delete('tagssidebar_comments_categories');
@@ -106,7 +105,7 @@ class BlogController extends AbstractController
     }
 
 
-    
+
     #[Route('blog/categories', name: 'categories.list')]
     public function categories(CategoryRepository $categories): Response
     {
@@ -116,7 +115,7 @@ class BlogController extends AbstractController
     }
 
     #[Route('blog/category/{slug}-{id<\d+>}', name: 'categories.show', requirements: ['slug' => '[a-z0-9\-]*', 'id' => '[0-9\-]*'])]
-    public function category(string $slug, int $id, Category $category, ): Response
+    public function category(PaginatorInterface $paginator, string $slug, int $id, Category $category, Request $request): Response
     {
         if ($category->getSlug() !== $slug) {
             return  $this->redirectToRoute(
@@ -127,17 +126,21 @@ class BlogController extends AbstractController
                 ]
             );
         }
-        $posts = $this->repository->findPostByCategory($id);
+
+        $pagination = $paginator->paginate(
+            $this->repository->findPostByCategory((int)$category->getId()),
+            $request->query->getInt('page', 1),
+            9
+        );
         return $this->render('blog/category.html.twig', [
             'category' => $category,
-            'posts' => $posts,
+            'pagination' => $pagination,
             'slug' => $slug
         ]);
     }
 
-    #[Route('blog/tags/{slug}-{id}', name: 'tag.show', requirements: ['slug' => '[a-z0-9\-]*', 'id' => '[0-9\-]*'])]
-    #[Route('blog/tags/{slug}-{id}', name: 'tag.show', requirements: ['slug' => '[a-z0-9\-]*', 'id' => '[0-9\-]*'])]
-    public function tag(Tag $tag, string $slug): Response
+    #[Route('blog/tag/{slug}-{id}', name: 'tag.show', requirements: ['slug' => '[a-z0-9\-]*', 'id' => '[0-9\-]*'])]
+    public function tag(PaginatorInterface $paginator, Tag $tag, string $slug, Request $request): Response
     {
         if ($tag->getSlug() !== $slug) {
             return  $this->redirectToRoute(
@@ -148,13 +151,16 @@ class BlogController extends AbstractController
                 ]
             );
         }
-        $id = $tag->getId();
-        $posts = $this->repository->findPostByTag($id);
 
+        $pagination = $paginator->paginate(
+            $this->repository->findPostByTag($tag->getId()),
+            $request->query->getInt('page', 1),
+            9
+        );
 
         return $this->render('blog/tag.html.twig', [
             'tag' => $tag,
-            'posts' => $posts
+            'pagination' => $pagination
         ]);
     }
 
