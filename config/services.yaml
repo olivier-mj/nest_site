@@ -5,11 +5,18 @@
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
     apihost: "%env(resolve:API_HOST)%"
-    disqusPrivateKey: "%env(resolve:DISQUS_PRIVATE_KEY)%"
+
     disqusPublicKey: "%env(resolve:DISQUS_PUBLIC_KEY)%"
+    disqusPrivateKey: "%env(resolve:DISQUS_PRIVATE_KEY)%"
+
+    twitchClientID: "%env(resolve:TWITCH_CLIENT_ID)%"
+    twitchClientSecret: "%env(resolve:TWITCH_CLIENT_SECRET)%"
+    authDir: "%kernel.project_dir%/var/auth"
+    
     team: "%kernel.project_dir%/team.yaml"
+
     router.request_context.scheme: "https"
-    router.request_context.host: "nest-gaming.fr,beta.nest-gaming.fr"
+    router.request_context.host: "nest-gaming.fr,www.nest-gaming.fr,beta.nest-gaming.fr"
     asset.request_context.secure: true
 services:
     # default configuration for services in *this* file
@@ -40,6 +47,12 @@ services:
         arguments:
             $publicKey: "%disqusPublicKey%"
             $privateKey: "%disqusPrivateKey%"
+
+    App\Services\Twitch\TwitchClient:
+        arguments:
+            $clientID: "%twitchClientID%"
+            $clientSecret: "%twitchClientSecret%"
+            $authDir:  "%authDir%"
 
     App\Controller\AboutController:
         arguments: ["%team%"]
