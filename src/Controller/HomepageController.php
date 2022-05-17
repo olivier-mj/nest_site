@@ -19,9 +19,13 @@ class HomepageController extends AbstractController
         
 
 
-        return $this->render('homepage/index.html.twig', [
+        $response = $this->render('page/homepage.html.twig', [
             'age' => $age,
             'posts' => $posts->findForHomepage(4),
         ]);
+
+        $response->setSharedMaxAge(3600);
+        
+        return $response;
     }
 }

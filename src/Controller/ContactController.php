@@ -11,8 +11,12 @@ class ContactController extends AbstractController
     #[Route('/contact', name: 'page.contact')]
     public function index(): Response
     {
-        return $this->render('contact/index.html.twig', [
-            'controller_name' => 'ContactController',
+        $response = $this->render('page/contact.html.twig', [
+ 
         ]);
+
+        $response->setSharedMaxAge(3600);
+        
+        return $response;
     }
 }

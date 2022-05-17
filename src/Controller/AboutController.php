@@ -10,7 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AboutController extends AbstractController
 {
- 
+
     public function __construct(private string $teamFile)
     {
         $this->teamFile = $teamFile;
@@ -26,11 +26,15 @@ class AboutController extends AbstractController
         $team = Yaml::parseFile($this->teamFile);
         $streamer = $team['team']['streamer'];
         $modorator = $team['team']['modorator'];
-        
-        return $this->render('about/index.html.twig', [
+
+        $response = $this->render('about/index.html.twig', [
             'age' => $age,
             'streamers' => $streamer,
             'modorator' => $modorator,
         ]);
+
+        $response->setSharedMaxAge(3600);
+
+        return $response;
     }
 }

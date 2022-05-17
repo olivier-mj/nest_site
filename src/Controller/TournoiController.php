@@ -11,8 +11,10 @@ class TournoiController extends AbstractController
     #[Route('/tournoi', name: 'page.tournoi')]
     public function index(): Response
     {
-        return $this->render('tournoi/index.html.twig', [
-            'controller_name' => 'TournoiController',
-        ]);
+        $response =  $this->render('page/tournoi.html.twig', []);
+
+        $response->setSharedMaxAge(3600);
+        
+        return $response;
     }
 }
