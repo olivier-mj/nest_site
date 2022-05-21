@@ -5,9 +5,9 @@
 {% block body %}
 
 
-<section class="px-5 py-5 livestream">
+<section class="px-5 py-8 livestream bg-dark">
     <div class="container mx-auto">
-        <h1 class="flex items-center pb-3">{{ icon('live-streaming', '30','fill-red' ) }} Stream</h1>
+        <h1 class="flex items-center pb-5 text-2xl font-black text-white">Live Stream</h1>
         {# <div style="padding-bottom: 56.25%; position: relative;">
             <iframe width="100%" height="100%"
                 src="https://player.twitch.tv/?autoplay=false&channel=jamyan_&parent=beta.nest-gaming.fr" frameborder="0"
@@ -15,14 +15,30 @@
                 style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%;">
             </iframe>   
         </div> #}
-        
-        <div id="twitch-embed"></div>
+        <div class="mx-auto ">
+            <div id="twitch-embed" class="-mx-5"></div>
+        </div>
         <div class="pt-5 replay">
-            <h2>Replay</h2>
-            <div class="flex">
-                
-                    {{ dump(live) }}
-                
+            <div class="mx-auto">
+                <h2>Replay</h2> 
+                <div class="flex flex-wrap -m-5">
+                    {% for replay in data %}
+
+                    <div class="w-full p-4 lg:w-1/4 md:w-1/2">
+                        <a class="relative block h-48 overflow-hidden rounded">
+                            <img alt="{{  replay.title | slice(0, 50) }}" class="object-cover object-center w-full h-full lazyloadingblock"
+                                src="{{ replay.thumbnail_url | replace({'%{width}x%': "420x", '{height}': "260"}) }}" width="420px" height="260px ">
+                        </a>
+                        <div class="mt-4">
+                            <h3 class="mb-1 text-xs tracking-widest text-gray-500 title-font">CATEGORY</h3>
+                            <h2 class="font-medium text-gray-900 text-md title-font">{{  replay.title | slice(0, 50) }} ...</h2>
+                            <p class="mt-1">$16.00</p>
+                        </div>
+                    </div>
+
+                    {% endfor %}
+
+                </div>
             </div>
         </div>
     </div>
@@ -30,15 +46,17 @@
 {% endblock %}
 {% block javascripts %}
 {{ parent() }}
-<script src="https://embed.twitch.tv/embed/v1.js" ></script>
+<script src="https://embed.twitch.tv/embed/v1.js"></script>
 <script type="text/javascript">
     new Twitch.Embed("twitch-embed", {
         allowfullscreen: true,
         autoplay: true,
-        muted: true,
-        width:'100%',
-        height: 580,
+        //muted: true,
+        width: '100%',
+        height: 685,
+        //channel: "nest_tv",
         channel: "jamyan_",
+        //channel: "liarshadow",
         // Only needed if this page is going to be embedded on other websites
         parent: ["beta.nest-gaming.fr", "nest-gaming.fr", 'www.nest-gaming.fr']
     });
