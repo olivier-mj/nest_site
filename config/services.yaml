@@ -11,12 +11,14 @@ parameters:
 
     twitchClientID: "%env(resolve:TWITCH_CLIENT_ID)%"
     twitchClientSecret: "%env(resolve:TWITCH_CLIENT_SECRET)%"
+    
     authDir: "%kernel.project_dir%/var/auth"
     
     team: "%kernel.project_dir%/team.yaml"
 
     router.request_context.scheme: "https"
     router.request_context.host: "nest-gaming.fr,www.nest-gaming.fr,beta.nest-gaming.fr"
+    asset.request_context.base_path: '%router.request_context.base_url%'
     asset.request_context.secure: true
 services:
     # default configuration for services in *this* file
@@ -52,7 +54,6 @@ services:
         arguments:
             $clientID: "%twitchClientID%"
             $clientSecret: "%twitchClientSecret%"
-            $authDir:  "%authDir%"
 
     App\Controller\AboutController:
         arguments: ["%team%"]

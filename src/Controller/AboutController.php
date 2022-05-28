@@ -27,7 +27,7 @@ class AboutController extends AbstractController
         $streamer = $team['team']['streamer'];
         $modorator = $team['team']['modorator'];
 
-        $response = $this->render('about/index.html.twig', [
+        $response = $this->render('page/about.html.twig', [
             'age' => $age,
             'streamers' => $streamer,
             'modorator' => $modorator,

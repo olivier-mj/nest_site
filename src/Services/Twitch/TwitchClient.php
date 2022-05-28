@@ -45,7 +45,7 @@ class TwitchClient
     }
 
 
-    public function getReplay()
+    public function getReplay(): array
     {
         $token = $this->getToken();
 

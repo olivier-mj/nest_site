@@ -35,10 +35,17 @@ dl: ## docker-compose logs
 
 
 .PHONY:  prod
-prod: ## build and analyse project for production
-	$(MAKE)	analyse
-	$(MAKE) prepare-test
-	$(MAKE)	tests
+# prod: ## build and analyse project for production
+# 	$(MAKE)	analyse
+# 	$(MAKE) prepare-test
+# 	$(MAKE)	tests
+
+prod:
+	$(MAKE) rc;
+	$(MAKE) cc;
+	APP_ENV=prod APP_DEBUG=0 php bin/console cache:clear;
+	APP_ENV=prod  yarn run build
+
 
 .PHONY: translations
 translations: ## make translation
@@ -53,23 +60,18 @@ analyze: ## run yarn audi, valid composer.json & doctrine scheme
 	$(sy) doctrine:schema:valid --skip-sync
 	$(sy) vendor/squizlabs/php_codesniffer/bin/phpcs
 	$(MAKE) stan
-#	php vendor/bin/phpstan analyse
+#	php vendor/bin/phpstan analys
 
 stan: ##run phpstan
 	$(de) php   vendor/bin/phpstan analyse
 
-.PHONY: test
-# tests: ##  run phpunit tests
-# 	$(sy) doctrine:schema:validate --skip-sync
-# 	$(sy)  ./vendor/bin/simple-phpunit
-test: vendor/autoload.php node_modules/time ## Execute les tests
-	$(drtest) phptest bin/console doctrine:schema:validate --skip-sync
-	$(drtest) phptest vendor/bin/phpunit
+unit:
+	APP_ENV=test $(de) php bin/phpunit
 
-.PHONY: tt
-tt: vendor/autoload.php ## Lance le watcher phpunit
-	# $(de) php bin/console cache:clear --env=test
-	$(de) php vendor/bin/phpunit-watcher watch --filter="nothing"
+# .PHONY: tt
+# tt: vendor/autoload.php ## Lance le watcher phpunit
+# 	# $(de) php bin/console cache:clear --env=test
+# 	$(de) php vendor/bin/phpunit-watcher watch --filter="nothing"
 
 
 create:
@@ -91,7 +93,7 @@ drop: ## drop database
 
 migrate: ## migrate migration in database
 	$(sy)  doctrine:migrations:migrate
-	
+	dock
 
 fixtures-dev: ## load fixtures for dev
 	$(sy)  doctrine:fixtures:load -n --env=dev

@@ -44,9 +44,12 @@ class BlogController extends AbstractController
             9
         );
 
-        return $this->render('blog/index.html.twig', [
+        $response = $this->render('blog/index.html.twig', [
             'pagination' => $pagination
         ]);
+
+        $response->setSharedMaxAge(600);
+        return $response;
     }
 
     /**
@@ -97,11 +100,14 @@ class BlogController extends AbstractController
             return $this->redirectToRoute('blog.show', ['id' => $post->getId(), 'slug' =>  $post->getSlug()]);
         }
 
-        return $this->render('blog/show.html.twig', [
+        $response = $this->render('blog/show.html.twig', [
             'slug' => $slug,
             'post' => $post,
             'form' => $form->createView(),
         ]);
+
+        $response->setSharedMaxAge(600);
+        return $response;
     }
 
 
@@ -109,9 +115,12 @@ class BlogController extends AbstractController
     #[Route('blog/categories', name: 'categories.list')]
     public function categories(CategoryRepository $categories): Response
     {
-        return $this->render('blog/categories.html.twig', [
+        $response = $this->render('blog/categories.html.twig', [
             'categories' => $categories->findAll()
         ]);
+        $response->setSharedMaxAge(600);
+        return $response;
+
     }
 
     #[Route('blog/category/{slug}-{id<\d+>}', name: 'categories.show', requirements: ['slug' => '[a-z0-9\-]*', 'id' => '[0-9\-]*'])]
@@ -132,11 +141,15 @@ class BlogController extends AbstractController
             $request->query->getInt('page', 1),
             9
         );
-        return $this->render('blog/category.html.twig', [
+        $response = $this->render('blog/category.html.twig', [
             'category' => $category,
             'pagination' => $pagination,
             'slug' => $slug
         ]);
+
+        $response->setSharedMaxAge(600);
+        
+        return $response;
     }
 
     #[Route('blog/tag/{slug}-{id}', name: 'tag.show', requirements: ['slug' => '[a-z0-9\-]*', 'id' => '[0-9\-]*'])]
@@ -158,10 +171,13 @@ class BlogController extends AbstractController
             9
         );
 
-        return $this->render('blog/tag.html.twig', [
+        $response = $this->render('blog/tag.html.twig', [
             'tag' => $tag,
             'pagination' => $pagination
         ]);
+        $response->setSharedMaxAge(600);
+        
+        return $response;
     }
 
     private function get_ip_address(): string

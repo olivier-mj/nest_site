@@ -6,6 +6,7 @@ parameters:
 	level: 8
 	paths:
 		- src
+		- tests
 	bootstrapFiles:
 		- vendor/autoload.php
 

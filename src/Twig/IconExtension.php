@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Twig;
 
 use Twig\Extension\AbstractExtension;
@@ -26,12 +27,12 @@ class IconExtension extends AbstractExtension
         if ($class) {
             $className = $class;
         }
-        $altDescription ='';
+        $altDescription = '';
         if ($alt) {
             $altDescription = "alt=\"$alt\"";
         }
 
-        $title= '';
+        $title = '';
         if ($alt) {
             $title = "<title>{$alt}</title>";
         }
@@ -42,5 +43,4 @@ class IconExtension extends AbstractExtension
         </svg>
         HTML;
     }
-
 }

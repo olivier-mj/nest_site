@@ -39,8 +39,7 @@ class RandomPostExtension extends AbstractExtension
             $limit = 4;
         }
 
-            return $this->renderPost($limit);
-     
+        return $this->renderPost($limit);
     }
 
     /**

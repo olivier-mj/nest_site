@@ -24,7 +24,7 @@ class HomepageController extends AbstractController
             'posts' => $posts->findForHomepage(4),
         ]);
 
-        $response->setSharedMaxAge(3600);
+        $response->setSharedMaxAge(600);
         
         return $response;
     }

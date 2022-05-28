@@ -4,9 +4,15 @@ liip_imagine:
     driver: "imagick"
     webp:
         generate: true
+        quality:     100
+        cache:       ~
+        data_loader: ~
+        post_processors: []
 
     controller:
         redirect_response_code: 302
+    twig:
+        mode:  lazy
 
     filter_sets:
         cache: ~

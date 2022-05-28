@@ -5,8 +5,11 @@ services:
       -  8000:8000
   mailer:
     container_name: mailer
-    image: schickling/mailcatcher
-    ports: [1025, 1080]
+    # image: schickling/mailcatcher
+    image:  soulteary/maildev
+    ports: 
+      - 1025:1025
+      - 1080:1080
     labels:
       - "traefik.enable=false"
       - "com.centurylinklabs.watchtower.enable=true"
@@ -41,16 +44,21 @@ services:
         - web
         - private
 
-  # php-fpm:
-  #   container_name: php-fpm
-  #   environment:
-  #     APP_ENV: dev
-  #     TRUSTED_PROXIES: "127.0.0.1,REMOTE_ADDR, 192.168.1.0/24, www.nest-gaming.local, dev.nest-gaming.fr"
-  #     MAILER_DSN: smtp://mailer:1025
-  #   depends_on:
-  #     - mailer
-  #   links:
-  #     - mailer
+  php-fpm:
+    container_name: php-fpm
+    image: oliviermj/php8.1-fpm-dev-symfony-xdebug:latest
+    environment:
+      TRUSTED_PROXIES: "127.0.0.1,REMOTE_ADDR, 192.168.1.0/24, www.nest-gaming.local, dev.nest-gaming.fr"
+      # MAILER_DSN: smtp://mailer:1025
+      
+    depends_on:
+      - mailer
+    links:
+      - mailer
+    networks:
+        - web
+        - private
+        
   typesense:
     labels:
       - "traefik.enable=false"
@@ -65,10 +73,11 @@ services:
     container_name: php
     # image: php:8.0.13-cli
     user: "${USER_ID}:${GROUP_ID}"
-    image: oliviermj/php8.0-fpm-dev-symfony-xdebug:latest
+    image: oliviermj/php8.1-fpm-dev-symfony-xdebug:latest
     restart: unless-stopped
     volumes:
       - .:/var/www:delegated
+      - ./tools/php/conf.d/php.ini:/usr/local/etc/php/conf.d/php.ini
     depends_on:
       - database
       - redis
@@ -89,6 +98,7 @@ services:
       DATABASE_URL: mysql://nest:nest@database:3306/nest?serverVersion=mariadb-10.5.9
     networks:
         - private
+        - web
 
   redis-gui:
     restart: on-failure
@@ -118,6 +128,7 @@ services:
       - "com.centurylinklabs.watchtower.enable=true"
     networks:
       - private
+      - web
 
 networks:
     web:

@@ -20,16 +20,13 @@
 }
 
 .bg-nav{
-  // background: rgb(91 53 53) !important;
   @apply bg-black/100;
 }
 
 .sticky{
   @apply bg-black/95;
 }
-.gradient {
-  background: linear-gradient(90deg, #d53369 0%, #daae51 100%);
-}
+
 
 .opacity-gradiant {
   background: linear-gradient(0deg, #000, transparent);

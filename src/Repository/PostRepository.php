@@ -184,8 +184,12 @@ class PostRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function findRandom(int $limit): array
+    public function findRandom(?int $limit): array
     {
+        if (null === $limit) {
+            $limit = 4;
+        }
+
         return $this->createQueryBuilder('p')
             ->orderBy('RANDOM()')
             ->where('p.online = true')
@@ -200,7 +204,7 @@ class PostRepository extends ServiceEntityRepository
             ->join('p.tags', 'tg')
             ->addSelect('t')
             ->where('tg.id = :id')
-            ->orderBy('post.createdAt', 'DESC')
+            ->orderBy('tg.createdAt', 'DESC')
             ->setParameter('id', $id)
             ->getQuery()
             ->getResult();
