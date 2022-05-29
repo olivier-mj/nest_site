@@ -1,0 +1,68 @@
+<div class="py-6 bg-white">
+    <div class="container mx-auto ">
+        <!-- big grid 1 -->
+        <div class="flex flex-row flex-wrap">
+            <!--Start left cover-->
+            <div class="flex-shrink w-full max-w-full pb-1 lg:w-1/2 lg:pb-0 lg:pr-1">
+                {% for post in posts | slice(0, 1) %}
+                <a href="{{ path('blog.show', {'slug': post.slug, 'id': post.id}) }}">
+                    <div class="relative overflow-hidden hover-img max-h-98">
+                        <img class="w-full h-auto max-w-full mx-auto lazyload"
+                            src="{{ vich_uploader_asset( post, 'imageFile') |  imagine_filter('homepage_thumbnail_large') }}" width="745px" height="390px" 
+                            alt="{{ post.title}}">
+
+                        <div class="absolute bottom-0 w-full px-5 pt-8 pb-5 bg-gradient-cover">
+
+                            <h2 class="mb-3 text-3xl font-bold text-white text-shadow-lg">
+                                {{ post.title}}
+                            </h2>
+
+                            <p class="hidden text-gray-100 sm:inline-block">
+                                {{ post.content | raw | striptags| slice(0,150) }} ...
+                            </p>
+                            <div class="pt-2">
+                                <div class="flex items-center text-gray-100">
+                                    <div class="inline-block h-3 mr-2 border-l-2 border-red-600"></div>
+                                    {{ post.category.name }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+            <!--Start box news-->
+            <div class="flex-shrink w-full max-w-full lg:w-1/2">
+                <div class="flex flex-row flex-wrap box-one">
+                    {% for post in posts | slice(1, 5) %}
+                    <article class="flex-shrink w-full max-w-full sm:w-1/2">
+                    <a href="{{ path('blog.show', {'slug': post.slug, 'id': post.id}) }}">
+                        <div class="relative overflow-hidden hover-img max-h-48">
+
+                            <img class="w-full h-auto max-w-full mx-auto lazyload"
+                                src="{{ vich_uploader_asset( post, 'imageFile') |  imagine_filter('homepage_thumbnail_small') }}" width="372px" height="192px"
+                                alt="{{ post.title}}">
+
+                            <div class="absolute bottom-0 w-full px-4 pb-4 pt-7 bg-gradient-cover">
+                                <a href="#">
+                                    <h2 class="mb-1 text-lg font-bold leading-tight text-white text-shadow-md">
+                                        {{ post.title}}
+                                    </h2>
+                                </a>
+                                <div class="pt-1">
+                                    <div class="text-gray-100">
+                                        <div class="inline-block h-3 mr-2 border-l-2 border-red-600"></div>
+                                        {{ post.category.name }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    </article>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

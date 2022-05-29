@@ -47,6 +47,22 @@ liip_imagine:
                 thumbnail:
                     size: [245, 138]
                     mode: outbound
+        
+        homepage_thumbnail_large:
+            quality: 100
+            # format: webp
+            filters:
+                thumbnail:
+                    size: [745, 390]
+                    mode: outbound
+
+        homepage_thumbnail_small:
+            quality: 100
+            # format: webp
+            filters:
+                thumbnail:
+                    size: [372, 192]
+                    mode: outbound
 
         blog_large:
             quality: 75
