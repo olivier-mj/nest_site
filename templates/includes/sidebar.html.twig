@@ -3,16 +3,17 @@
 		<h4 class="widget-title">Catégories</h4>
 	</header>
 
-	{# {% cache 'sidebar_category' ttl(300) %} #}
+	{% cache 'sidebar_category' ttl(300) %}
 	{% for category in categories %}
 	<div class="flex items-center justify-between">
-		<a 	class="pb-2 font-normal text-slate-700 hover:font-medium hover:text-black" href="{{ path('categories.show', { id: category.id, slug: category.slug }) }}">
+		<a class="pb-2 font-normal text-slate-700 hover:font-medium hover:text-black"
+			href="{{ path('categories.show', { id: category.id, slug: category.slug }) }}">
 			{{ category.name }}
 		</a>
 		<span>{{ category.category|length }}</span>
 	</div>
 	{% endfor %}
-	{# {% endcache %} #}
+	{% endcache %}
 
 </section>
 
@@ -21,12 +22,15 @@
 		<h4 class="widget-title">Articles récents</h4>
 	</header>
 	<div class="latest-article">
-		{# {% cache 'sidebar_post-latest' ttl(300) %} #}
+		{% cache 'sidebar_post-latest' ttl(300) %}
 		{% for post in posts%}
-		<a class="text-sm text-slate-700 hover:font-medium hover:brightness-50" href="{{ path('blog.show', {id: post.id, slug: post.slug }) }}">
+		<a class="text-sm text-slate-700 hover:font-medium hover:brightness-50"
+			href="{{ path('blog.show', {id: post.id, slug: post.slug }) }}">
 			<div class="flex items-center pb-3 justify-self-auto ">
 				<div class="mr-2 w-14">
-						<img class="rounded lazyloading " width="65px" height="65px" src="{{ vich_uploader_asset( post, 'imageFile') | imagine_filter('post_sidebar') }}" alt="{{ post.title }}" >
+					<img class="rounded lazyloading " width="65px" height="65px"
+						src="{{ vich_uploader_asset( post, 'imageFile') | imagine_filter('post_sidebar') }}"
+						alt="{{ post.title }}">
 				</div>
 				<div class="w-full">
 					<span>
@@ -44,7 +48,7 @@
 		</a>
 
 		{% endfor %}
-		{# {% endcache %} #}
+		{% endcache %}
 	</div>
 </section>
 
@@ -52,57 +56,51 @@
 	<header class="widget__header">
 		<h4 class="widget-title">Commentaires récents</h4>
 	</header>
-	{# <div class="comment-list">
-		{% cache 'sidebar_comment' ttl(300) %}
-		{% for comment in comments | slice(0,1)%}
-		<div class="flex comment">
-		
-			<div class="comment__content">
-				<div class="text-sm comment__text">
-					
-					<a class="comment__user " rel="noreferrer"
-						href="{{ path('author', {username: comment.user.nickname}) }}" >
-						{{comment.user.nickname}}:
-					</a>
-					<br />
-
-					<span>
-						{{ comment.excerpt }}
-					</span>
-				</div>
-				<a class="comment__link "
-					href="{{ path('blog.show', {id: comment.post.id, slug: comment.post.slug }) }}#comment-{{ comment.id}}"
-					title="{{ comment.post.title }}">
-					{{ comment.post.title }}
+	<div class="disqus_list">
+		<div class="relative justify-center inline pb-1 top-1/3">
+			{% for disqu in disqus | slice(0,4) %}
+			<div class="relative grid grid-cols-1 gap-4 p-4 mb-4 bg-white border rounded-lg shadow hover:shadow-lg">
+				<div class="relative flex gap-4">
+					<img src="{{ disqu.author.avatar.small.cache }}" class="relative w-12 h-12 bg-white border rounded-lg "
+						alt="avatar" loading="lazyloading" width="20px" height="20px">
+					<div class="flex flex-col w-full">
+						<div class="flex flex-row justify-between">
+							<p class="relative overflow-hidden text-xl capitalize truncate whitespace-nowrap">
+								{{ disqu.author.username }}</p>
+							<a class="text-xl text-gray-500" href="#"><i class="fa-solid fa-trash"></i></a>
+						</div>
+						<p class="text-sm text-gray-400">
+							{{ disqu.createdAt | format_datetime('medium', 'short', locale='fr')}}
+						</p>
+					</div>
+				</div><a href="{{ disqu.url }}">
+					<p class="-mt-1 text-sm text-gray-500"> {{ disqu.raw_message |slice(0, 120) }} ...</p>
 				</a>
 			</div>
-		</div>
-		{% endfor %} 
-		{% endcache %}
 
-	</div>  #}
-	<div id="CombComments" class="dsq-widget"></div>
-	<script type="text/javascript" src="https://nest-gaming.disqus.com/combination_widget.js?num_items=5&hide_mods=0&color=blue&default_tab=recent&hide_avatars=1&excerpt_length=100"></script>
+			{% endfor %}
+		</div>
+	</div>
 </section>
 
 <section class="widget tag-cloud ">
 	<header class="widget__header">
 		<h4 class="widget-title">Nuage de Tags</h4>
 	</header>
-	<div class="flex flex-wrap items-center -m-2">
-		
-		{# {% cache 'sidebar_tag' ttl(300) %} #}
-		{% for tag in tags %}
+	<div class="flex flex-wrap items-center -m-1">
+
+		{% cache 'sidebar_tag' ttl(300) %}
+			{% for tag in tags %}
 			{% if tag.posts|length > 0 %}
-			
-				<a class="px-3 py-1 m-1 text-sm text-white rounded bg-zinc-800 " data-weight="{{ tag.posts|length }}"
-					href="{{ path('tag.show', {id: tag.id, slug: tag.slug }) }}">
-					{{ tag.name }} 
-				</a>
-			
+
+			<a class="px-3 py-1 m-1 text-sm text-white rounded hover:bg-black bg-slate-800 hover:shadow-lg"
+				data-weight="{{ tag.posts|length }}" href="{{ path('tag.show', {id: tag.id, slug: tag.slug }) }}">
+				{{ tag.name }}
+			</a>
+
 			{% endif %}
-		{% endfor %}
-		{# {% endcache %} #}
+			{% endfor %}
+		{% endcache %}
 	</div>
-	
+
 </section>

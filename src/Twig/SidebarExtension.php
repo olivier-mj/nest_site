@@ -11,31 +11,24 @@ use App\Repository\PostRepository;
 use App\Repository\CommentRepository;
 use Twig\Extension\AbstractExtension;
 use App\Repository\CategoryRepository;
+use App\Services\Comment\Disqus\DisqusClient;
 use Symfony\Contracts\Cache\ItemInterface;
 use Symfony\Contracts\Cache\TagAwareCacheInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class SidebarExtension extends AbstractExtension
 {
-    private PostRepository $postRepository;
 
-    private CommentRepository $commentRepository;
 
-    private CategoryRepository $categoryRepository;
-
-    private TagRepository $tagRepository;
-
-    private Environment $twig;
-
-    private Cache $cache;
 
     public function __construct(
-        PostRepository $postRepository,
-        CommentRepository $commentRepository,
-        CategoryRepository $categoryRepository,
-        TagRepository $tagRepository,
-        Environment $twig,
-        Cache $cache,
+        private PostRepository $postRepository,
+        private CommentRepository $commentRepository,
+        private CategoryRepository $categoryRepository,
+        private TagRepository $tagRepository,
+        private Environment $twig,
+        private Cache $cache,
+        private DisqusClient $disqus
     ) {
         $this->postRepository = $postRepository;
         $this->commentRepository = $commentRepository;
@@ -62,7 +55,8 @@ class SidebarExtension extends AbstractExtension
     public function getSidebar(): string
     {
         return $this->cache->get('sidebar_comments_categories', function (ItemInterface $item) {
-        $item->tag(['comments', 'categories','tags', 'posts']);
+        // $item->tag(['comments', 'categories','tags', 'posts']);
+        $item->expiresAfter(200);
         return $this->renderSidebar();
         });
     }
@@ -86,13 +80,15 @@ class SidebarExtension extends AbstractExtension
             $archives[$year][$month][] = $post;
         }
 
-
+        $disqus =$this->disqus->getListPost();
+        // dump($disqus['response']);
         return $this->twig->render(
             'includes/sidebar.html.twig',
             [
                 'posts' => $this->postRepository->findForSidebar(4),
                 'categories' => $this->categoryRepository->findForSidebar(),
                 'comments' => $this->commentRepository->findForSidebar(4),
+                'disqus' => $disqus['response'],
                 'tags' => $this->tagRepository->findForSidebar(),
                 'archives' => $archives
             ]
