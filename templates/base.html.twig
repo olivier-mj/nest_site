@@ -1,46 +1,58 @@
 <!DOCTYPE html>
 <html lang="fr">
 
-	<head>
-		<meta charset="UTF-8">
-		<title>{{ block('title') }} | Nest-Gaming</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="description" content="{% block description %}THE NEST la communauté des loups {% endblock %}">
-		<meta name="keywords"
-			content="{% block keywords %}Gaming, FPS, Stream,Twitch, Pubg, GTA RP, etc ... {% endblock %}">
-		<meta name="author" content="{% block author %}TheNestgaming{% endblock %}">
-		<meta property="og:title" content="{% block twitterdescription %}THE NEST la communauté des loups {% endblock %}" />
-		<meta property="og:site_name" content="beta.nest-gaming.fr" />
-		<meta property="og:language" content="fr" />
-		<meta name="twitter:author" content="@{% block twitterauthor %}TheNestgaming{% endblock %}" />
-		<meta name="mobile-web-app-capable" content="yes">
-		<meta name="apple-mobile-web-app-capable" content="yes">
-		<meta name="theme-color" content="#000001" />
-		<meta name="msapplication-starturl" content="/">
-		<link rel="manifest" href="{{ asset('./manifest.json')}}">
-		<link rel="icon" href="{{ asset('/favicon.ico')}}">
-		<link rel="canonical" href="https://nest-gaming.fr" />
-		<link rel="alternate" hreflang="fr" href="https://beta.nest-gaming.fr" />
-		<link rel="apple-touch-icon" href="/icon-192x192.png">
-		{{ encore_entry_link_tags('css/app') }}
-		{% block stylesheets %}
-		{% endblock %}
-	</head>
+<head>
+	<meta charset="UTF-8">
+	<title>{{ block('title') }} | Nest-Gaming</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="{% block description %}THE NEST la communauté des loups {% endblock %}">
+	<meta name="keywords"
+		content="{% block keywords %}Gaming, FPS, Stream,Twitch, Pubg, GTA RP, etc ... {% endblock %}">
+	<meta name="author" content="{% block author %}TheNestgaming{% endblock %}">
+	<meta property="og:title" content="{% block twitterdescription %}THE NEST la communauté des loups {% endblock %}" />
+	<meta property="og:site_name" content="beta.nest-gaming.fr" />
+	<meta property="og:language" content="fr" />
+	<meta name="twitter:author" content="@{% block twitterauthor %}TheNestgaming{% endblock %}" />
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="theme-color" content="#000001" />
+	<meta name="msapplication-starturl" content="/">
+	<link rel="manifest" href="{{ asset('manifest.json')}}">
+	<link rel="icon" href="{{ asset('favicon.ico')}}">
+	<link rel="canonical" href="https://nest-gaming.fr" />
+	<link rel="alternate" hreflang="fr" href="https://beta.nest-gaming.fr" />
+	<link rel="apple-touch-icon" href="/icon-192x192.png">
+	{% for js in encore_entry_js_files('js/app') %}
+	<link rel="preload" href="{{ preload( asset(js)  )}}"  as="script">
+	{% endfor %} 
+	{% for css in encore_entry_css_files('css/app') %}
+	<link rel="preload" href="{{ preload( asset(css)  )}}"  as="style">
+	<link rel="stylesheet" href="{{ preload( asset(css)  )}}">
+	{% endfor %}
+	
+	{# {{ encore_entry_link_tags('css/app') }} #}
+	{% block stylesheets %}
+	{% endblock %}
+</head>
 
-	<body class="{% block classCss %}{% endblock %}">
-		
-		{% include "./includes/header.html.twig" %}
-		
-		<main class="main-content">
-			{% block body %}{% endblock %}
-		</main>
-		
-		{% include "./includes/footer.html.twig" %}
-		<div class="scrollToTop">{{ icon('arrow-up', '20') }}</div>
+<body class="{% block classCss %}{% endblock %}">
 
-		{{ encore_entry_script_tags('js/app') }}
-		{% block javascripts %}
-		{% endblock %}
-	</body>
+	{% include "./includes/header.html.twig" %}
+
+	<main class="main-content">
+		{% block body %}{% endblock %}
+	</main>
+
+	{% include "./includes/footer.html.twig" %}
+	<div class="scrollToTop">{{ icon('arrow-up', '20') }}</div>
+
+	{# {{ encore_entry_script_tags('js/app') }} #}
+	{# {% for js in encore_entry_js_files('js/app') %}
+	<script  src="{{ preload( asset(js)  )}}"  defer></script>
+	{% endfor %}  #}
+	
+	{% block javascripts %}
+	{% endblock %}
+</body>
 
 </html>
