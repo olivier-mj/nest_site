@@ -4,11 +4,9 @@
     <div class="inline-block mx-auto">
         <div class="flex flex-row items-center w-auto space-x-3">
             {% if first is defined and current != first %}
-
             <span class="px-3 py-1 text-lg font-bold bg-gray-100 rounded-md shadow-md text-slate-500">
-
                 <a href="{{ path(route, query|merge({(pageParameterName): first})) }}">
-                    <span class="text-medium">&laquo;</span>
+                    <span class="font-bold">&laquo;</span>
                 </a>
             </span>
             {% endif %}
@@ -16,7 +14,7 @@
             {% if previous is defined %}
             <span class="px-3 py-1 text-lg bg-gray-100 rounded-md shadow-md text-slate-500">
                 <a rel="prev" href="{{ path(route, query|merge({(pageParameterName): previous})) }}">
-                    <span class="text-medium">&lsaquo;</span>
+                    <span class="font-bold">&lsaquo;</span>
                 </a>
             </span>
             {% endif %}
@@ -36,8 +34,7 @@
                 <a rel="next" href="{{ path(route, query|merge({(pageParameterName): next})) }}">
                     {# &gt; #}
                     {# {{ icon('arrow right','25', 'fill-slate-500') }} #}
-                    <span class="text-medium">&rsaquo;</span>
-
+                    <span class="font-bold">&rsaquo;</span>
                 </a>
             </span>
             {% endif %}
@@ -47,13 +44,10 @@
                 <a href="{{ path(route, query|merge({(pageParameterName): last})) }}">
                     {# &gt;&gt; #}
                     {# {{ icon('double arrow right','25', 'fill-slate-500') }} #}
-                    <span class="text-medium">&raquo;</span>
+                    <span class="font-bold">&raquo;</span>
                 </a>
             </span>
             {% endif %}
-
-
-
 
         </div>
     </div>
