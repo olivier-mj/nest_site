@@ -14,8 +14,8 @@ team:
       avatar: 'cycyii.jpg'
       description: Loremeos id officiis ipsum amet, consectetur adipisicing elit. Quod  hic tdolor sit enetur.
       status: Co-fondateur du nest
-      status2: moderateur
-      twitter: Cycyii
+      status2: modérateur
+      twitter: CycyiiTWITCH
       twitch:  CycyiiTWITCH
       instagram: cycyiinest
 
@@ -23,7 +23,7 @@ team:
       avatar:  'astraia.jpg'
       description: Lorem consecteturipsum dolor  officiis hic tenetursit amet,  adipisicing elit. Quod eos id.
       status: Streameuse
-      status2: moderateur
+      status2: modératrice
       twitter: AstraiaGaming
       twitch: AstraiaGaming
       instagram: astraiagaming 
@@ -38,8 +38,8 @@ team:
       twitch: donp971
       instagram: don_padre
 
-    - name: Stonic
-      avatar:  'stonic.png'
+    - name: Stonic212
+      avatar:  'stonic212.png'
       description: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos id officiis hic tenetur.
       status:  Streameur
       status2:
@@ -51,7 +51,7 @@ team:
       avatar: 'ralouf.jpg'
       description: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos id officiis hic tenetur.
       status: Streameur
-      status2: moderateur
+      status2: modérateur
       twitter: ComandantRalouf
       twitch: comandant_ralouf
       instagram: comandant_ralouf
@@ -59,13 +59,23 @@ team:
     - name : Liarshadow
       avatar: 'liarshadow.jpg'
       description: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos id officiis hic tenetur.
-      status: Streameur
-      status2: moderateur
+      status: modérateur
+      status2: Streameur
       twitter: LiarShadow_TV
       twitch: liarshadow
       instagram: liarshadow_
 
+    - name: Tidinho
+      avatar: 'tidinho90-300x300.jpeg'
+      description:
+      status: modérateur
+      status2: administrateur
+      twitter: tidinho90
+      twitch: tidinho90
+
   modorator:
 
+    - name: Legends_cobra
 
+    - name: Battle_Six
   
