@@ -12,7 +12,7 @@
             <div class="p-3 lg:w-1/4 md:w-1/2">
                 <a href="{{ path('blog.show', {'slug': post.slug, 'id': post.id}) }}">
                     <!--Card 1-->
-                    <div class="max-w-sm overflow-hidden rounded shadow-lg ">
+                    <div class="max-w-sm overflow-hidden rounded shadow-md hover:shadow-lg">
                         <img class="w-full lazyload" src="{{ vich_uploader_asset(post) | imagine_filter('blog_thumbnail') }}"
                             alt="{{ post.title }}" width="384px" height="216px">
                         <div class="p-4">
@@ -21,8 +21,8 @@
                                 <time class=" timeago" datetime="{{ post.createdAt| date('c')
                             }}">{{ post.createdAt | format_datetime('medium', 'short', locale='fr') }}</time>
                             </div>
-                            <p class="text-base text-gray-700">
-                                {{ post.content | raw | striptags| slice(0,70) }} ...
+                            <p class="overflow-hidden text-base text-gray-700 text-clip">
+                                {{ post.content | raw | striptags| slice(0,100) }} ...
                             </p>
                         </div>
                         {% if category is defined %}
