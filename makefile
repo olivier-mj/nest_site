@@ -43,6 +43,7 @@ dl: ## docker-compose logs
 prod:
 	$(MAKE) rc;
 	$(MAKE) cc;
+	APP_ENV=prod $(sy) cache:clear --no-warmup
 	APP_ENV=prod APP_DEBUG=0 php bin/console cache:clear;
 	APP_ENV=prod  yarn run build
 
