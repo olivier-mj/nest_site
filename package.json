@@ -39,6 +39,7 @@
         "lazysizes": "^5.3.2",
         "passport": "^0.5.2",
         "passport-oauth": "^1.0.0",
-        "request": "^2.88.2"
+        "request": "^2.88.2",
+        "typography": "^0.16.21"
     }
 }

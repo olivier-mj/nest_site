@@ -27,11 +27,20 @@ class TwitchClient
         $this->cache = $cache;
     }
 
-    public function getLive(string $streamerName): array
+    public function getLive(array $streamerID): array
     {
 
         $token = $this->getToken();
 
+
+
+        foreach ($streamerID as $id) {
+            $streamerID[] = $id;
+        }
+
+    
+
+ 
 
         return $this->api('https://api.twitch.tv/helix/streams', 'GET', [
             'headers' => [
@@ -39,10 +48,24 @@ class TwitchClient
                 'Client-Id' => $this->clientID
             ],
             'query' => [
-                'user_login' => $streamerName
+                // 'user_id' => $streamerID
+                'user_id' => [
+                    '150551018',
+                    '109773820',
+                    '429055487',
+                    '93012767',
+                    '100949335',
+                    '135565655',
+                    '49869023',
+                    // '59799994', 
+                    // '50795214'
+
+                ], 
+                'first' =>5 
             ],
         ]);
     }
+
 
 
     public function getReplay(): array
@@ -51,14 +74,16 @@ class TwitchClient
 
         return $this->cache->get('replay', function (ItemInterface $item) use ($token) {
 
-            $item->tag(['replay_list']);
+            // $item->tag(['replay_list']);
+            $item->expiresAfter(300);
             return $this->api('https://api.twitch.tv/helix/videos', 'GET', [
                 'headers' => [
                     'Authorization' => 'Bearer ' . $token['access_token'],
                     'Client-Id' => $this->clientID
                 ],
                 'query' => [
-                    'user_id' =>  '150551018'
+                    'user_id' =>  '150551018',
+                    'first' => '8'
                 ]
             ]);
         });

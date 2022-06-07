@@ -5,9 +5,9 @@
 {% block body %}
 
 
-<section class="px-5 py-8 livestream bg-dark">
+<section class="px-5 py-8 bg-black livestream">
     <div class="container mx-auto">
-        <h1 class="flex items-center pb-5 text-2xl font-black text-white">Live Stream</h1>
+        <h1 class="pb-8 text-2xl font-black text-white text-shadow">Live</h1>
         {# <div style="padding-bottom: 56.25%; position: relative;">
             <iframe width="100%" height="100%"
                 src="https://player.twitch.tv/?autoplay=false&channel=jamyan_&parent=beta.nest-gaming.fr" frameborder="0"
@@ -18,23 +18,57 @@
         <div class="mx-auto ">
             <div id="twitch-embed" class="-mx-5"></div>
         </div>
+        
+    </div>
+</section>
+
+<section class="replay">
+    <div class="container mx-auto">
         <div class="pt-5 replay">
             <div class="mx-auto">
-                <h2>Replay</h2> 
+                <div class="flex flex-wrap w-full mb-5">
+                    <div class="w-full mb-6 lg:w-1/2 lg:mb-0">
+                        <h1 class="mb-2 text-2xl font-medium text-gray-900 sm:text-3xl title-font">Replay:</h1>
+                        <div class="w-20 h-1 bg-black rounded"></div>
+                    </div>
+                </div>
                 <div class="flex flex-wrap -m-5">
                     {% for replay in data %}
 
-                    <div class="w-full p-4 lg:w-1/4 md:w-1/2">
-                        <a class="relative block h-48 overflow-hidden rounded">
-                            <img alt="{{  replay.title | slice(0, 50) }}" class="object-cover object-center w-full h-full lazyloadingblock"
-                                src="{{ replay.thumbnail_url | replace({'%{width}x%': "420x", '{height}': "260"}) }}" width="420px" height="260px ">
-                        </a>
-                        <div class="mt-4">
-                            <h3 class="mb-1 text-xs tracking-widest text-gray-500 title-font">CATEGORY</h3>
-                            <h2 class="font-medium text-gray-900 text-md title-font">{{  replay.title | slice(0, 50) }} ...</h2>
-                            <p class="mt-1">$16.00</p>
+                        {# {% if replay.thumbnail_url | length > 0 %} #}
+                        {# <div class="w-full p-4 lg:w-1/4 md:w-1/2">
+                            <a class="relative block h-48 overflow-hidden rounded">
+                                <img alt="{{  replay.title }}" class="object-cover object-center w-full h-full lazyloadingblock"
+                                    src="{{ replay.thumbnail_url | replace({'%{width}x%': "420x", '{height}': "260"}) }}" width="420px" height="260px ">
+                            </a>
+                            <div class="mt-4">
+                                <h3 class="mb-1 text-xs tracking-widest text-gray-500 title-font">CATEGORY</h3>
+                                <h2 class="text-gray-900 font-base text-md title-font">{{  replay.title | slice(0, 50) }}...</h2>
+                                <p class="mt-1">{{ replay.duration }}</p>
+                            </div>
+                        </div> #}
+                        <div class="w-full p-4 lg:w-1/4 md:w-1/2">
+                            <div class="relative w-[362px] h-[192px] bg-white overflow-hidden shadow-xl rounded">
+                                <!-- Top-left circle -->
+                
+                
+                                <!-- Images -->
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <div class="absolute inset-0 w-full h-full">
+                                        <img class="absolute object-cover object-center w-full h-full"
+                                            src="{{ replay.thumbnail_url | replace({'%{width}x%': "420x", '{height}': "260"}) }}" alt="{{  replay.title }}" width="420px" height="260px ">
+                                    </div>
+                                    
+                                    <div class="overlay"></div>
+                                    <!-- Content -->
+                                    <div class="relative flex flex-col justify-end w-full h-full p-4 space-y-2">
+                                        <p class="text-xs font-semibold tracking-wider text-purple-600 uppercase">{{ replay.user_name }}</p>
+                                        <h2 class="text-sm font-bold text-white text-shadow-lg">{{  replay.title }}</h2>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                        {# {% endif %} #}
 
                     {% endfor %}
 
@@ -51,7 +85,7 @@
     new Twitch.Embed("twitch-embed", {
         allowfullscreen: true,
         autoplay: true,
-        //muted: true,
+        muted: false,
         width: '100%',
         height: 685,
         //channel: "nest_tv",
