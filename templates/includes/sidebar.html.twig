@@ -93,7 +93,7 @@
 			{% for tag in tags %}
 			{% if tag.posts|length > 0 %}
 
-			<a class="px-3 py-1 m-1 text-sm text-white rounded hover:bg-black bg-slate-800 hover:shadow-lg"
+			<a class="px-3 py-1 m-1 text-sm text-white rounded hover:bg-black bg-slate-700 hover:shadow-lg"
 				data-weight="{{ tag.posts|length }}" href="{{ path('tag.show', {id: tag.id, slug: tag.slug }) }}">
 				{{ tag.name }}
 			</a>

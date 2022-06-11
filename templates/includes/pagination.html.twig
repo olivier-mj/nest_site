@@ -1,4 +1,4 @@
-<div class="flex pt-6 ">
+<div class="flex my-10 ">
     {# tailwindcss Sliding pagination control implementation #}
     {% if pageCount > 1 %}
     <div class="inline-block mx-auto">
@@ -21,7 +21,7 @@
 
             {% for page in pagesInRange %}
             {% if page != current %}
-            <span class="px-3 py-1 text-lg bg-gray-100 rounded-md shadow-md text-slate-500">
+            <span class="px-3 py-1 text-lg font-bold bg-gray-100 rounded-md shadow-md text-slate-500 hover:bg-slate-700/90 hover:text-gray-100">
                 <a href="{{ path(route, query|merge({(pageParameterName): page})) }}">{{ page }}</a>
             </span>
             {% else %}
@@ -30,7 +30,7 @@
             {% endfor %}
 
             {% if next is defined %}
-            <span class="px-3 py-1 text-lg bg-gray-100 rounded-md shadow-md text-slate-700">
+            <span class="px-3 py-1 text-lg bg-gray-100 rounded-md shadow-md text-slate-700 hover:bg-slate-700/90 hover:text-gray-100">
                 <a rel="next" href="{{ path(route, query|merge({(pageParameterName): next})) }}">
                     {# &gt; #}
                     {# {{ icon('arrow right','25', 'fill-slate-500') }} #}
@@ -40,7 +40,7 @@
             {% endif %}
 
             {% if last is defined and current != last %}
-            <span class="flex px-3 py-1 text-lg font-bold bg-gray-100 rounded-md shadow-md text-slate-700">
+            <span class="flex px-3 py-1 text-lg font-bold bg-gray-100 rounded-md shadow-md text-slate-700 hover:bg-slate-700/90 hover:text-gray-100 ">
                 <a href="{{ path(route, query|merge({(pageParameterName): last})) }}">
                     {# &gt;&gt; #}
                     {# {{ icon('double arrow right','25', 'fill-slate-500') }} #}

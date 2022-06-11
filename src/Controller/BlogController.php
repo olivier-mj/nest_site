@@ -41,7 +41,7 @@ class BlogController extends AbstractController
         $pagination = $paginator->paginate(
             $this->repository->findForBlog(),
             $request->query->getInt('page', 1),
-            9
+            6
         );
 
         $response = $this->render('blog/index.html.twig', [

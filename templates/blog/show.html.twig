@@ -3,7 +3,7 @@
 {% block title %}{{ post.title}} - Blog{% endblock %}
 
 {% block body %}
-<article>
+<article id="postid-{{ post.id }}" class="bg-white">
     <header class="blog-header text-shadow-md"
         style='background-image: url({{ vich_uploader_asset(post) |  imagine_filter('blog_show')  }})'>
         <div class="overlay"> </div>
@@ -73,5 +73,5 @@
 {% block javascripts %}
 {{ parent() }}
 {{ encore_entry_script_tags('js/share') }}
-<script id="dsq-count-scr" src="//nest-gaming.disqus.com/count.js" async></script>
+<script id="dsq-count-scr" src="//nest-gaming.disqus.com/count.js" defer></script>
 {% endblock javascripts %}

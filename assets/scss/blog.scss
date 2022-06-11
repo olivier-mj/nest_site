@@ -22,7 +22,7 @@
   background-size: cover;
 
 
-  @apply flex items-center  py-24 px-5 text-white;
+  @apply flex items-center  py-10 lg:py-24 px-5 text-white;
 
   h1 {
     @apply text-white text-shadow;
@@ -75,7 +75,7 @@
   //   @apply list-decimal;
   // }
 
-  @apply prose sm:prose-lg md:prose-xl prose-slate max-w-none mx-5;
+  @apply prose  lg:prose-base prose-gray max-w-none mx-5;
 
   img{
     @apply mx-auto rounded shadow-lg;
