@@ -16,16 +16,14 @@ class HomepageController extends AbstractController
         $create = new DateTime('2018-06-28');
         $now = new DateTime('now');
         $age = $now->diff($create)->y;
-        
-
-
         $response = $this->render('page/homepage.html.twig', [
             'age' => $age,
-            'posts' => $posts->findForHomepage(4),
+            'posts' => $posts->findForHomepage(),
         ]);
 
         $response->setSharedMaxAge(600);
-        
+
         return $response;
     }
+
 }
