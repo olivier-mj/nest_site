@@ -9,25 +9,23 @@
 	<div class="relative top-0 left-0 right-0 w-full pt-6 opacity-gradiant">
 		<div class="container flex flex-col flex-wrap items-center px-6 mx-auto mb-9 max-w-7xl md:flex-row">
 			<div class="w-full py-6 md:w-1/2">
-				{# <img class="object-center m-auto md:w-3/4 " src="{{ asset('build/images/logo-large-white.svg') }}"/> #}
 				<img class="object-center w-2/3 m-auto sm:w-3/4" src="{{ asset('build/images/logo-large-white.svg') }}"
 					class="lazyload" alt="logo nest" height="300px" width="300px" class="lazyload" />
 			</div>
-			<div class="flex flex-col text-white md:w-1/2 lg:text-left ">
-				<h1
-					class="mt-4 mb-2 text-xl font-bold leading-tight text-center uppercase mb:hidden sm:text-5xl sm:text-left text-shadow">
+			<div class="flex flex-col text-center text-white md:w-1/2 lg:text-left ">
+				<h1 class="mt-4 mb-2 text-xl font-bold leading-tight uppercase mb:hidden sm:text-5xl text-shadow">
 					THE NEST
 				</h1>
-				<h2 class="mb-4 font-bold text-center uppercase mb:hidden lg:text-left text-shadow">La communauté des
+				<h2 class="mb-4 font-bold uppercase mb:hidden text-shadow">La communauté des
 					loups.</h2>
-				<p class="mb-8 text-base leading-loose text-center font-base sm:text-left">
+				<p class="mb-8 text-base leading-loose font-base ">
 					Le Nest est un collectif de streamer né il y
 					{{ age }}
 					ans. Qui
 					rassemble une communauté multi-gaming autour de valeurs fortes, de
 					partage, de respect mutuel et de tolérance.
 				</p>
-				<div class="flex justify-center mb-4 sm:justify-start">
+				<div class="flex justify-center mb-4 lg:justify-start">
 					<a href="{{ path('page.about') }}"
 						class="flex text-black bg-white shadow-white/10 shadow-sm font-semibold  hover:bg-tournoi-contraste  rounded-lg text-sm px-5 py-2.5 text-center items-center  justify-self-center hover:bg-white/80  hover:text-black hover:shadow-white/50">
 						Lire plus {{ icon('right-chevron','10', 'ml-2 fill-current')}}
@@ -67,56 +65,57 @@
 			<h2 class="text-4xl font-extrabold leading-10 tracking-tight text-gray-900 text-shadow-sm">
 				Articles récents
 			</h2>
-			<p class="max-w-2xl mx-auto mt-5 text-xl leading-7 text-gray-500">T
-				ous l'actualité de la meute, ainsi que des reviews tech et jeux video. 
+			<p class="max-w-2xl mx-auto mt-5 text-xl leading-7 text-gray-500">Toute l'actualité de la meute, ainsi que
+				des reviews tech et jeux video.
 			</p>
 		</div>
-		
+
 		<div class="grid gap-5 mx-auto mt-12 sm:max-w-lg md:grid-cols-2 lg:grid-cols-4 lg:max-w-none md:max-w-none">
 			{% for post in posts %}
 			<a href="{{ path('blog.show', {'slug': post.slug, 'id': post.id}) }}">
-			<article class="flex flex-col overflow-hidden rounded-lg shadow-lg ">
-				<div class="flex-shrinl-0">
-					<img class="object-cover w-full h-48"
-						src="{{ vich_uploader_asset( post, 'imageFile') |  imagine_filter('homepage_small') }}"
-						alt=" {{ post.title}}">
-				</div>
-				<div class="flex flex-col justify-between flex-1 h-0 p-5">
-					<div class="flex-1 h-0">
-						<p class="text-sm font-medium leading-5 text-indigo-600 ">{{ post.category.name }}</p>
-						<h3 class="text-xl font-bold leading-7 text-gray-900 ">
-							{{ post.title | slice(0,68)}}...
-						</h3>
-						<p class="mt-3 text-sm leading-6 text-justify text-gray-600">
-							{{ post.content | raw | striptags| slice(0,100) }} ...
-						</p>
+				<article class="flex flex-col overflow-hidden rounded-lg shadow-lg ">
+					<div class="flex-shrinl-0">
+						<img class="object-cover w-full h-48"
+							src="{{ vich_uploader_asset( post, 'imageFile') |  imagine_filter('homepage_small') }}"
+							alt=" {{ post.title}}">
 					</div>
-					<div class="flex items-center mt-6 ">
-
-						<div class="flex-shrink">
-							{% if post.user.filename is not null %}
-							<img src="{{ vich_uploader_asset( post.user, 'imageFile') |  imagine_filter('avatar') }}"
-								alt="">
-							{% else %}
-							<img class="w-10 h-10 rounded-full"
-								src="{{ asset('/static/utilisateur.svg') | imagine_filter('avatar') }}" alt="">
-							{% endif %}
+					<div class="flex flex-col justify-between flex-1 h-0 p-5">
+						<div class="flex-1 h-0">
+							<p class="text-sm font-medium leading-5 text-indigo-600 ">{{ post.category.name }}</p>
+							<h3 class="text-xl font-bold leading-7 text-gray-900 ">
+								{{ post.title | slice(0,68)}}...
+							</h3>
+							<p class="mt-3 text-sm leading-6 text-justify text-gray-600">
+								{{ post.content | raw | striptags| slice(0,100) }} ...
+							</p>
 						</div>
+						<div class="flex items-center mt-6 ">
 
-						<div class="ml-3">
-							<p class="text-sm font-medium leading-5 text-gray-900">{{post.user.username }}</p>
-							<div class="text-sm leading-5 text-gray-500">
-								<p>
-									<time class="text-xs border-gray-500 timeago"
-										datetime="{{ post.createdAt | date('c') }}">
-										{{ post.createdAt | format_datetime('medium', 'short', locale='fr') }}
-									</time>
-								</p>
+							<div class="flex-shrink">
+								{% if post.user.filename is not null %}
+								<img src="{{ vich_uploader_asset( post.user, 'imageFile') |  imagine_filter('avatar') }}"
+									alt="avatar de {{post.user.username }}">
+								{% else %}
+								<img class="w-10 h-10 rounded-full"
+									src="{{ asset('/static/utilisateur.svg') | imagine_filter('avatar') }}"
+									alt="avatar de {{post.user.username }}">
+								{% endif %}
+							</div>
+
+							<div class="ml-3">
+								<p class="text-sm font-medium leading-5 text-gray-900">{{post.user.username }}</p>
+								<div class="text-sm leading-5 text-gray-500">
+									<p>
+										<time class="text-xs border-gray-500 timeago"
+											datetime="{{ post.createdAt | date('c') }}">
+											{{ post.createdAt | format_datetime('medium', 'short', locale='fr') }}
+										</time>
+									</p>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-			</article>
+				</article>
 			</a>
 			{% endfor %}
 		</div>
