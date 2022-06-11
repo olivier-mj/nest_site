@@ -16,7 +16,7 @@ class Mailer
     }
 
   
-    public function sendContact(Contact $contact)
+    public function sendContact(Contact $contact): TemplatedEmail
     {
         if (empty($contact->getSubject())) {
             $subject = 'Message de ' . $contact->getNickname();
