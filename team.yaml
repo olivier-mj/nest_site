@@ -1,7 +1,7 @@
 team:
   streamer:
     - name: Jamyan_
-      avatar: 'jamyan_.png'
+      avatar: 'jamyan_.webp'
       description: Lorem ipsum dolor s Quod eos id officiis it amet, consectetur adipisicing elit.hic tenetur.
       status:  Fondateur du nest
       status2: streamer
@@ -11,7 +11,7 @@ team:
       tiktok: jamyan_
 
     - name: Cycyii
-      avatar: 'cycyii.jpg'
+      avatar: 'cycyii.webp'
       description: Loremeos id officiis ipsum amet, consectetur adipisicing elit. Quod  hic tdolor sit enetur.
       status: Co-fondateur du nest
       status2: modérateur
@@ -20,7 +20,7 @@ team:
       instagram: cycyiinest
 
     - name: Astraïa
-      avatar:  'astraia.jpg'
+      avatar:  'astraia.webp'
       description: Lorem consecteturipsum dolor  officiis hic tenetursit amet,  adipisicing elit. Quod eos id.
       status: Streameuse
       status2: modératrice
@@ -30,7 +30,7 @@ team:
       youtube: astraiagaming
 
     - name : Donp971
-      avatar: 'donpadre.jpg'
+      avatar: 'donp971.webp'
       description: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos id officiis hic tenetur.
       status:  moderateur
       status2: web develloper
@@ -39,16 +39,16 @@ team:
       instagram: don_padre
 
     - name: Stonic212
-      avatar:  'stonic212.png'
+      avatar:  'stonic212.webp'
       description: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos id officiis hic tenetur.
       status:  Streameur
-      status2:
+      status2: moderateur
       twitter: stonic212
       twitch: stonic212
       instagram: stonic212
 
     - name: Commandant Ralouf
-      avatar: 'ralouf.jpg'
+      avatar: 'ralouf.webp'
       description: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos id officiis hic tenetur.
       status: Streameur
       status2: modérateur
@@ -57,7 +57,7 @@ team:
       instagram: comandant_ralouf
 
     - name : Liarshadow
-      avatar: 'liarshadow.jpg'
+      avatar: 'liarshadow.webp'
       description: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos id officiis hic tenetur.
       status: modérateur
       status2: Streameur
@@ -66,7 +66,7 @@ team:
       instagram: liarshadow_
 
     - name: Tidinho
-      avatar: 'tidinho90-300x300.jpeg'
+      avatar: 'tidinho90-300x300.webp'
       description:
       status: modérateur
       status2: administrateur
