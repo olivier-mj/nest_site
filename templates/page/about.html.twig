@@ -57,10 +57,10 @@
                         <div
                               class="flex flex-col items-center justify-center h-full text-center sm:flex-row sm:justify-start sm:text-left backdrop-blur-sm bg-white/30">
                               <img alt="logo du {{ streamer.name }}"
-                                    class="z-10 flex-shrink-0 object-cover object-center w-48 h-48 mb-4 rounded-md shadow-lg shadow-black/50 sm:mb-0 bg-black-rock-900 lazyloading"
+                                    class="z-10 flex-shrink-0 object-cover object-center w-48 h-48 mb-4 rounded-md shadow shadow-black/50 sm:mb-0 bg-black-rock-900 lazyload"
                                     width="48px" height="48px"
                                     src="{{ asset('build/images/team/' ~ streamer.avatar)  }}">
-                              <div class="flex-grow sm:pl-8">
+                              <div class="flex-grow py-1 bg-white rounded-r shadow sm:pl-8">
                                     <h3 class="mb-2 text-2xl font-black text-indigo-900 text-shadow-sm">
                                           {{ streamer.name }}
                                     </h3>
@@ -68,7 +68,7 @@
                                           {{ streamer.status | capitalize}} {% if streamer.status2 %} &
                                           {{  streamer.status2 | capitalize }} {% endif %}
                                     </h4>
-                                    <p class="mb-4 text-neutral-800">{{ streamer.description }}</p>
+                                    <p class="mb-4 text-sm text-gray-800">{{ streamer.description }}</p>
                                     <span class="inline-flex items-center space-x-2 ">
                                           {% if streamer.twitch is defined %}
                                           <a href="https://www.twitch.com/{{ streamer.twitch }}"
