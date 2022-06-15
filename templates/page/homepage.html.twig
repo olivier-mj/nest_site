@@ -75,8 +75,8 @@
 			<a href="{{ path('blog.show', {'slug': post.slug, 'id': post.id}) }}">
 				<article class="flex flex-col overflow-hidden rounded-lg shadow-lg ">
 					<div class="flex-shrinl-0">
-						<img class="object-cover w-full h-48"
-							src="{{ vich_uploader_asset( post, 'imageFile') |  imagine_filter('homepage_small') }}"
+						<img class="object-cover w-full h-48 lg:object-center"
+							src="{{ vich_uploader_asset( post, 'imageFile') |  imagine_filter('homepage_thumbnail') }}"
 							alt=" {{ post.title}}">
 					</div>
 					<div class="flex flex-col justify-between flex-1 h-0 p-5">
