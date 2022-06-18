@@ -2,6 +2,7 @@
     "devDependencies": {
         "@hotwired/stimulus": "^3.0.0",
         "@symfony/stimulus-bridge": "^3.0.0",
+        "@symfony/ux-dropzone": "file:vendor/symfony/ux-dropzone/Resources/assets",
         "@symfony/webpack-encore": "^1.7.0",
         "@tailwindcss/forms": "^0.5.2",
         "@tailwindcss/postcss7-compat": "^2.2.17",
@@ -40,6 +41,8 @@
         "passport": "^0.5.2",
         "passport-oauth": "^1.0.0",
         "request": "^2.88.2",
+        "suneditor": "^2.43.9",
+        "tom-select": "^2.0.3",
         "typography": "^0.16.21"
     }
 }

@@ -1,5 +1,5 @@
 const Encore = require('@symfony/webpack-encore');
-
+const path = require('path');
 // Manually configure the runtime environment if not already configured yet by the "encore" command.
 // It's useful when you use tools that rely on webpack.config.js file.
 if (!Encore.isRuntimeEnvironmentConfigured()) {
@@ -31,7 +31,10 @@ Encore
     .addEntry('js/homepage', './assets/js/homepage.js')
     .addEntry('js/share', './assets/js/share.js')
     .addEntry('js/contact', './assets/js/contact.js')
+    .addEntry('js/profile', './assets/js/profile.js')
+    .addEntry('js/admin', './assets/js/admin.js')
     .addStyleEntry('css/app', './assets/scss/app.scss')
+    .addStyleEntry('css/admin/edit', './assets/scss/admin/edit.scss')
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge('./assets/controllers.json')
@@ -92,6 +95,14 @@ Encore
             './templates/**/*',
             './src/**/*'
         ]
+        // options.server = {
+        //     type: 'https',
+        //     options: {
+        //         pfx: path.join(process.env.HOME, '.symfony/certs/default.p12')
+        //     }
+        // }
+        options.allowedHosts = 'all';
+
     });
 
 module.exports = Encore.getWebpackConfig();
