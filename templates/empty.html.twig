@@ -31,18 +31,12 @@
 
 <body class="{% block classCss %}{% endblock %}">
 
-
-
 	<main class="bg-gray-50">
 		{% block body %}{% endblock %}
 	</main>
 
-
-
 	{{ encore_entry_script_tags('js/app') }}
-	{# {% for js in encore_entry_js_files('js/app') %}
-	<script  src="{{ preload( asset(js)  )}}"  defer></script>
-	{% endfor %}  #}
+
 	
 	{% block javascripts %}
 	{% endblock %}

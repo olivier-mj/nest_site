@@ -1,0 +1,59 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}New Post{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tom-select@2.0.3/dist/css/tom-select.css">
+{% endblock %}
+
+{% block body %}
+<h1>Create new Post</h1>
+
+
+{{ form_start(form) }}
+<div class="grid grid-cols-4 gap-4">
+    <div class="col-span-3">
+        <div>
+            {{ form_row(form.title,{'attr': {'class': 'block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'}})
+            }}
+        </div>
+        <div>
+
+            {{ form_widget(form.content,{'attr': {'class': 'edit-textarea block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'}} ) }}
+        </div>
+    </div>
+    <div class="col-span-1">
+        <div class="pb-2">
+            {{ form_label(form.imageFile,'Cover image:', {'label_attr': {'class': 'block text-sm font-medium text-gray-700'}}) }}
+            {{ form_widget(form.imageFile) }}
+        </div>
+        <div class="pb-2">
+            {{ form_label(form.createdAt,'Published At:', {'label_attr': {'class': 'block text-sm font-medium text-gray-700'}}) }}
+            {{ form_widget(form.createdAt, {'attr': {'class': 'block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'}}) }}
+        </div>
+        <div class="pb-2">
+            <label for="blog_online" class="relative flex items-center justify-between p-2 cursor-pointer select-none">
+                {{ online_label|default('Online') }}
+                {{ form_widget(form.online, {'attr':{'class': 'absolute  left-0 top-0  w-full h-full peer appearance-none invisible'}}) }}
+                <span class="flex items-center flex-shrink-0 p-1 duration-300 ease-in-out bg-gray-300 rounded-full w-11 h-7 after:bg-white after:w-5 after:h-5 after:rounded-full peer-checked:bg-green-500 peer-checked:after:translate-x-4 after:duration-300"></span>
+            </label>
+        </div>
+
+        <div class="pb-2">
+            {{ form_label(form.category,'Category:', {'label_attr': {'class': 'block text-sm font-medium text-gray-700'}}) }}
+            {{ form_widget(form.category, {'attr': {'class': 'block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'}}) }}
+        </div>
+        <div class="pb-2">
+            {{ form_label(form.tags,'Tags:', {'label_attr': {'class': 'block text-sm font-medium text-gray-700'}}) }}
+            {{ form_widget(form.tags,{'attr': {'class': 'edit-textarea block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'}}) }}
+        </div>
+
+        <div class="flex items-center justify-center"><button
+            class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">{{ button_label|default('Save') }}</button></div>
+    </div>
+</div>
+
+{{ form_end(form) }}
+
+<a href="{{ path('admin.blog_index') }}">back to list</a>
+{% endblock %}

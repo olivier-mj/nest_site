@@ -24,7 +24,7 @@
 }
 
 .sticky{
-  @apply bg-black/95;
+  @apply bg-black/80;
 }
 
 
@@ -84,4 +84,5 @@
 @import './comments.scss';
 @import './homepage.scss';
 @import './tournoi.scss';
-@import './scrollToTop';
+@import './scrollToTop.scss';
+@import './profile.scss';

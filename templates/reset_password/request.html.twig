@@ -1,0 +1,38 @@
+{% extends 'empty.html.twig' %}
+
+{% block title %}Reset your password{% endblock %}
+
+{% block body %}
+
+<div class="flex items-center justify-center h-screen ">
+    <div class="max-w-md px-4 py-10 space-y-8 max-h-md lg:w-2/3 sm:px-6 lg:px-8">
+        <div>
+            <img class="w-auto h-48 mx-auto lg:h-52" src="{{ asset('build/images/logo-large-black.svg') }}"
+                width="208px" height="208px" alt="Nest-Gaming">
+            <h1 class="mt-6 text-3xl font-extrabold text-center text-gray-900">
+                Reset your password
+            </h1>
+        </div>
+
+        {% for flash_error in app.flashes('reset_password_error') %}
+        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+        {% endfor %}
+        {{ form_start(requestForm, {'attr': {'class': 'mt-8 space-y-6'}}) }}
+        <div class="text-center">
+            <small>
+                Enter your email address and we will send you a<br class="lg:hidden">
+                link to reset your password.
+            </small>
+        </div>
+        <div class="container flex justify-center mx-auto">
+            {{ form_widget(requestForm.email) }}
+        </div>
+        <div class="container flex justify-center mx-auto">
+            {{form_widget(requestForm.submit)}}
+        </div>
+
+        {{ form_end(requestForm) }}
+    </div>
+</div>
+
+{% endblock %}

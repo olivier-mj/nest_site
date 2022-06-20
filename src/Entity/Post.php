@@ -18,7 +18,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 /**
  * @ORM\Entity(repositoryClass=PostRepository::class)
  * @Vich\Uploadable
- * @ORM\Cache
+ 
  */
 class Post
 {
@@ -333,4 +333,6 @@ class Post
         }
         return $this;
     }
+
+  
 }

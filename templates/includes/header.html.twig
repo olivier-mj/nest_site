@@ -1,5 +1,4 @@
-
-<nav id="header"	class="fixed top-0 z-50 w-full transition duration-300 ease-in-out shadow-md bg-nav">
+<nav id="header" class="fixed top-0 z-50 w-full transition duration-300 ease-in-out shadow-md bg-nav">
 	<div class="container flex flex-wrap items-center justify-between py-2 mx-auto">
 		<div class="flex items-center flex-shrink-0 mr-6 text-white">
 			<a class="text-white no-underline hover:text-white hover:no-underline" href="{{ path('page.home') }}">
@@ -9,7 +8,8 @@
 		</div>
 
 		<div class="block lg:hidden">
-			<button id="btn-menu" aria-label="humburger button" class="flex items-center text-gray-500 hover:text-white hover:border-white">
+			<button id="btn-menu" aria-label="humburger button"
+				class="flex items-center text-gray-500 hover:text-white hover:border-white">
 				<svg xmlns="http://www.w3.org/2000/svg" fill="white" class="h-10 text-white" viewBox="0 0 16 16">
 					<path fill-rule="evenodd"
 						d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
@@ -17,41 +17,184 @@
 			</button>
 		</div>
 
-		<div id="mobile-menu" class="flex-grow hidden w-full pt-6 lg:items-center lg:w-auto lg:block lg:pt-0"	>
+		<div id="mobile-menu" class="flex-grow hidden w-full pt-6 lg:items-center lg:w-auto lg:block lg:pt-0">
 			{% set route_name = app.request.attributes.get('_route') %}
 			<ul class="items-center justify-end flex-1 list-reset lg:flex">
 				<li>
-					<a class="inline-block px-4 py-2  no-underline {% if route_name == "page.home" %}  font-bold text-white {% else %} text-white/60 no-underline hover:text-gray-200 hover:text-underline {% endif %}" 
-					{% if route_name == "page.home" %} aria-current="page" {% endif %}
+					<a class="inline-block px-4 py-2  no-underline {% if route_name == "page.home" %}  font-bold text-white {% else %} text-white/60 no-underline hover:text-gray-200 hover:text-underline {% endif %}"
+						{% if route_name == "page.home" %} aria-current="page" {% endif %}
 						href="{{ path('page.home') }}">Acceuil</a>
 				</li>
 				<li>
 					<a class="inline-block px-4 py-2 no-underline {% if route_name == "blog.index" or  route_name == "blog.show"
 					or route_name == "categories.list"   or route_name == "categories.show"
 					or route_name == "tag.list" or route_name == "tag.show"%}  font-bold text-white {% else %} text-white/60 no-underline hover:text-gray-200 hover:text-underline {% endif %}"
-					{% if route_name == "blog.index" %} aria-current="page" {% endif %}
+						{% if route_name == "blog.index" %} aria-current="page" {% endif %}
 						href="{{ path('blog.index') }}">Blog</a>
 				</li>
 				<li>
 					<a class="inline-block px-4 py-2 no-underline {% if route_name == "page.tournoi" %}  font-bold text-white {% else %} text-white/60 no-underline hover:text-gray-200 hover:text-underline {% endif %}"
-					{% if route_name == "page.tournoi" %} aria-current="page" {% endif %}
+						{% if route_name == "page.tournoi" %} aria-current="page" {% endif %}
 						href="{{ path('page.tournoi') }}">Tournoi</a>
 				</li>
 				<li>
 					<a class="inline-block px-4 py-2 no-underline {% if route_name == "page.live" %}  font-bold text-white {% else %} text-white/60 no-underline hover:text-gray-200 hover:text-underline {% endif %}"
-					{% if route_name == "page.tournoi" %} aria-current="page" {% endif %}
+						{% if route_name == "page.tournoi" %} aria-current="page" {% endif %}
 						href="{{ path('page.live') }}">Live</a>
 				</li>
 				<li>
 					<a class="inline-block px-4 py-2 no-underline {% if route_name == "page.about" %}  font-bold text-white {% else %} text-white/60 no-underline hover:text-gray-200 hover:text-underline {% endif %}"
-					{% if route_name == "page.about" %} aria-current="page" {% endif %}
+						{% if route_name == "page.about" %} aria-current="page" {% endif %}
 						href="{{ path('page.about') }}">À propos</a>
 				</li>
 				<li>
 					<a class="inline-block px-4 py-2 no-underline {% if route_name == "page.contact" %}  font-bold text-white {% else %} text-white/60 no-underline hover:text-gray-200 hover:text-underline {% endif %}"
-					{% if route_name == "page.contact" %} aria-current="page" {% endif %}
+						{% if route_name == "page.contact" %} aria-current="page" {% endif %}
 						href="{{ path('page.contact') }}">Contact</a>
 				</li>
+				{% if app.user %}
+				{# <li class="hidden lg:block">
+					<div class="relative inline-block text-left">
+						<div>
+							<button id="user-menu" type="button"
+								class="inline-flex items-center justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500"
+								id="menu-button" aria-expanded="true" aria-haspopup="true">
+
+								{% set user = app.user %}
+								<img src="{{ vich_uploader_asset( user, 'imageFile') |  imagine_filter('user_thumbnail') }}" alt="avatar" class="w-8 h-8 rounded-full">
+
+								<!-- Heroicon name: solid/chevron-down -->
+								<svg class="w-5 h-5 ml-2 -mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+									fill="currentColor" aria-hidden="true">
+									<path fill-rule="evenodd"
+										d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+										clip-rule="evenodd" />
+								</svg>
+							</button>
+						</div>
+
+
+						<div id="dropdown"
+							class="absolute right-0 hidden w-56 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+							role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+							<div class="py-1" role="none">
+								<!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
+								{% if is_granted('ROLE_ADMIN')  %}
+								<a href="{{ path('admin.dashboard')}}" class="block px-4 py-2 text-sm text-gray-700"
+								role="menuitem" tabindex="-1" id="menu-item-0">Dashboard</a>
+								{% endif %}
+								<a href="{{ path('profile')}}" class="block px-4 py-2 text-sm text-gray-700"
+									role="menuitem" tabindex="-1" id="menu-item-0">Account settings</a>
+								<a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
+									id="menu-item-1">Support</a>
+								<a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
+									id="menu-item-2">License</a>
+								<a href="{{ path('security.logout')}}" class="block px-4 py-2 text-sm text-gray-700"
+									role="menuitem" tabindex="-1" id="menu-item-2">Se déconnecter</a>
+
+							</div>
+						</div>
+					</div>
+				</li> #}
+				
+				<li class="hidden lg:block">
+					{% set user = app.user %}
+        <!-- Dropdown toggle button -->
+        <button id="user-menu"
+            class="relative z-10 flex items-center p-2 text-sm text-gray-600 bg-white border border-transparent rounded-md focus:border-blue-500 focus:ring-opacity-40 dark:focus:ring-opacity-40 focus:ring-blue-300 dark:focus:ring-blue-400 focus:ring dark:text-white dark:bg-gray-800 focus:outline-none">
+            <span class="mx-1 capitalize">{{ user.nickname }}</span>
+            <svg class="w-5 h-5 mx-1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 15.713L18.01 9.70299L16.597 8.28799L12 12.888L7.40399 8.28799L5.98999 9.70199L12 15.713Z"
+                    fill="currentColor"></path>
+            </svg>
+        </button>
+
+        <!-- Dropdown menu -->
+        <div id="dropdown"
+            class="absolute right-0 z-20 hidden w-56 py-2 mt-2 overflow-hidden bg-white rounded-md shadow-xl dark:bg-gray-800">
+            <a href="#"
+                class="flex items-center p-3 -mt-2 text-sm text-gray-600 transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
+                <img class="flex-shrink-0 object-cover mx-1 rounded-full w-9 h-9"
+                    src="{{ vich_uploader_asset( user, 'imageFile') |  imagine_filter('user_thumbnail') }}"
+                    alt="{{ user.nickname }}">
+                <div class="mx-1">
+                    <h1 class="text-sm font-semibold text-gray-700 capitalize dark:text-gray-200">{{ user.nickname }}
+                    </h1>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">{{ user.email }}</p>
+                </div>
+            </a>
+
+            <hr class="border-gray-200 dark:border-gray-700 ">
+
+            <a href="{{ path('profile')}}"
+                class="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
+                view profile
+            </a>
+			{% if is_granted('ROLE_ADMIN')  %}
+            <a href="{{ path('admin.dashboard')}}"
+                class="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
+                dashboard
+            </a>
+			{% endif %}
+            <a href="#"
+                class="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
+                Keyboard shortcuts
+            </a>
+
+            <hr class="border-gray-200 dark:border-gray-700 ">
+
+            <a href="#"
+                class="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
+                Company profile
+            </a>
+
+            <a href="#"
+                class="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
+                Team
+            </a>
+
+            <a href="#"
+                class="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
+                Invite colleagues
+            </a>
+
+            <hr class="border-gray-200 dark:border-gray-700 ">
+
+            <a href="#"
+                class="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
+                Help
+            </a>
+            <a href="{{ path('security.logout') }}"
+                class="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
+                Sign Out
+            </a>
+        </div>
+				</li>
+				
+				<li class="block md:hidden lg:hidden">
+					<a class="inline-block px-4 py-2 no-underline {% if route_name == "profile" %}  font-bold text-white {% else %} text-white/60 no-underline hover:text-gray-200 hover:text-underline {% endif %}"
+						{% if route_name == "profile" %} aria-current="page" {% endif %}
+					href="{{ path('profile') }}">Mon compte</a>
+				</li>
+				{% if is_granted('ROLE_ADMIN')  %}
+				<li class="block lg:hidden">
+					<a class="inline-block px-4 py-2 no-underline {% if route_name == "profile" %}  font-bold text-white {% else %} text-white/60 no-underline hover:text-gray-200 hover:text-underline {% endif %}"
+						{% if route_name == "profile" %} aria-current="page" {% endif %}
+					href="{{ path('admin.dashboard') }}">Administration</a>
+				</li>
+				{% endif %}
+				<li class="block lg:hidden">
+					<a class="inline-block px-4 py-2 no-underline text-white/60 hover:text-gray-200 hover:text-underline "
+					href="{{ path('security.logout') }}">Se déconnecter</a>
+				</li>
+				{% else %}
+				<li class="flex items-center">
+					<a href="{{ path('security.login') }}"
+						class="flex items-center px-4 py-2 no-underline text-white/60 hover:text-gray-200 hover:text-underline">
+						{{ icon('user4', '18', 'hidden lg:block fill-current mr-1','Se connecter') }} Se connecter
+					</a>
+				</li>
+				{% endif %}
 			</ul>
 		</div>
 	</div>

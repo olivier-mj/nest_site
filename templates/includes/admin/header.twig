@@ -1,0 +1,110 @@
+<div  class="flex flex-row flex-wrap items-center p-5 bg-white border-b border-gray-300 md:fixed md:w-full md:top-0 md:z-20">
+
+    <!-- logo -->
+    <div class="flex flex-row items-center flex-none w-56 h-full">
+        <img src="{{ asset('build/images/logo-black-transparent.svg') }}" class="flex-none h-56"  width="151px" height="32px">
+    </div>
+    <!-- end logo -->
+
+    <!-- navbar content toggle -->
+    <button id="navbarToggle" class="right-0 hidden mr-6 md:block md:fixed">
+        <i class="fad fa-chevron-double-down"></i>
+    </button>
+    <!-- end navbar content toggle -->
+
+    <!-- navbar content -->
+    <div id="navbar"
+        class="flex flex-row flex-wrap items-center justify-between flex-1 pl-3 animated md:hidden md:fixed md:top-0 md:w-full md:left-0 md:mt-16 md:border-t md:border-b md:border-gray-200 md:p-10 md:bg-white md:flex-col md:items-center">
+        <!-- left -->
+        <div
+            class="text-gray-600 md:w-full md:flex md:flex-row md:justify-evenly md:pb-10 md:mb-10 md:border-b md:border-gray-200">
+            <a class="mr-2 transition duration-500 ease-in-out hover:text-gray-900" href="#" title="email"><i
+                    class="fad fa-envelope-open-text"></i></a>
+            <a class="mr-2 transition duration-500 ease-in-out hover:text-gray-900" href="#" title="email"><i
+                    class="fad fa-comments-alt"></i></a>
+            <a class="mr-2 transition duration-500 ease-in-out hover:text-gray-900" href="#" title="email"><i
+                    class="fad fa-check-circle"></i></a>
+            <a class="mr-2 transition duration-500 ease-in-out hover:text-gray-900" href="#" title="email"><i
+                    class="fad fa-calendar-exclamation"></i></a>
+        </div>
+        <!-- end left -->
+
+        <!-- right -->
+        <div class="flex flex-row-reverse items-center">
+
+            <!-- user -->
+            <div class="relative dropdown md:static">
+
+                <button class="flex flex-wrap items-center menu-btn focus:outline-none focus:shadow-outline">
+                    <div class="w-8 h-8 overflow-hidden rounded-full">
+                        <img class="object-cover w-full h-full" src="img/user.svg">
+                    </div>
+
+                    <div class="flex ml-2 capitalize ">
+                        <h1 class="p-0 m-0 text-sm font-semibold leading-none text-gray-800">moeSaid</h1>
+                        <i class="ml-2 text-xs leading-none fad fa-chevron-down"></i>
+                    </div>
+                </button>
+
+                <button class="fixed top-0 left-0 z-10 hidden w-full h-full menu-overflow"></button>
+
+                <div
+                    class="absolute right-0 z-20 hidden w-40 py-2 mt-5 text-gray-500 bg-white rounded shadow-md menu md:mt-10 md:w-full animated faster">
+
+                    <!-- item -->
+                    <a class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900"
+                        href="#">
+                        <i class="mr-1 text-xs fad fa-user-edit"></i>
+                        edit my profile
+                    </a>
+                    <!-- end item -->
+
+                    <!-- item -->
+                    <a class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900"
+                        href="#">
+                        <i class="mr-1 text-xs fad fa-inbox-in"></i>
+                        my inbox
+                    </a>
+                    <!-- end item -->
+
+                    <!-- item -->
+                    <a class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900"
+                        href="#">
+                        <i class="mr-1 text-xs fad fa-badge-check"></i>
+                        tasks
+                    </a>
+                    <!-- end item -->
+
+                    <!-- item -->
+                    <a class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900"
+                        href="#">
+                        <i class="mr-1 text-xs fad fa-comment-alt-dots"></i>
+                        chats
+                    </a>
+                    <!-- end item -->
+
+                    <hr>
+
+                    <!-- item -->
+                    <a class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900"
+                        href="#">
+                        <i class="mr-1 text-xs fad fa-user-times"></i>
+                        log out
+                    </a>
+                    <!-- end item -->
+
+                </div>
+            </div>
+            <!-- end user -->
+
+
+
+
+
+
+        </div>
+        <!-- end right -->
+    </div>
+    <!-- end navbar content -->
+
+</div>

@@ -1,0 +1,50 @@
+    <div class="inline-block mx-auto">
+        <div class="flex flex-row items-center w-auto space-x-3">
+            {% if first is defined and current != first %}
+            <span class="px-3 py-1 text-lg font-bold bg-gray-100 rounded-md shadow-md text-slate-500">
+                <a href="{{ path(route, query|merge({(pageParameterName): first})) }}">
+                    <span class="font-bold">&laquo;</span>
+                </a>
+            </span>
+            {% endif %}
+
+            {% if previous is defined %}
+            <span class="px-3 py-1 text-lg bg-gray-100 rounded-md shadow-md text-slate-500">
+                <a rel="prev" href="{{ path(route, query|merge({(pageParameterName): previous})) }}">
+                    <span class="font-bold">&lsaquo;</span>
+                </a>
+            </span>
+            {% endif %}
+
+            {% for page in pagesInRange %}
+            {% if page != current %}
+            <span class="px-3 py-1 text-lg font-bold bg-gray-100 rounded-md shadow-md text-slate-500 hover:bg-slate-700/90 hover:text-gray-100">
+                <a href="{{ path(route, query|merge({(pageParameterName): page})) }}">{{ page }}</a>
+            </span>
+            {% else %}
+            <span class="px-3 py-1 text-lg font-bold text-white rounded-md shadow-md bg-slate-700">{{ page }}</span>
+            {% endif %}
+            {% endfor %}
+
+            {% if next is defined %}
+            <span class="px-3 py-1 text-lg bg-gray-100 rounded-md shadow-md text-slate-700 hover:bg-slate-700/90 hover:text-gray-100">
+                <a rel="next" href="{{ path(route, query|merge({(pageParameterName): next})) }}">
+                    {# &gt; #}
+                    {# {{ icon('arrow right','25', 'fill-slate-500') }} #}
+                    <span class="font-bold">&rsaquo;</span>
+                </a>
+            </span>
+            {% endif %}
+
+            {% if last is defined and current != last %}
+            <span class="flex px-3 py-1 text-lg font-bold bg-gray-100 rounded-md shadow-md text-slate-700 hover:bg-slate-700/90 hover:text-gray-100 ">
+                <a href="{{ path(route, query|merge({(pageParameterName): last})) }}">
+                    {# &gt;&gt; #}
+                    {# {{ icon('double arrow right','25', 'fill-slate-500') }} #}
+                    <span class="font-bold">&raquo;</span>
+                </a>
+            </span>
+            {% endif %}
+
+        </div>
+    </div>

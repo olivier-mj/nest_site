@@ -1,0 +1,84 @@
+<div id="sideBar"
+    class="relative flex flex-col flex-wrap flex-none w-64 p-5 border-r border-gray-900 md:-ml-64 md:fixed md:top-0 md:z-30 md:h-screen md:shadow-xl animated faster">
+
+
+    <!-- sidebar content -->
+    <div class="flex flex-col">
+
+        <!-- sidebar toggle -->
+        <div class="hidden mb-4 text-right md:block">
+            <button id="sideBarHideBtn">
+                <i class="fad fa-times-circle"></i>
+            </button>
+        </div>
+        <!-- end sidebar toggle -->
+
+        <p class="mb-4 text-xs tracking-wider text-gray-600 uppercase">Adminstration</p>
+
+        <!-- link -->
+        <a href="{{ path('admin.dashboard') }}"
+            class="flex items-center mb-3 text-sm font-medium transition duration-500 ease-in-out first-letter:capitalize hover:text-teal-600">
+            {{ icon('house', '20',' fill-black mr-2 text-xs') }}
+            Dashboard
+        </a>
+        <!-- end link -->
+
+        <!-- link -->
+        <a href="{{ path('admin.blog_index') }}"
+            class="flex items-center mb-3 text-sm font-medium transition duration-500 ease-in-out first-letter:capitalize hover:text-teal-600">
+            {{ icon('pen', '20',' fill-black mr-2 text-xs') }}
+            Articles
+        </a>
+        <!-- end link -->
+
+
+        <!-- link -->
+        <a href="./email.html"
+            class="flex items-center mb-3 text-sm font-medium transition duration-500 ease-in-out first-letter:capitalize hover:text-teal-600">
+            {{ icon('tag', '20',' fill-black mr-2 text-xs') }}
+            Categories
+        </a>
+        <!-- end link -->
+
+        <!-- link -->
+        <a href="#" class="flex items-center mb-3 text-sm font-medium transition duration-500 ease-in-out first-letter:capitalize hover:text-teal-600">
+            {{ icon('tags', '20',' fill-black mr-2 text-xs') }}
+            Tags
+        </a>
+        <!-- end link -->
+
+        <!-- link -->
+        <a href="#" class="flex items-center mb-3 text-sm font-medium transition duration-500 ease-in-out first-letter:capitalize hover:text-teal-600">
+            {{ icon('user4', '20',' fill-black mr-2 text-xs') }}
+            Utilisateurs
+        </a>
+        <!-- end link -->
+
+        <!-- link -->
+        <a href="#" class="flex items-center mb-3 text-sm font-medium transition duration-500 ease-in-out folder-open first-letter:capitalize hover:text-teal-600">
+            {{ icon('id-card-clip', '20',' fill-black mr-2 text-xs') }}
+            Rôles
+        </a>
+        <!-- end link -->
+
+        <!-- link -->
+        <a href="#" class="flex items-center mb-3 text-sm font-medium transition duration-500 ease-in-out first-letter:capitalize hover:text-teal-600">
+            {{ icon('comment', '20',' fill-black mr-2 text-xs') }}
+            Commentaires 
+        </a>
+        <!-- end link -->
+
+        <!-- link -->
+        <a href="#" class="flex items-center mb-3 text-sm font-medium transition duration-500 ease-in-out first-letter:capitalize first hover:text-teal-600">
+            {{ icon('folder-open', '20',' fill-black mr-2 text-xs') }}
+            Gestionnaire de fichiers
+        </a>
+        <!-- end link -->
+
+
+
+
+    </div>
+    <!-- end sidebar content -->
+
+</div>

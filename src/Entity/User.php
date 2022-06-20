@@ -2,19 +2,19 @@
 
 namespace App\Entity;
 
-use App\Repository\UserRepository;
-use Cocur\Slugify\Slugify;
 use DateTime;
 use DateTimeInterface;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use Cocur\Slugify\Slugify;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\UserRepository;
+use Doctrine\Common\Collections\Collection;
 use Symfony\Component\HttpFoundation\File\File;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\String\Slugger\SluggerInterface;
+use Doctrine\Common\Collections\ArrayCollection;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -22,6 +22,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  */
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -133,11 +134,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __construct()
     {
         $this->createdAt = new DateTime();
-//        $this->isActive = true;
+        //        $this->isActive = true;
         $this->posts = new ArrayCollection();
         $this->comments = new ArrayCollection();
         $this->videos = new ArrayCollection();
-
     }
 
     public function getId(): ?int
@@ -233,7 +233,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @see UserInterface
      */
-    public function eraseCredentials() :void
+    public function eraseCredentials(): void
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
@@ -271,6 +271,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private ?string $last_name;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private ?string $first_name;
+
 
     public function getCreatedAt(): ?DateTimeInterface
     {
@@ -425,7 +437,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $slug = (new Slugify());
 
         return $slug->slugify($this->getUsername());
-
     }
 
     /**
@@ -497,5 +508,51 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         return $this;
+    }
+
+    public function getLastName(): ?string
+    {
+        return $this->last_name;
+    }
+
+    public function setLastName(?string $last_name): self
+    {
+        $this->last_name = $last_name;
+
+        return $this;
+    }
+
+    public function getFirstName(): ?string
+    {
+        return $this->first_name;
+    }
+
+    public function setFirstName(?string $first_name): self
+    {
+        $this->first_name = $first_name;
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->username;
+    }
+
+
+    public function __serialize(): array
+    {
+        return array(
+            $this->id,
+            $this->email,
+            $this->password,
+        );
+    }
+
+    public function __unserialize(array $data): void
+    {-
+        $this->id = $data[0];
+        $this->email = $data[1];
+        $this->password = $data[2];
     }
 }

@@ -1,0 +1,46 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Post index{% endblock %}
+
+{% block body %}
+    
+    <div class="flex items-center justify-between pb-5">
+        <h1 class="text-lg font-semibold">Articles</h1> <a href="{{ path('admin.blog_new') }}"
+            class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">{{ button_label|default('Add post') }}</a>
+    </div>
+    <div class="bg-white border rounded-lg shadow">
+        <table class="w-full ">
+            <thead class=" bg-gray-100/50">
+                <tr>
+                    <th class="px-2 py-2 text-xs text-left text-gray-500">Id</th>
+                    <th class="px-2 py-2 text-xs text-left text-gray-500">Title</th>
+                    <th class="px-2 py-2 text-xs text-left text-gray-500">CreatedAt</th>
+                    <th class="px-2 py-2 text-xs text-left text-gray-500">Online</th>
+                    <th class="px-2 py-2 text-xs text-left text-gray-500">actions</th>
+                </tr>
+            </thead>
+            <tbody >
+            {% for post in pagination %}
+                <tr class="transition duration-300 ease-in-out border-t whitespace-nowrap hover:bg-gray-200/50">
+                    <td class="px-2 py-3 text-center text-gray-500">{{ post.id }}</td>
+                    <td class="px-2 py-3 font-medium text-gray-900"><a href="{{ path('admin.blog_edit', {'id': post.id}) }}">{{ post.title }}</a></td>
+                    <td class="px-2 py-3 text-gray-500">{{ post.createdAt ? post.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                    <td class="px-2 py-3 text-gray-500">{{ post.online ? 'Yes' : 'No' }}</td>
+                    <td class="px-2 py-3 text-gray-500">
+                        <a class="text-blue-400 hover:text-blue-500" href="{{ path('admin.blog_edit', {'id': post.id}) }}">Edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="8">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="flex pt-8">
+        {{ knp_pagination_render(pagination, "includes/paginationAdmin.html.twig") }}
+    </div>
+
+    
+{% endblock %}

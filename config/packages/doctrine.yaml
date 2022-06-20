@@ -18,6 +18,7 @@ doctrine:
         dql:
             numeric_functions:
                 random: DoctrineExtensions\Query\Mysql\Rand   
+                
         second_level_cache:
             enabled: true
             region_cache_driver:
