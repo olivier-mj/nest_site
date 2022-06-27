@@ -41,7 +41,7 @@
         "passport": "^0.5.2",
         "passport-oauth": "^1.0.0",
         "request": "^2.88.2",
-        "suneditor": "^2.43.9",
+        "suneditor": "^2.43.11",
         "tom-select": "^2.0.3",
         "typography": "^0.16.21"
     }

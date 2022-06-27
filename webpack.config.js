@@ -32,7 +32,9 @@ Encore
     .addEntry('js/share', './assets/js/share.js')
     .addEntry('js/contact', './assets/js/contact.js')
     .addEntry('js/profile', './assets/js/profile.js')
-    .addEntry('js/admin', './assets/js/admin.js')
+    .addEntry('js/admin', './assets/js/admin/admin.js')
+    .addEntry('js/edit', './assets/js/admin/edit.js')
+    .addEntry('js/new', './assets/js/admin/new.js')
     .addStyleEntry('css/app', './assets/scss/app.scss')
     .addStyleEntry('css/admin/edit', './assets/scss/admin/edit.scss')
 
