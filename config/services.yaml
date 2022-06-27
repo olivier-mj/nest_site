@@ -11,14 +11,21 @@ parameters:
 
     twitchClientID: "%env(resolve:TWITCH_CLIENT_ID)%"
     twitchClientSecret: "%env(resolve:TWITCH_CLIENT_SECRET)%"
-    
+
     authDir: "%kernel.project_dir%/var/auth"
-    
+
+    app.public_dir: "%kernel.project_dir%/public"
+    app.public_upload_dir: "%kernel.project_dir%/public/uploads"
+    app.image_cache_dir: "%kernel.project_dir%/var/images"
+
+    uploadDir: "%app.public_upload_dir%/gallery"
+    galleryDir: "/uploads/gallery"
+
     team: "%kernel.project_dir%/team.yaml"
 
     router.request_context.scheme: "https"
     router.request_context.host: "nest-gaming.fr,www.nest-gaming.fr,beta.nest-gaming.fr"
-    asset.request_context.base_path: '%router.request_context.base_url%'
+    asset.request_context.base_path: "%router.request_context.base_url%"
     asset.request_context.secure: true
 services:
     # default configuration for services in *this* file
@@ -44,7 +51,6 @@ services:
             $tagsPool: "@cache.app"
             $knownTagVersionsTtl: "0.15"
 
-
     App\Services\Comment\Disqus\DisqusClient:
         arguments:
             $publicKey: "%disqusPublicKey%"
@@ -58,5 +64,15 @@ services:
     App\Controller\AboutController:
         arguments: ["%team%"]
 
+    App\Controller\Admin\AdminController:
+        arguments: ["%galleryDir%", "%uploadDir%",]
 
+    App\Services\FileUploader:
+        arguments:
+            $targetDirectory: "%uploadDir%"
 
+    App\Normalizer\FileNormalizer:
+        arguments: 
+            # $uploaderHerlper: ''
+            # $imagineCacheManager: ''
+            $package: '@assets._default_package'
