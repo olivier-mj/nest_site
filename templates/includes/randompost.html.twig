@@ -9,11 +9,11 @@
         <div class="flex flex-wrap -m-4">
             {% for post in posts %}
             
-            <div class="p-3 lg:w-1/4 md:w-1/2">
+            <div class="w-full p-3 lg:w-1/4 md:w-1/2">
                 <a href="{{ path('blog.show', {'slug': post.slug, 'id': post.id}) }}">
                     <!--Card 1-->
-                    <div class="max-w-sm overflow-hidden rounded shadow-md hover:shadow-lg">
-                        <img class="w-full lazyload" src="{{ vich_uploader_asset(post) | imagine_filter('blog_thumbnail') }}"
+                    <div class="overflow-hidden rounded shadow-md w-[100%] lg:w-full hover:shadow-lg">
+                        <img class="object-cover object-center w-[100%] h-56 lg:h-48 ls-is-cached lazyloaded" src="{{ vich_uploader_asset(post) | imagine_filter('blog_thumbnail') }}"
                             alt="{{ post.title }}" width="384px" height="216px">
                         <div class="p-4">
                             <h2 class="text-xl font-bold ">{{ post.title |slice(0, 45) }}...</h2>

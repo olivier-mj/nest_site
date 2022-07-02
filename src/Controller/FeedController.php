@@ -11,15 +11,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class FeedController extends AbstractController
 {
     #[Route('/feed', name: 'feed', defaults: ['_format' => "xml"])]
-    public function index(Request $request,PostRepository $posts,): Response
+    public function index(Request $request, PostRepository $posts,): Response
     {
         $hostname = $request->getSchemeAndHttpHost();
 
         $response = new Response(
-            $this->renderView('feed/index.xml.twig', [
+            $this->renderView('page/feed.xml.twig', [
                 'posts' => $posts->findForFeed(),
                 'hostname' => $hostname
-            ]), 200
+            ]),
+            200
         );
 
         $response->headers->set('Content-Type', 'text/xml');

@@ -71,6 +71,7 @@
 		</div>
 
 		<div class="grid gap-5 mx-auto mt-12 sm:max-w-lg md:grid-cols-2 lg:grid-cols-4 lg:max-w-none md:max-w-none">
+			{% cache "blog" ttl(300)%}
 			{% for post in posts %}
 			<a href="{{ path('blog.show', {'slug': post.slug, 'id': post.id}) }}">
 				<article class="flex flex-col overflow-hidden rounded-lg shadow-lg ">
@@ -118,6 +119,7 @@
 				</article>
 			</a>
 			{% endfor %}
+			{% endcache %}
 		</div>
 		<div class="flex items-center justify-center text-center">
 			<a role="button" href="{{ path('blog.index') }}"

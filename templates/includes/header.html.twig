@@ -52,6 +52,11 @@
 						{% if route_name == "page.contact" %} aria-current="page" {% endif %}
 						href="{{ path('page.contact') }}">Contact</a>
 				</li>
+				<li>
+					<a class="inline-flex px-4 py-2 no-underline {% if route_name == "page.search" %}  font-bold text-white {% else %} text-white/60 no-underline hover:text-gray-200 hover:text-underline {% endif %}"
+						{% if route_name == "page.search" %} aria-current="page" {% endif %}
+						href="{{ path('page.search') }}">{{icon('search',15, 'fill-current mr-2 hidden lg:block') }}<span class="block lg:hidden">Recherche</span></a>
+				</li>
 				{% if app.user %}
 				{# <li class="hidden lg:block">
 					<div class="relative inline-block text-left">
