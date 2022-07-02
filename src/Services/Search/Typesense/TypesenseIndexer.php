@@ -6,6 +6,7 @@ namespace App\Services\Search\Typesense;
 use App\Services\Search\IndexerInterface;
 use Symfony\Component\HttpFoundation\Response;
 
+
 class TypesenseIndexer implements IndexerInterface
 {
     public function __construct(private readonly TypesenseClient $client)
