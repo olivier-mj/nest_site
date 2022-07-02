@@ -184,7 +184,7 @@ class PostRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function findRandom(?int $limit): array
+    public function findRandom(?int $limit =null ): array
     {
         if (null === $limit) {
             $limit = 4;

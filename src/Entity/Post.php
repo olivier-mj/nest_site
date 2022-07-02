@@ -32,7 +32,7 @@ class Post
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private string $title;
+    private ?string $title = null;
 
     /**
      * @ORM\Column(type="text", nullable=true)
@@ -67,7 +67,7 @@ class Post
     private Collection $tags;
 
     /**
-     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="post")
+     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="post", cascade={"remove"})
      */
     private Collection $comments;
 
@@ -104,7 +104,7 @@ class Post
         return $this->id;
     }
 
-    public function getTitle(): string
+    public function getTitle(): ?string
     {
         return $this->title;
     }
@@ -273,7 +273,7 @@ class Post
     {
         $slug = (new Slugify());
 
-        return $slug->slugify($this->getTitle());
+        return $slug->slugify((string)$this->getTitle());
     }
 
     public function getUser(): ?User

@@ -6,6 +6,7 @@ use App\Entity\Tag;
 use App\Entity\Post;
 use App\Entity\Category;
 use App\Form\TagSearchType;
+use DateTime;
 use Symfony\Component\Form\AbstractType;
 use Symfony\UX\Dropzone\Form\DropzoneType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -13,6 +14,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class BlogType extends AbstractType
@@ -33,6 +35,9 @@ class BlogType extends AbstractType
             ])
             ->add('content', null, [
                 "label" => false,
+                // 'attr' => [
+                //     'class' => 'h-80',
+                // ]
             ])
             ->add('createdAt', DateTimeType::class, [
                 'label' => false,
@@ -40,20 +45,28 @@ class BlogType extends AbstractType
                 //                'format' => 'dd/MM/yyyy',
                 // 'html5' => true,
                 // 'attr' => [
-                //     'class' => 'datepicker',
+                //     "value" => (new  \DateTime())->format('Y-m-d H:i')
+                // ]
+            ])
+            ->add('updatedAt', DateTimeType::class, [
+                'label' => false,
+                'required' => false,
+                'widget' => 'single_text',
+                //                'format' => 'dd/MM/yyyy',
+                'html5' => true,
+                // 'attr' => [
+                //     "value" => (new  \DateTime())->format('Y-m-d H:i')
                 // ]
             ])
             ->add('online', null, [
                 "label" => false,
-  
+
             ])
             ->add('imageFile', DropzoneType::class, [
                 'required' => false,
                 'label' => false,
                 'attr' => [
                     'placeholder' => 'Drag and drop or browse',
-                    'data-controller' => 'mydropzone',
-
                 ],
             ])
             ->add('category', EntityType::class, [
@@ -71,10 +84,17 @@ class BlogType extends AbstractType
                 'required' => false,
                 'label' => false,
                 'search' => $this->UrlGeneratorInterface->generate('admin.api_tags'),
-                'label_Property' =>'name',
+                'label_Property' => 'name',
                 'value_Property' => 'id'
-            ]);
+            ])
             // ->add('user')
+            // ->add('submit', SubmitType::class,[
+            //     'attr' => [
+            //         'class' => 'inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 
+            //         border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none
+            //         focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
+            //     ]
+            // ])
         ;
     }
 
