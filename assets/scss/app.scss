@@ -79,6 +79,10 @@
   @apply mt-14;
 }
 
+mark {
+  @apply bg-indigo-500/75 text-gray-800 p-0.5  rounded;
+}
+
 @import './about.scss';
 @import './blog.scss';
 @import './comments.scss';
@@ -86,3 +90,4 @@
 @import './tournoi.scss';
 @import './scrollToTop.scss';
 @import './profile.scss';
+

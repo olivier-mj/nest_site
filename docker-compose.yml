@@ -33,7 +33,7 @@ services:
     networks:
         - web
         - private
-        
+
   php-fpm:
     container_name: php-fpm
     user: "${USER_ID}:${GROUP_ID}"

@@ -6,6 +6,10 @@
 parameters:
     apihost: "%env(resolve:API_HOST)%"
 
+    typesense_key:    '%env(resolve:TYPESENSE_KEY)%'
+    typesense_host:   '%env(resolve:TYPESENSE_HOST)%'
+    typesense_port:   '%env(resolve:TYPESENSE_PORT)%'
+
     disqusPublicKey: "%env(resolve:DISQUS_PUBLIC_KEY)%"
     disqusPrivateKey: "%env(resolve:DISQUS_PRIVATE_KEY)%"
 
@@ -76,3 +80,27 @@ services:
             # $uploaderHerlper: ''
             # $imagineCacheManager: ''
             $package: '@assets._default_package'
+
+    App\Services\Search\Typesense\TypesenseClient:
+        arguments: [
+            '%typesense_host%',
+            '%typesense_port%',
+            '%typesense_key%'
+        ]
+
+
+    App\Services\Search\Typesense\IndexerInterface:
+        class:   App\Services\Search\Typesense\TypesenseIndexer
+
+    App\Services\Search\Typesense\SearchInterface:
+        class:   App\Services\Search\Typesense\TypesenseSearch
+
+
+    App\Command\IndexCommand:
+        arguments: [
+            '@App\Services\Search\IndexerInterface',
+            '@Doctrine\ORM\EntityManagerInterface',
+            '@Symfony\Component\Serializer\Normalizer\NormalizerInterface'
+        ]
+        tags:
+            - { name: console.command }

@@ -1,0 +1,111 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+{% if app.request.query is empty %}
+Recherche
+{% elseif q is empty %}
+Recherche : Ooops !
+{% elseif results is empty %}
+Recherche : Aucun résultat
+{% else %}
+Recherche : {{ total }} Résultat{{ total > 1 ? 's' : '' }}
+{% endif %}
+
+{% endblock %}
+
+{% block body %}
+<section id="search" class="py-20 text-white search-input bg-gradiant text-shadow-lg">
+    <div class="container px-5 mx-auto">
+        {% if app.request.query is empty %}
+        <h1 class="pb-5 text-3xl font-semibold">Recherche</h1>
+        {% elseif q is empty %}
+        <h1 class="pb-5 text-2xl font-semibold">Recherche : Ooops !</h1>
+        {% elseif results is empty %}
+        <h1 class="pb-5 text-2xl font-semibold">Recherche : Aucun résultat</h1>
+        {% else %}
+        <h1 class="pb-5 text-2xl font-semibold">Recherche : {{ total }} Résultat{{ total > 1 ? 's' : '' }}</h1>
+        {% endif %}
+        <div class="search-input">
+            <form method="get">
+                <div class="flex">
+
+                    <div class="relative w-full">
+                        <input type="search" id="search-input" name="q"
+                            class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-tl rounded-bl border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 "
+                            placeholder="Votre recherche ici ..."value="{{ q }}">
+                        <button type="submit"
+                            class="absolute top-0 right-0 p-2.5 text-sm font-medium text-white bg-blue-700 rounded-r border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"><svg
+                                class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+<section id="search-result" class="bg-white {{ total > 1 ? 'py-12' : 'py-20' }}">
+    <div class="container px-5 mx-auto">
+        {% if  app.request.query is empty %}
+        <p class="pt-3 text-gray-600">
+            Essayez de taper au moins un mot clé.
+        </p>
+        
+        {% elseif q is empty %}
+        <div class="flex items-center justify-center mx-auto">
+            <div class="text-center">
+
+                <p class="py-3 text-gray-600">
+                    Essayez de taper au moins un mot clé. Sinon je ne sais pas quoi vous trouver :(
+                </p>
+
+
+                <iframe src="https://giphy.com/embed/15aGGXfSlat2dP6ohs" width="100%" height="100%"
+                    class="object-cover h-48 mx-auto w-96" allowFullScreen></iframe>
+
+                <p><a href="https://giphy.com/gifs/reaction-mood-15aGGXfSlat2dP6ohs">via GIPHY</a></p>
+            </div>
+        </div>
+        {% elseif results is empty %}
+        
+        <div class="flex items-center justify-center mx-auto">
+            <div class="text-center">
+
+                <p class="pb-3 text-gray-600">
+                    Aucun résultat ne semble correspondre à votre recherche :(
+                </p>
+
+                <iframe src="https://giphy.com/embed/baPIkfAo0Iv5K" width="100%" height="100%"
+                    class="object-cover h-48 mx-auto w-96" allowFullScreen></iframe>
+
+                <p class="pt-3"><a href="https://giphy.com/embed/baPIkfAo0Iv5K">via GIPHY</a></p>
+            </div>
+        </div>
+        {% else %}
+        
+        <ul class="pt-5 stack-separated">
+            {% for result in results %}
+            <li class="pb-5">
+                <h2 class="pb-2 text-xl text-indigo-700 texy-base hover:underline">
+                    <a href="{{ result.url }}">{{ result.title | raw }}</a>
+                </h2>
+                <p class="text-xs font-normal text-gray-500">
+                    {{ result.createdAt |  format_datetime('medium', 'short', locale='fr')   }} |
+                    {{ result.categories }} | {{ result.tags | join(', ') }} </p>
+                <p class="pt-2 text-sm italic text-gray-600">
+                    {{ result.excerpt |striptags| raw  }}
+                </p>
+            </li>
+            {% endfor %}
+        </ul>
+
+        {{ knp_pagination_render(results, 'includes/pagination.html.twig') }}
+        {% endif %}
+    </div>
+</section>
+{% set posts = randposts %}
+{% include "./includes/randompost.html.twig" %}
+
+{% endblock %}
