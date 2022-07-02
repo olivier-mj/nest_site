@@ -3,7 +3,7 @@
 {% block title %}Page introuvable {% endblock %}
 
 {% block body %}
-<section class="bg-gradiant  py-[80px] relative z-10">
+<section class="bg-gradiant  py-[70px] relative z-10">
     <div class="container mx-auto">
         <div class="flex -mx-4">
             <div class="w-full px-4 ">
@@ -18,16 +18,7 @@
                     <p class="text-lg text-white pb-[50px]">
                         Autrement dit, quelque chose s'est terriblement mal passé.
                     </p>
-                    <a role="button" onclick="history.back()"
-                        class="inline-block px-4 py-2 text-base font-semibold text-center text-black uppercase transition rounded-lg bg-white/70 ca hover:bg-white hover:text-black">
-                        <span class="flex items-center">Revenir en arrière
-                            {{ icon('right-chevron','10', 'ml-3 fill-current')}}</span>
-                    </a>
-                    <a href="{{ path('page.home') }}"
-                        class="inline-block px-4 py-2 text-base font-semibold text-center text-white uppercase transition border border-white rounded-lg ca hover:bg-white hover:text-black">
-                        <span class="flex items-center">Aller à l'acceuil
-                            {{ icon('right-chevron','10', 'ml-3 fill-current')}}</span>
-                    </a>
+                   
                 </div>
             </div>
         </div>
@@ -45,7 +36,37 @@
         <div class="w-1/3 h-full bg-gradient-to-b from-[#FFFFFF14] to-[#C4C4C400]"></div>
     </div>
 </section>
-<!-- ====== Error 404 Section End -->
+<section class="flex items-center justify-center py-12 bg-black">
+    <div class="mx-auto">
+
+        <div class="mx-auto embed-frame ">
+            <iframe src="https://giphy.com/embed/XUFPGrX5Zis6Y" width="100%" height="100%" frameBorder="0" class="object-cover h-48 mx-auto w-96" allowFullScreen></iframe>
+        </div>
+        
+        <p class="pt-3 text-xs text-center text-white lg:text-left">
+            <a href="https://giphy.com/gifs/bomb-atomic-XUFPGrX5Zis6Y">via GIPHY</a>
+        </p>
+        <div class="pt-5 text-center">
+            <a role="button" onclick="history.back()" class="inline-block px-4 py-2 text-base font-semibold text-center text-black uppercase transition rounded-lg bg-white/70 ca hover:bg-white hover:text-black">
+                <span class="flex items-center">Revenir en arrière
+                    <svg class="ml-3 fill-current icon icon-right-chevron" width="10px" height="10px">
+    
+  <use xlink:href="/sprite.svg?logo#right-chevron"></use>
+</svg></span>
+            </a>
+            <a href="/" class="inline-block px-4 py-2 text-base font-semibold text-center text-white uppercase transition border border-white rounded-lg ca hover:bg-white hover:text-black">
+                <span class="flex items-center">Aller à l'acceuil
+                    <svg class="ml-3 fill-current icon icon-right-chevron" width="10px" height="10px">
+    
+  <use xlink:href="/sprite.svg?logo#right-chevron"></use>
+</svg></span>
+            </a>
+        </div>
+    </div>
+    
+
+</section>
+<!-- ====== Error 500 Section End -->
 
 {# {% cache "error_rand_posts" ttl(120)%} #}
 {{ getRandomPosts(4) }}
