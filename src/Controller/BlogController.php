@@ -12,6 +12,7 @@ use App\Repository\PostRepository;
 use App\Form\CommentUserOfflineType;
 use App\Controller\AbstractController;
 use App\Repository\CategoryRepository;
+use App\Services\AntiSpam\SpamChecker;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -56,7 +57,7 @@ class BlogController extends AbstractController
      * @throws \Psr\Cache\InvalidArgumentException
      */
     #[Route('/blog/{slug}-{id}', name: 'blog.show', requirements: ['slug' => '[a-z0-9\-]*', 'id' => '[0-9\-]*'], methods: ['GET', 'POST'])]
-    public function show(string $slug, Post $post, Request $request): Response
+    public function show(string $slug, Post $post, Request $request, SpamChecker $spamChecker): Response
     {
         if ($post->getSlug() !== $slug) {
             return  $this->redirectToRoute(
@@ -69,7 +70,7 @@ class BlogController extends AbstractController
         }
         $comment = new Comment();
 
-        if (!$this->isGranted('IS_AUTHENTICATED_ANONYMOUSLY')) {
+        if ($this->isGranted('IS_AUTHENTICATED_FULLY')) {
             $form = $this->createForm(CommentType::class, $comment);
         } else {
             $form = $this->createForm(CommentUserOfflineType::class, $comment);
@@ -87,6 +88,21 @@ class BlogController extends AbstractController
             }
             $comment->setPost($post);
             $comment->setIpAddress($ip);
+
+            $context = [
+                'user_ip' => $request->getClientIp(),
+                'user_agent' => $request->headers->get('user-agent'),
+                'referrer' => $request->headers->get('referer'),
+                'permalink' => $request->getUri(),
+            ];
+
+            if (2 === $spamChecker->getSpamScore($comment, $context, $request->getHost())) {
+                $comment->setIsSpam(true);
+                // throw new \RuntimeException('Blatant spam, go away!');
+            } else  {
+                $comment->setIsSpam(false);
+            }
+
 
 
             $this->entityManager->persist($comment);
@@ -120,7 +136,6 @@ class BlogController extends AbstractController
         ]);
         $response->setSharedMaxAge(600);
         return $response;
-
     }
 
     #[Route('blog/category/{slug}-{id<\d+>}', name: 'categories.show', requirements: ['slug' => '[a-z0-9\-]*', 'id' => '[0-9\-]*'])]
@@ -148,7 +163,7 @@ class BlogController extends AbstractController
         ]);
 
         $response->setSharedMaxAge(600);
-        
+
         return $response;
     }
 
@@ -176,7 +191,7 @@ class BlogController extends AbstractController
             'pagination' => $pagination
         ]);
         $response->setSharedMaxAge(600);
-        
+
         return $response;
     }
 

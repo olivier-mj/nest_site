@@ -32,7 +32,7 @@ Recherche : {{ total }} Résultat{{ total > 1 ? 's' : '' }}
                     <div class="relative w-full">
                         <input type="search" id="search-input" name="q"
                             class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-tl rounded-bl border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 "
-                            placeholder="Votre recherche ici ..."value="{{ q }}">
+                            placeholder="Votre recherche ici ..." value="{{ q }}">
                         <button type="submit"
                             class="absolute top-0 right-0 p-2.5 text-sm font-medium text-white bg-blue-700 rounded-r border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"><svg
                                 class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -52,7 +52,7 @@ Recherche : {{ total }} Résultat{{ total > 1 ? 's' : '' }}
         <p class="pt-3 text-gray-600">
             Essayez de taper au moins un mot clé.
         </p>
-        
+
         {% elseif q is empty %}
         <div class="flex items-center justify-center mx-auto">
             <div class="text-center">
@@ -69,7 +69,7 @@ Recherche : {{ total }} Résultat{{ total > 1 ? 's' : '' }}
             </div>
         </div>
         {% elseif results is empty %}
-        
+
         <div class="flex items-center justify-center mx-auto">
             <div class="text-center">
 
@@ -84,19 +84,31 @@ Recherche : {{ total }} Résultat{{ total > 1 ? 's' : '' }}
             </div>
         </div>
         {% else %}
-        
-        <ul class="pt-5 stack-separated">
+
+        <ul class="pt-5 results">
             {% for result in results %}
             <li class="pb-5">
-                <h2 class="pb-2 text-xl text-indigo-700 texy-base hover:underline">
-                    <a href="{{ result.url }}">{{ result.title | raw }}</a>
-                </h2>
-                <p class="text-xs font-normal text-gray-500">
-                    {{ result.createdAt |  format_datetime('medium', 'short', locale='fr')   }} |
-                    {{ result.categories }} | {{ result.tags | join(', ') }} </p>
-                <p class="pt-2 text-sm italic text-gray-600">
-                    {{ result.excerpt |striptags| raw  }}
-                </p>
+                <div class="flex flex-wrap items-center w-full space-x-5 space-y-5 md:flex-nowrap result">
+                    <div class="result-image">
+                        <img  class="object-cover object-center rounded"  
+                        src="{{ asset(result.filename) |  imagine_filter('search_thumbnail') }}" alt="{{ result.title }}">
+                    </div>
+                    <div class="flex justify-center result-content">
+                        <div class="">
+                            <h2 class="pb-2 text-xl text-indigo-700 texy-base hover:underline">
+                                <a href="{{ result.url }}">{{ result.title | raw }}</a>
+                            </h2>
+                            <p class="text-xs font-normal text-gray-500">
+                                {{ result.createdAt |  format_datetime('medium', 'short', locale='fr')   }} |
+                                {{ result.categories }} | {{ result.tags | join(', ') }}
+                            </p>
+                            <p class="pt-2 text-sm italic text-gray-600">
+                                {{ result.excerpt | striptags | raw  }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
             </li>
             {% endfor %}
         </ul>

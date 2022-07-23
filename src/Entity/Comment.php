@@ -49,7 +49,7 @@ class Comment
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private ?DateTimeInterface $updateAt;
+    private ?DateTimeInterface $updateAt = null;
 
     /**
      * @ORM\Column(type="boolean")
@@ -92,7 +92,11 @@ class Comment
 
     public function getEmail(): ?string
     {
-        return $this->email;
+        if( $this->getUser() == null)
+        {
+            return $this->email;
+        }
+        return $this->getUser()->getEmail();
     }
 
     public function setEmail(?string $email): self
@@ -192,7 +196,7 @@ class Comment
         if ($this->content == null) {
             return '';
         }
-        
+
         $content = $this->content;
         $charAtPosition = "";
         $contentLength = strlen($content);
@@ -201,8 +205,15 @@ class Comment
             $cutOffLength++;
             $charAtPosition = substr($content, $cutOffLength, 1);
         } while ($cutOffLength < $contentLength && $charAtPosition != " ");
-    
-        return substr($content, 0, $cutOffLength) . ' ...';
 
+        return substr($content, 0, $cutOffLength) . ' ...';
+    }
+
+    public function  getAuthor(): mixed
+    {
+        if ($this->getUser() == null) {
+            return  $this->getName();
+        }
+        return $this->getUser();
     }
 }

@@ -29,6 +29,7 @@ class TypesenseIndexer implements IndexerInterface
                         ['name' => 'type', 'type' => 'string', 'facet' => true],
                         ['name' => 'created_at', 'type' => 'int32'],
                         ['name' => 'url', 'type' => 'string'],
+                        ['name' => 'filename', 'type' => 'string'],
                     ],
                     'default_sorting_field' => 'created_at',
                 ]);

@@ -3,59 +3,68 @@
 {% block title %}Profil de {{ author.nickname }}{% endblock %}
 
 {%  block  body%}
-<section class="py-5 page-author bg-darknight">
+<section class="py-5 ">
     <div class="container mx-auto">
-        <a href=""><h1 class="pt-3 font-medium uppercase">{{ author.nickname  }}</h1></a>
-        <p class="text-xs">{{ author.description }}</p>
-        <ul class="flex items-center pt-2 space-x-2 list-none">
-            {% if author.facebook %}
-            <li>
-                <a target="_blank" href="https://www.facebook.com/{{ author.facebook }}" aria-label="Facebook ">
-                    {{ icon('facebook','15', 'fill-slate-800 hover:fill-[#4267B2]') }}
-                </a>
-            </li>
-            {% endif %}
-            {% if author.instagram %}
-            <li>
-                <a target="_blank" href="https://www.instagram.com/{{ author.instagram }}" aria-label="Instagram">
-                    {{ icon('instagram','15', 'fill-slate-800 hover:fill-[#4267B2]') }}
-                </a>
-            </li>
-            {% endif %}
-            {% if author.twitter %}
-            <li>
-                <a target="_blank" href="https://www.instagram.com/{{ author.twitter }}" aria-label="Twitter">
-                    {{ icon('twitter','19', 'fill-slate-800 hover:fill-[#4267B2]') }}
-                </a>
-            </li>
-            {% endif %}
-            {% if author.twitch %}
-            <li>
-                <a target="_blank" href="https://www.instagram.com/{{ author.twitch }}" aria-label="Twitch">
-                    {{ icon('twitch','16', 'fill-slate-800 hover:fill-[#4267B2]') }}
-                </a>
-            </li>
-            {% endif %}
-            {% if author.youtube %}
-            <li>
-                <a target="_blank" href="{{ author.youtube }}" aria-label="Youtube">
-                    {{ icon('youtube','19', 'fill-slate-800 hover:fill-[#4267B2]') }}
-                </a>
-            </li>
-            {% endif %}
-        </ul>
+        <div class="mx-5">
+            <a href="">
+                <h1 class="pt-3 text-3xl font-medium uppercase">
+                    {{ author.nickname  }}
+                </h1>
+            </a>
+            <p class="pt-4 text-xs text-justify">
+                {{ author.description| raw }}
+            </p>
+            <ul class="flex items-center pt-3 space-x-2 list-none">
+                {% if author.facebook %}
+                <li>
+                    <a target="_blank" href="https://www.facebook.com/{{ author.facebook }}" aria-label="Facebook ">
+                        {{ icon('facebook','15', 'fill-slate-800 hover:fill-[#4267B2]') }}
+                    </a>
+                </li>
+                {% endif %}
+                {% if author.instagram %}
+                <li>
+                    <a target="_blank" href="https://www.instagram.com/{{ author.instagram }}" aria-label="Instagram">
+                        {{ icon('instagram','15', 'fill-slate-800 hover:fill-[#4267B2]') }}
+                    </a>
+                </li>
+                {% endif %}
+                {% if author.twitter %}
+                <li>
+                    <a target="_blank" href="https://www.instagram.com/{{ author.twitter }}" aria-label="Twitter">
+                        {{ icon('twitter','19', 'fill-slate-800 hover:fill-[#4267B2]') }}
+                    </a>
+                </li>
+                {% endif %}
+                {% if author.twitch %}
+                <li>
+                    <a target="_blank" href="https://www.instagram.com/{{ author.twitch }}" aria-label="Twitch">
+                        {{ icon('twitch','16', 'fill-slate-800 hover:fill-[#4267B2]') }}
+                    </a>
+                </li>
+                {% endif %}
+                {% if author.youtube %}
+                <li>
+                    <a target="_blank" href="{{ author.youtube }}" aria-label="Youtube">
+                        {{ icon('youtube','19', 'fill-slate-800 hover:fill-[#4267B2]') }}
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
     </div>
 </section>
 
-<div class="py-5 author_activity">
-    <div class="container mx-auto ">
-        <h2 class="">Tous les articles écrit par:</h2>
+<section class="py-5 author_activity">
+    <div class="container px-5 mx-auto ">
+        <h2 class="">Tous les articles écrit par {{ author.nickname  }} :</h2>
         <div class="flex flex-wrap pt-5 -m-4">
             {% for post in posts %}
                 {{ include('blog/articles-card.twig') }}
             {% endfor%}
         </div>
-</div>
+    </div>
+</section>
 {% endblock %}
 
 {% block javascripts %}

@@ -6,12 +6,14 @@ use App\Entity\Post;
 use App\Normalizer\PostPathNormalizer;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Serializer\Normalizer\ContextAwareNormalizerInterface;
+use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
 
 class PostNormalizer implements ContextAwareNormalizerInterface
 {
     public function __construct(
         private readonly PostPathNormalizer $pathNormalizer,
-        private readonly UrlGeneratorInterface $urlGenerator
+        private readonly UrlGeneratorInterface $urlGenerator,
+        private readonly UploaderHelper $helper,
     ) {
     }
 
@@ -27,16 +29,16 @@ class PostNormalizer implements ContextAwareNormalizerInterface
         }
         $url = $this->pathNormalizer->normalize($object);
 
-        // dd($url);
         return [
             'id'         => (string)$object->getId(),
             'content'    => (string)$object->getContent(),
             'url'        => $this->urlGenerator->generate($url['path'], $url['params']),
             'title'      => $object->getTitle(),
-            'category'   => $object->getCategory()->getName(),
+            'category'   => $object->getCategory()->getName(), // @phpstan-ignore-line
             'tags' => array_map(fn($t) =>$t->getName(), (array)  $object->getTags()->toArray()),
             'type'       => 'post',
             'created_at' => $object->getCreatedAt()->getTimestamp(),
+            'filename' => $this->helper->asset($object),
         ];
     }
 }

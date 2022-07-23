@@ -2,36 +2,36 @@
     <div class="container mx-auto">
 
         <div  class="mx-5 share"> <h4 class="font-normal">Partarger:</h4>
-            <ul class="flex flex-wrap items-center pt-2 space-x-5 list-none text-black-50">
+            <ul class="flex flex-wrap items-center pt-2 space-x-3 list-none transition-all duration-300 text-black-50">
                 <li>
                     <button class="flex items-center px-3 py-1 bg-gray-200 rounded-md shadow-md hover:bg-gray-300 btn btn-sm share_email" data-url="{{ app.request.schemeAndHttpHost ~ path('blog.show', {id: post.id, slug: post.slug}) }}">
-                        {{ icon('envelope','18', 'fill-gray-800 mr-2') }} Email
+                        {{ icon('envelope','18', 'fill-gray-800 lg:mr-2') }} <span class="hidden lg:block">Email </span>
                     </button>
                 </li>
                 <li>
                     <button class="flex items-center px-3 py-1 text-white rounded-md shadow-md bg-twitter-500 hover:bg-twitter-700 hover:shadow-xl btn btn-sm share_twt" data-url="{{ app.request.schemeAndHttpHost ~ path('blog.show', {id: post.id, slug: post.slug}) }}">
-                        {{ icon('twitter','18', 'fill-white mr-2') }} Twitter
+                        {{ icon('twitter','18', 'fill-white lg:mr-2') }} <span class="hidden lg:block">Twitter</span>
                     </button>
                 </li>
                 <li>
                     <button class="flex items-center px-3 py-1 text-white rounded-md shadow-md bg-facebook-500 hover:bg-facebook-600 hover:shadow-xl btn btn-sm share__facebook" data-url="{{ app.request.schemeAndHttpHost ~ path('blog.show', {id: post.id, slug: post.slug}) }}">
-                        {{ icon('facebook','18', 'fill-white mr-2') }} Facebook
+                        {{ icon('facebook','18', 'fill-white lg:mr-2') }} <span class="hidden lg:block">Facebook</span>
                     </button>
                 </li>
 
                 <li>
                     <button class="flex items-center px-3 py-1 text-white rounded-md shadow-md bg-whatsapp-500 hover:bg-whatsapp-600 hover:shadow-xl btn btn-sm share_whatsapp" data-url="{{ app.request.schemeAndHttpHost ~ path('blog.show', {id: post.id, slug: post.slug}) }}">
-                        {{ icon('whatsapp','18', 'fill-white mr-2') }} Whatsapp
+                        {{ icon('whatsapp','18', 'fill-white lg:mr-2') }} <span class="hidden lg:block">Whatsapp</span>
                     </button>
                 </li>
                 <li>
                     <button class="flex items-center px-3 py-1 text-white rounded-md shadow-md bg-reddit-500 hover:bg-reddit-700 hover:shadow-xl btn btn-sm share_reddit" data-url="{{ app.request.schemeAndHttpHost ~ path('blog.show', {id: post.id, slug: post.slug}) }}">
-                        {{ icon('reddit','18', 'fill-white mr-2') }}  Reddit
+                        {{ icon('reddit','18', 'fill-white lg:mr-2') }}  <span class="hidden lg:block">Reddit</span>
                     </button>
                 </li>
                 <li>
                     <button class="flex items-center px-3 py-1 text-white rounded-md shadow-md bg-pocket-500 hover:bg-pocket-700 hover:shadow-xl btn btn-sm share_pocket" data-url="{{ app.request.schemeAndHttpHost ~ path('blog.show', {id: post.id, slug: post.slug}) }}">
-                        {{ icon('pocket','18', 'fill-white mr-2') }}  Pocket
+                        {{ icon('pocket','18', 'fill-white lg:mr-2') }}  <span class="hidden lg:block">Pocket</span>
                     </button>
                 </li>
             </ul>

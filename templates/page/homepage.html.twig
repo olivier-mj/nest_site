@@ -74,7 +74,7 @@
 			{% cache "blog" ttl(300)%}
 			{% for post in posts %}
 			<a href="{{ path('blog.show', {'slug': post.slug, 'id': post.id}) }}">
-				<article class="flex flex-col overflow-hidden rounded-lg shadow-lg ">
+				<article class="flex flex-col overflow-hidden rounded-md shadow hover:shadow-xl">
 					<div class="flex-shrinl-0">
 						<img class="object-cover w-full h-48 lg:object-center"
 							src="{{ vich_uploader_asset( post, 'imageFile') |  imagine_filter('homepage_thumbnail') }}"

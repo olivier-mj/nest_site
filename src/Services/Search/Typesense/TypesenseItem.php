@@ -78,11 +78,9 @@ class TypesenseItem implements SearchResultItemInterface
     {
         $type = $this->item['document']['type'];
         if ('course' === $type) {
-            return 'Tutoriel';
+            return 'video';
         }
-        if ('formation' === $type) {
-            return 'Formation';
-        }
+    
         if ('post' === $type) {
             return 'Article';
         }
@@ -95,7 +93,6 @@ class TypesenseItem implements SearchResultItemInterface
         return new \DateTimeImmutable('@'.$this->item['document']['created_at']);
     }
 
-   
     public function getCategories(): string
     {
         return $this->item['document']['category'];
@@ -104,5 +101,11 @@ class TypesenseItem implements SearchResultItemInterface
     public function getTags(): array
     {
         return $this->item['document']['tags'];
+    }
+
+ 
+    public function getFilename(): string
+    {
+        return $this->item['document']['filename'];
     }
 }

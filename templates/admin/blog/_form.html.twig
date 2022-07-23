@@ -57,7 +57,8 @@
             {# {{ form_widget(form.submit) }} #}
             {% if delete %}
             <span id="del-button"
-            class="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white bg-red-600 border border-transparent rounded-md shadow-sm cursor-pointer hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">{{ button_del_label|default('Delete') }}</span>{% endif %}
+            class="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white bg-red-600 border border-transparent rounded-md shadow-sm cursor-pointer hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">{{ button_del_label|default('Delete') }}</span>
+            {% endif %}
         </div>
     </div>
 </div>

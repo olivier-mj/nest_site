@@ -1,6 +1,6 @@
 <div id="author" class="py-5 ">
 	<div class="container mx-auto ">
-		<div class="flex flex-wrap rounded shadow md:flex-nowrap lg:flex-nowrap">
+		<div class="flex flex-wrap mx-5 rounded shadow md:flex-nowrap lg:flex-nowrap">
 			<div class="w-48 rounded bg-indigo-40">
 				<div class="w-48 h-48 ">
 					{% set user = post.user   %}
@@ -22,7 +22,7 @@
 							<h3>{{ user.username }}</h3>
 						</a>
 					</div>
-					<p class="mt-3 text-slate-600">
+					<p class="mt-3 text-slate-600 w-96z">
 						{{ user.description|raw }}
 					</p>
 					<ul class="flex items-center pt-3 space-x-2 list-none">
@@ -61,13 +61,13 @@
 							</a>
 						</li>
 						{% endif %}
-						{# {% if user.steam %}
+						{% if user.steam %}
 						<li>
 							<a target="_blank" href="https://steamcommunity.com/id/{{ user.steam }}" aria-label="Steam">
 								{{ icon('steam-logo','18', 'fill-slate-700 hover:fill-black') }}
 							</a>
 						</li>
-						{% endif %} #}
+						{% endif %}
 					</ul>
 				</div>
 			</div>

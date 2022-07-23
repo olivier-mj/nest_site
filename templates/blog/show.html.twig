@@ -5,7 +5,7 @@
 {% block body %}
 <article id="postid-{{ post.id }}" class="bg-white">
     <header class="blog-header text-shadow-md"
-        style='background-image: url({{ vich_uploader_asset(post) |  imagine_filter('blog_show')  }})'>
+        style="background-image: url('{{ vich_uploader_asset(post)|imagine_filter('blog_show')}}')">
         <div class="overlay"> </div>
         <div class="container relative mx-auto">
             <div class="flex-grow">
@@ -48,7 +48,7 @@
             {{ post.content | raw }}
         </div>
     </div>
-    <section class="py-5 blog-tags">
+    {# <section class="py-5 blog-tags">
         <div class="container mx-auto ">
             <div class="mx-5">
                 <span class="inline-block font-black">Tags :</span>
@@ -59,13 +59,15 @@
                         {{ tag.name }}
                     </a>
                 </span>
+                {% endfor %}
             </div>
-            {% endfor %}
         </div>
-    </section>
+    </section> #}
+    {{ include('includes/tags.html.twig')}}
     {{ include('includes/share.html.twig') }}
     {{ include('includes/author.html.twig') }}
-    {{ include('includes/disqus.html.twig') }}
+    {# {{ include('includes/disqus.html.twig') }} #}
+    {{ include('includes/comments.twig') }}
 </article>
 
 {% endblock %}
@@ -73,5 +75,5 @@
 {% block javascripts %}
 {{ parent() }}
 {{ encore_entry_script_tags('js/share') }}
-<script id="dsq-count-scr" src="//nest-gaming.disqus.com/count.js" defer></script>
+{# <script id="dsq-count-scr" src="//nest-gaming.disqus.com/count.js" defer></script> #}
 {% endblock javascripts %}

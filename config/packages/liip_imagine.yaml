@@ -38,7 +38,7 @@ liip_imagine:
             filters:
                 crop:
                     size: [500, 281]
-                    start: [ 040, 160 ]
+                    start: [040, 160]
                     # mode: outbound
 
         homepage_thumbnail:
@@ -171,3 +171,9 @@ liip_imagine:
                 thumbnail:
                     size: [509, 332]
                     mode: outbound
+
+        search_thumbnail:
+            format: webp
+            quality: 75
+            filters:
+                thumbnail: { size: [175, 121], mode: outbound }
