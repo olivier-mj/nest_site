@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Evenement{% endblock %}
+
+{% block body %}
+
+
+<div class="py-5">
+    <div class="container mx-auto">
+        <h1 class="pb-5 font-medium">Evenement</h1>
+
+        {% for event in events %}
+        <h2> {{ event.title}}</h2>
+        {% if event.filename %}
+        <img src="{{ vich_uploader_asset(event, 'imageFile', 'App\\Entity\\Event') | imagine_filter('admin_event_thumbnail') }}"
+            alt="illustration" width="360px" height="230px" class="rounded drop-shadow-md">
+
+        {% endif %}
+        <p>
+            {{ event.description | raw}}
+        </p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+

@@ -1,0 +1,30 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Edit Event{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tom-select@2.0.3/dist/css/tom-select.css">
+<link href="https://cdn.jsdelivr.net/npm/suneditor@latest/dist/css/suneditor.min.css" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+
+    <h1>Edit Event</h1>
+    {{ form_start(form) }}
+    {% set delete = true %}
+    {{ include('admin/event/_form.html.twig',{'edit': 'block'}) }}
+    {{ form_end(form) }}
+
+    <a href="{{ path('app_event_index') }}">back to list</a>
+    {% if delete == true %}
+    {% include 'admin/event/_delete_form.html.twig' %}
+    {% endif %}
+{% endblock %}
+
+{% block javascripts %}
+{{parent() }}
+
+<script src="https://cdn.jsdelivr.net/npm/suneditor@latest/dist/suneditor.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/suneditor@latest/src/lang/fr.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/suneditor@latest/src/lang/en.js"></script>
+{% endblock %}

@@ -1,0 +1,46 @@
+<div class="grid grid-cols-4 gap-4">
+    <div class="col-span-3">
+        <div class="pb-3">
+            {{ form_row(form.title,{'attr': {'class': 'block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'}})
+            }}
+        </div>
+        <div class="pb-2">
+            {{ form_label(form.start_date,'Date de début:', {'label_attr': {'class': 'block text-sm font-medium text-gray-700'}})
+            }}
+            {{ form_widget(form.start_date, {'attr': {'class': 'block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'}})
+            }}
+        </div>
+        <div class="pb-2">
+            {{ form_label(form.end_date,'Date de fin:', {'label_attr': {'class': 'block text-sm font-medium text-gray-700'}})
+            }}
+            {{ form_widget(form.end_date, {'attr': {'class': 'block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'}})
+            }}
+        </div>
+        <div class="pb-2">
+            {{ form_widget(form.description,{'attr': {'class': 'edit-textarea block w-full  h-80 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'}}
+            ) }}
+        </div>
+
+        <div class="pb-2">
+            {% if event.filename %}
+            <span class="inline-block h-64 overflow-hidden bg-gray-100">
+                <img src="{{ vich_uploader_asset( event, 'imageFile') }}" alt="avatar"
+                    class="w-full h-full rounded drop-shadow-md">
+            </span>
+
+            {% endif %}
+            {{ form_label(form.imageFile,'Cover image:', {'label_attr': {'class': 'block text-sm font-medium text-gray-700'}})
+            }}
+            {{ form_widget(form.imageFile) }}
+        </div>
+        <div class="flex items-center justify-end space-x-2">
+            {% if delete %}
+            <span id="del-button"
+                class="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white bg-red-600 border border-transparent rounded-md shadow-sm cursor-pointer hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">{{ button_del_label|default('Delete') }}</span>
+            {% endif %}
+            <button type="submit"
+                class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">{{ button_label|default('Save') }}</button>
+
+        </div>
+    </div>
+</div>

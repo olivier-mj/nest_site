@@ -123,6 +123,13 @@ liip_imagine:
                     size: [360, 230]
                     mode: outbound
 
+        admin_event_thumbnail:
+            quality: 75
+            filters:
+                thumbnail:
+                    size: [360, 230]
+                    mode: outbound
+
         user_thumbnail:
             quality: 75
             filters:

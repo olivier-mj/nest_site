@@ -6,9 +6,9 @@
 parameters:
     apihost: "%env(resolve:API_HOST)%"
 
-    typesense_key:    '%env(resolve:TYPESENSE_KEY)%'
-    typesense_host:   '%env(resolve:TYPESENSE_HOST)%'
-    typesense_port:   '%env(resolve:TYPESENSE_PORT)%'
+    typesense_key: "%env(resolve:TYPESENSE_KEY)%"
+    typesense_host: "%env(resolve:TYPESENSE_HOST)%"
+    typesense_port: "%env(resolve:TYPESENSE_PORT)%"
 
     disqusPublicKey: "%env(resolve:DISQUS_PUBLIC_KEY)%"
     disqusPrivateKey: "%env(resolve:DISQUS_PRIVATE_KEY)%"
@@ -37,7 +37,7 @@ services:
         autowire: true # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
         bind:
-                string $akismetKey: "%env(AKISMET_KEY)%"
+            string $akismetKey: "%env(AKISMET_KEY)%"
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
     App\:
@@ -69,39 +69,34 @@ services:
     App\Controller\AboutController:
         arguments: ["%team%"]
 
-    App\Controller\Admin\AdminController:
-        arguments: ["%galleryDir%", "%uploadDir%",]
+    App\Controller\Admin\FilemanagerController:
+        arguments: ["%galleryDir%", "%uploadDir%"]
 
     App\Services\FileUploader:
         arguments:
             $targetDirectory: "%uploadDir%"
 
     App\Normalizer\FileNormalizer:
-        arguments: 
+        arguments:
             # $uploaderHerlper: ''
             # $imagineCacheManager: ''
-            $package: '@assets._default_package'
+            $package: "@assets._default_package"
 
     App\Services\Search\Typesense\TypesenseClient:
-        arguments: [
-            '%typesense_host%',
-            '%typesense_port%',
-            '%typesense_key%'
-        ]
-
+        arguments: ["%typesense_host%", "%typesense_port%", "%typesense_key%"]
 
     App\Services\Search\Typesense\IndexerInterface:
-        class:   App\Services\Search\Typesense\TypesenseIndexer
+        class: App\Services\Search\Typesense\TypesenseIndexer
 
     App\Services\Search\Typesense\SearchInterface:
-        class:   App\Services\Search\Typesense\TypesenseSearch
-
+        class: App\Services\Search\Typesense\TypesenseSearch
 
     App\Command\IndexCommand:
-        arguments: [
-            '@App\Services\Search\IndexerInterface',
-            '@Doctrine\ORM\EntityManagerInterface',
-            '@Symfony\Component\Serializer\Normalizer\NormalizerInterface'
-        ]
+        arguments:
+            [
+                '@App\Services\Search\IndexerInterface',
+                '@Doctrine\ORM\EntityManagerInterface',
+                '@Symfony\Component\Serializer\Normalizer\NormalizerInterface',
+            ]
         tags:
             - { name: console.command }
