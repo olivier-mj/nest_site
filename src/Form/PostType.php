@@ -84,17 +84,6 @@ class PostType extends AbstractType
                     'class' => 'form-control'
                 ]
             ])
-            /* ->add('tags', TagsInputType::class, [
-                // 'label' => 'label.tags',
-                "label" => false,
-                'required' => false,
-                'attr' => [
-                    'data-toggle' => 'tagsinput',
-                    'data-role' => "tagsinput",
-                    'placeholder' => 'Chose a tag',
-
-                ]
-            ]) */
             ->add('tags', TagSearchType::class, [
                 'class' => Tag::class,
                 'required' => false,
@@ -103,17 +92,6 @@ class PostType extends AbstractType
                 'value_Property' => 'id'
             ]);
 
-        // $builder->get('createdAt')->addModelTransformer(new CallbackTransformer(
-        //     function ($value) {
-        //         if (!$value) {
-        //             return new DateTime('now');
-        //         }
-        //         return $value;
-        //     },
-        //     function ($value) {
-        //         return $value;
-        //     }
-        // ));
     }
 
     public function configureOptions(OptionsResolver $resolver): void
